@@ -1,0 +1,25 @@
+{
+  "last_updated": "March 2026",
+  "cards": [
+    {
+      "label": "Infrastructure Funding Gap",
+      "value": "$40.8B",
+      "detail": "124 US cities, 484 climate projects"
+    },
+    {
+      "label": "NGWSGP (Alert Systems)",
+      "value": "$40M",
+      "detail": "FY2025 - Most relevant Genasys program"
+    },
+    {
+      "label": "HSGP Total",
+      "value": "$1.008B",
+      "detail": "SHSP + UASI + OPSG combined"
+    },
+    {
+      "label": "Grid Attacks (2023)",
+      "value": "185+",
+      "detail": "Record physical attacks on power infrastructure"
+    }
+  ]
+}

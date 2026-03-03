@@ -1,0 +1,16 @@
+priority_rank,city_metro,country,population_at_risk,primary_hazards,risk_score,world_risk_index,infrastructure_gap,funding_procurement_path,notes
+1,Tokyo-Yokohama,Japan,29.4M,"Earthquake, tsunami",9,24.81,Advanced systems in place; market for upgrades and next-gen alerts,Japanese government procurement; World Bank partnerships,Top global metro for multi-hazard risk by population.
+2,Jakarta,Indonesia,17.7M,"Earthquake, flood, subsidence",9,39.80,Major infrastructure deficit across all categories,"World Bank, Asian Development Bank, bilateral aid, CDRI",3rd highest World Risk Index. Sinking city.
+3,Manila,Philippines,16.8M,"Earthquake, typhoon, flood",10,46.56,30% population in hazardous areas; sinking 0.2m/year,"World Bank, ADB, bilateral aid, CDRI, Philippines national disaster agency",#1 World Risk Index. Fastest sinking major city.
+4,Istanbul,Turkey,6.4M exposed,Earthquake (North Anatolian Fault),9,,Aging buildings; insufficient seismic retrofit program,"Turkish government, EU funding, World Bank",Major earthquake overdue on North Anatolian Fault.
+5,Bangkok,Thailand,11M at displacement risk,"Sea level rise, flood",8,,Average elevation 1.5m; one-third could be submerged by 2050,"Thai government, ADB, World Bank, CDRI",Extremely low elevation. Massive displacement risk.
+6,Ho Chi Minh City,Vietnam,Millions,"Sea level rise, flood",8,,45% of city less than 1 meter above sea level,"Vietnamese government, World Bank, ADB, bilateral",Nearly half the city at extreme inundation risk.
+7,Osaka-Kobe,Japan,Major metro,"Earthquake, tsunami",8,24.81,Dense urban infrastructure on reclaimed land,Japanese government procurement,Liquefaction risk on reclaimed areas.
+8,Lima,Peru,~10M,"Earthquake, tsunami",8,,Informal settlements on unstable terrain; inadequate warning systems,"Peruvian government, World Bank, IADB",Pacific Ring of Fire exposure.
+9,Mexico City,Mexico,~22M metro,Earthquake,8,38.96,Built on former lakebed; liquefaction and subsidence risk,"Mexican government, World Bank, IADB",1985 and 2017 earthquakes demonstrated vulnerability.
+10,Tehran,Iran,~9M,Earthquake,7,,Dense urban area on multiple fault lines,"Iranian government, limited international access",Complex geopolitical access but extremely high risk.
+11,Kathmandu,Nepal,~1.5M,Earthquake,8,,2015 earthquake devastation; reconstruction still ongoing,"World Bank, ADB, bilateral aid, UN agencies",High vulnerability with limited resources.
+12,Shenzhen,China,Millions,"Typhoon, sea level rise",7,30.62,Nanshan district at severe inundation risk by 2100,Chinese government procurement,Major tech hub with increasing coastal risk.
+13,Dubai,UAE,Millions,"Sea level rise, extreme heat",6,,Concentration of coastal infrastructure at/near sea level,"UAE government, sovereign wealth funds",Wealthy market; infrastructure protection priority.
+14,Shantou,China,Millions,Tsunami,7,30.62,Ranked among top global tsunami exposure metros,Chinese government,Significant tsunami exposure.
+15,Kolkata,India,Millions,"Tsunami, flood, cyclone",8,40.73,Top global tsunami exposure; monsoon flooding,"Indian government, World Bank, ADB, CDRI (India-led)",India is CDRI founding member.
