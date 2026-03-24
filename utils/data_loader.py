@@ -50,12 +50,3 @@ def load_metrics() -> dict:
         return json.load(f)
 
 
-def load_tracker() -> pd.DataFrame:
-    """Load tracker (not cached since it can be modified)."""
-    path = os.path.join(DATA_DIR, "tracker.csv")
-    return pd.read_csv(path)
-
-
-def save_tracker(df: pd.DataFrame):
-    path = os.path.join(DATA_DIR, "tracker.csv")
-    df.to_csv(path, index=False)

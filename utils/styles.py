@@ -64,7 +64,7 @@ def inject_css():
     <style>
     /* Metric cards */
     .metric-card {
-        background: linear-gradient(135deg, #1B2A4A 0%, #2563EB 100%);
+        background: linear-gradient(135deg, #163443 0%, #56C8DA 100%);
         color: white; padding: 1.2rem; border-radius: 12px;
         text-align: center; height: 100%;
     }
@@ -74,16 +74,16 @@ def inject_css():
 
     /* Department cards */
     .dept-card {
-        background: #F8FAFC; border: 1px solid #E2E8F0;
+        background: #F5F5F5; border: 1px solid #D9D9D9;
         border-radius: 12px; padding: 1.2rem; height: 100%;
         transition: box-shadow 0.2s;
     }
     .dept-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-    .dept-card h4 { color: #1B2A4A; margin: 0 0 0.5rem 0; }
+    .dept-card h4 { color: #163443; margin: 0 0 0.5rem 0; }
 
     /* Funding card */
     .funding-card {
-        background: white; border: 1px solid #E2E8F0;
+        background: white; border: 1px solid #D9D9D9;
         border-radius: 12px; padding: 1rem; margin-bottom: 0.8rem;
     }
 
@@ -93,7 +93,7 @@ def inject_css():
 
     /* Sidebar styling */
     [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #1B2A4A 0%, #0F172A 100%);
+        background: linear-gradient(180deg, #163443 0%, #0D2330 100%);
     }
     [data-testid="stSidebar"] * { color: white !important; }
     [data-testid="stSidebar"] .stSelectbox label { color: rgba(255,255,255,0.8) !important; }
