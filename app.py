@@ -47,6 +47,6 @@ st.markdown("""
 - **City Targets** — Filter and sort 30 priority metro areas
 - **Funding Finder** — "I am a ___ in ___" → see your matching grants
 - **Department Playbook** — Sales approach by buyer type
-- **Funded Agency Tracker** — Track outreach to agencies that received awards
+- **Add to HubSpot** — Log promising prospects in the Initial Sales Stage
 - **Global Targets** — International high-risk metros
 """)

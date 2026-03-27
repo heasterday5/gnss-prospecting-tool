@@ -2,6 +2,13 @@
 
 import streamlit as st
 
+# Genasys brand colors
+GENASYS_NAVY = "#163443"
+GENASYS_GREEN = "#ABCF38"
+GENASYS_LIGHT_BLUE = "#56C8DA"
+GENASYS_CHARCOAL = "#262A2D"
+GENASYS_COOL_GRAY = "#D9D9D9"
+
 # Color constants
 TIER_COLORS = {
     "Tier 1 - Immediate": ("#DC2626", "#FEE2E2"),       # red
@@ -67,6 +74,7 @@ def inject_css():
         background: linear-gradient(135deg, #163443 0%, #56C8DA 100%);
         color: white; padding: 1.2rem; border-radius: 12px;
         text-align: center; height: 100%;
+        border-bottom: 3px solid #ABCF38;
     }
     .metric-card .value { font-size: 1.8rem; font-weight: 800; margin: 0.3rem 0; }
     .metric-card .label { font-size: 0.85rem; opacity: 0.9; }
@@ -84,7 +92,27 @@ def inject_css():
     /* Funding card */
     .funding-card {
         background: white; border: 1px solid #D9D9D9;
+        border-left: 4px solid #ABCF38;
         border-radius: 12px; padding: 1rem; margin-bottom: 0.8rem;
+    }
+
+    /* Genasys green accents */
+    .stMarkdown a { color: #ABCF38 !important; }
+    .stMarkdown a:hover { color: #56C8DA !important; }
+    hr { border-color: rgba(171, 207, 56, 0.3) !important; }
+
+    /* Streamlit button overrides */
+    .stButton > button[kind="primary"],
+    .stFormSubmitButton > button {
+        background-color: #ABCF38 !important;
+        color: #163443 !important;
+        border: none !important;
+        font-weight: 600 !important;
+    }
+    .stButton > button[kind="primary"]:hover,
+    .stFormSubmitButton > button:hover {
+        background-color: #96B830 !important;
+        color: #163443 !important;
     }
 
     /* Hide Streamlit branding */
@@ -97,6 +125,7 @@ def inject_css():
     }
     [data-testid="stSidebar"] * { color: white !important; }
     [data-testid="stSidebar"] .stSelectbox label { color: rgba(255,255,255,0.8) !important; }
+    [data-testid="stSidebar"] a:hover { color: #ABCF38 !important; }
     </style>
     """, unsafe_allow_html=True)
 

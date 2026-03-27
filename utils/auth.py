@@ -13,7 +13,8 @@ def check_password() -> bool:
     st.markdown("""
     <div style="text-align:center;padding:2rem 0 1rem;">
         <h1 style="color:#163443;margin:0;">🎯 GNSS</h1>
-        <p style="color:#56C8DA;font-size:1.1rem;">Sales Prospecting Tool</p>
+        <p style="color:#ABCF38;font-size:1.1rem;font-weight:600;">Sales Prospecting Tool</p>
+        <div style="width:60px;height:3px;background:#ABCF38;margin:0.5rem auto 0;border-radius:2px;"></div>
     </div>
     """, unsafe_allow_html=True)
 

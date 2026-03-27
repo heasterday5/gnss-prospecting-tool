@@ -22,6 +22,8 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+st.info("💡 **This tool is for research and discovery only.** All prospect tracking happens in HubSpot — add promising agencies to the Initial Sales Stage so the full team has visibility.")
+
 st.markdown("---")
 
 # Keep the research reference section — still useful for finding funded agencies
