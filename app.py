@@ -116,31 +116,31 @@ else:
     with c2:
         st.markdown("""
         <div class="gn-card teal">
-            <div class="gn-label">Before the meeting</div>
-            <h4>3 · Meeting Prep</h4>
-            <div class="gn-value">One-page battlecard: funding sources with live status, persona
-            discovery questions from the Growth Playbook, and the conversation starters.</div>
+            <div class="gn-label">Prioritize the list</div>
+            <h4>3 · Lead Scorer</h4>
+            <div class="gn-value">Score accounts 0–4 on four public indicators (SVI, dams, CRS,
+            disaster declarations). Work the 4s first — they're mathematically primed for funding.</div>
         </div>
         <div class="gn-card teal">
-            <div class="gn-label">After agreement</div>
-            <h4>4 · Procurement Toolkit</h4>
-            <div class="gn-value">Grant narrative, AEL codes, Sourcewell 030425-GYS, SAFECOM
-            alignment, budget table — copy/paste ready for the agency's application.</div>
+            <div class="gn-label">Before the meeting</div>
+            <h4>4 · Meeting Prep</h4>
+            <div class="gn-value">One-page battlecard: funding sources with live status, persona
+            discovery questions from the Growth Playbook, and the conversation starters.</div>
         </div>
         """, unsafe_allow_html=True)
     with c3:
         st.markdown("""
         <div class="gn-card navy">
-            <div class="gn-label">Reference</div>
-            <h4>State & City Intelligence</h4>
-            <div class="gn-value">Risk profiles, verified grant links for all 50 states
-            (re-checked June 2026), priority metros, and the full program database.</div>
+            <div class="gn-label">After agreement</div>
+            <h4>5 · Procurement Toolkit</h4>
+            <div class="gn-value">Grant narrative, AEL codes, Sourcewell 030425-GYS, SAFECOM
+            alignment, budget table — copy/paste ready for the agency's application.</div>
         </div>
         <div class="gn-card navy">
-            <div class="gn-label">Pipeline</div>
-            <h4>Log it in HubSpot</h4>
-            <div class="gn-value">Found a funded prospect? Add them to the Initial Sales Stage
-            so the team sees the pipeline build.</div>
+            <div class="gn-label">Reference & pipeline</div>
+            <h4>Intelligence + HubSpot</h4>
+            <div class="gn-value">Verified 50-state grant links, priority metros, the full program
+            database — and log every funded prospect in HubSpot at the Initial Sales Stage.</div>
         </div>
         """, unsafe_allow_html=True)
 

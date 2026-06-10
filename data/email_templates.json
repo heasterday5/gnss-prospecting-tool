@@ -117,8 +117,26 @@
     "follow_up": "These prospects are jaded about federal funding — lead every touch with 'your work transfers,' not with new promises."
   },
   {
+    "id": "svi_outreach",
+    "name": "High-SVI community — alerting equity gap",
+    "audience": "EM Director / Fire Chief in a community with top-quartile CDC Social Vulnerability Index",
+    "when_to_use": "County or city in the top 25% of CDC SVI, especially paired with real hazard exposure (wildfire, flood, severe weather). Pull the actual SVI percentile before sending.",
+    "subject": "Closing the alerting gap for {{jurisdiction}}'s most vulnerable residents",
+    "body": "Hi {{last_name}},\n\nI was reviewing the CDC's Social Vulnerability Index for {{jurisdiction}} alongside your region's {{hazard_type}} history, and one pattern stood out: the residents most exposed in your jurisdiction are exactly the ones traditional smartphone alerts miss.\n\nWireless Emergency Alerts assume a charged smartphone, cell coverage, and English. High-SVI communities have meaningful populations with none of those during a disaster — outdoor workers, non-English speakers, areas with cellular dead zones, and households with lower smartphone penetration.\n\nThat's the gap we close:\n\n- Genasys Protect digitizes your jurisdiction into clear, language-accessible, visual evacuation zones, so residents always know exactly where to go.\n- Genasys acoustic voice arrays (solar-powered, battery-backed) broadcast clear verbal instructions in plain language — and in multiple languages — rather than abstract siren tones, reaching people no phone alert can.\n\nOn funding: this documented coverage gap is what hazard-mitigation dollars exist to close, and we make the application easy — a turn-key grant justification narrative with pre-vetted FEMA AEL equipment codes, so your team isn't writing from scratch. Once funded, our national Sourcewell contract (#030425-GYS) lets you bypass the local RFP process entirely.\n\nDo you have 10 minutes next Tuesday or Wednesday? I'd like to show you how comparable communities funded this.\n\n{{sender_name}}\n{{sender_title}}, Genasys\n{{sender_phone}}",
+    "follow_up": "In follow-up #1, cite the actual SVI percentile and the dominant non-English languages in the jurisdiction — that level of homework is what gets replies."
+  },
+  {
+    "id": "crs_flood",
+    "name": "CRS community — flood warning as a ratings play",
+    "audience": "Floodplain Administrator / EM Director in a FEMA Community Rating System community",
+    "when_to_use": "Community participates in the CRS program. Look up their current class rating first — communities actively improving their class are the warmest targets.",
+    "subject": "CRS Activity 610 credit — and lower premiums for {{jurisdiction}} residents",
+    "body": "Hi {{last_name}},\n\n{{jurisdiction}} already invests in its CRS rating — which means every class improvement directly cuts your residents' flood insurance premiums.\n\nOne credit category many communities leave on the table: Activity 610 (Flood Warning & Response), which awards points for flood threat recognition, warning dissemination, and response capability. That's precisely what we deploy:\n\n- Genasys Protect: digitized flood-zone evacuation management with targeted, zone-level alerting (IPAWS, SMS, and public map portals)\n- Fixed acoustic voice arrays in the flood path: plain-language verbal warnings that work when power and cell service fail\n\nSo a warning system isn't just a safety purchase — it's a ratings play that pays your residents back every year, and it's fundable through hazard-mitigation programs rather than your local budget. We bring the grant narrative and FEMA AEL equipment codes, and our Sourcewell contract (#030425-GYS) removes the RFP hurdle once funded.\n\nWorth 15 minutes before your next CRS recertification cycle?\n\n{{sender_name}}\n{{sender_title}}, Genasys\n{{sender_phone}}",
+    "follow_up": "Copy the floodplain administrator and the EM director together — CRS credit sits between their desks, and deals stall when only one is engaged."
+  },
+  {
     "id": "post_discovery",
-    "name": "Post-discovery procurement package (Tim's template, updated)",
+    "name": "Post-discovery procurement package",
     "audience": "Any public safety official after a discovery call",
     "when_to_use": "Send within 24 hours of a discovery call. Updated with current Sourcewell contract number 030425-GYS.",
     "subject": "Funding & procuring your Genasys solution — {{agency_name}}",

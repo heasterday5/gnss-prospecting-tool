@@ -315,5 +315,51 @@
       "Identify which components Genasys covers and the smaller revised budget",
       "Lexipol restructures the existing narrative for the new program — fastest grant draft possible"
     ]
+  },
+  {
+    "id": "high_svi",
+    "label": "High CDC Social Vulnerability Index (top 25% SVI)",
+    "category": "Demographics-driven",
+    "urgency": "medium",
+    "what_it_means": "High-SVI communities are exactly the populations cell-phone alerting misses: cellular dead zones, language barriers, lower smartphone penetration, outdoor workers, and residents who never opt into alert apps. That's a documented life-safety coverage gap — and many states weight social vulnerability in their hazard-mitigation project scoring, while programs like USDA Community Facilities scale their grant percentage to community income. The alerting-gap argument stands on technical merit regardless of which program funds it.",
+    "how_to_spot": "CDC/ATSDR SVI interactive map (atsdr.cdc.gov — search 'SVI interactive map') shows county and census-tract percentiles. Top quartile (0.75+) is the signal. Cross-reference with the hazard profile: high SVI + real hazard exposure = priority account.",
+    "programs": ["HMGP", "NGWSGP", "USDA_CF", "EMPG"],
+    "products": "Genasys Protect (language-accessible, visual zone-based instructions) + solar-powered acoustic voice arrays broadcasting plain-language instructions in multiple languages",
+    "talk_track": "'Wireless Emergency Alerts assume everyone has a charged smartphone, cell coverage, and English. Your SVI profile says a meaningful share of your residents have none of those during a disaster. Voice towers and visual zone maps reach the people the phone alerts miss — outdoor workers, non-English speakers, communities in dead zones — and that documented coverage gap is precisely what mitigation funding exists to close.'",
+    "discovery_questions": [
+      "When you send a WEA today, who do you know doesn't receive it — and how would you reach them?",
+      "What languages does your alerting need to cover, and what covers them today?",
+      "How do you warn outdoor workers — agricultural, construction, fishing — who can't check a phone?"
+    ],
+    "email_template": "svi_outreach",
+    "next_steps": [
+      "Pull the county/tract SVI percentile from the CDC map and name it in your outreach",
+      "Identify the dominant non-English languages in the jurisdiction (census data) — specificity sells",
+      "If the community is also rural/low-income, check the USDA grant tier (up to 75% in lowest-income communities)",
+      "Score the account in the Lead Scorer — SVI is one of the four priority indicators"
+    ]
+  },
+  {
+    "id": "crs_participant",
+    "label": "FEMA Community Rating System (CRS) participant",
+    "category": "Document-driven",
+    "urgency": "medium",
+    "what_it_means": "CRS communities earn flood-insurance premium discounts for their residents by investing in floodplain management — and CRS Activity 610 (Flood Warning & Response) awards class-improvement points for exactly what Genasys sells: flood threat recognition, warning dissemination, and response planning. A warning-system purchase can literally lower every resident's flood insurance premium. CRS participation also proves the community proactively spends on flood programs — they're a warm buyer, not a cold one.",
+    "how_to_spot": "FEMA publishes the CRS Eligible Communities list (search 'FEMA CRS eligible communities') with each community's class rating. Class 5–8 communities actively chasing better ratings are the sweet spot.",
+    "programs": ["HMGP", "FMA", "NGWSGP"],
+    "products": "Genasys Protect flood-zone evacuation management + fixed acoustic arrays for flood-path warning — both map to CRS Activity 610 credit categories",
+    "talk_track": "'Your community already invests in its CRS rating — every class improvement cuts your residents' flood insurance premiums. Activity 610 awards points for flood warning and response capability, which means a warning system isn't just a safety purchase: it's a ratings play that pays residents back every year. Let me show you how other CRS communities structured it.'",
+    "discovery_questions": [
+      "What's your current CRS class, and is there an active effort to improve it?",
+      "Which Activity 610 elements do you get credit for today — and which are you leaving on the table?",
+      "Who coordinates your CRS recertification — floodplain manager, EM, or public works?"
+    ],
+    "email_template": "crs_flood",
+    "next_steps": [
+      "Look up the community's current CRS class before outreach",
+      "Target the floodplain administrator AND the EM director together",
+      "Frame the proposal around Activity 610 credit + the mitigation grant that funds it",
+      "Score the account in the Lead Scorer — CRS is one of the four priority indicators"
+    ]
   }
 ]

@@ -1,7 +1,6 @@
 """Procurement Toolkit — grant narrative, AEL codes, Sourcewell, SAFECOM, budget builder.
 
-Source: Tim's 'Genasys Procurement Toolkit: Grant Justification & CISA SAFECOM Compliance'
-research, updated with the current Sourcewell contract (030425-GYS, valid through July 2029).
+Uses the current Sourcewell contract (030425-GYS, valid through July 2029).
 """
 
 import streamlit as st
