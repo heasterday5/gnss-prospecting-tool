@@ -1,0 +1,319 @@
+[
+  {
+    "id": "recent_disaster",
+    "label": "Federally declared disaster in the last 24 months (county or neighbor)",
+    "category": "Event-driven",
+    "urgency": "high",
+    "what_it_means": "A Presidential Major Disaster Declaration unlocks HMGP — flexible post-disaster mitigation money sized as a percentage of total disaster costs. The county (and often the whole state) is sitting on funds earmarked to make the NEXT disaster go better, and projects must generally be submitted by March 31 following the fiscal year of the event.",
+    "how_to_spot": "Search the county at fema.gov/disaster/declarations. Check adjacent counties too — statewide HMGP funds are available even outside the declared county.",
+    "programs": ["HMGP", "EMPG", "NGWSGP"],
+    "products": "Genasys Protect (evacuation zones, alerting) + Acoustics for failed-infrastructure redundancy",
+    "talk_track": "Lead with their own disaster: 'After [disaster name], your county qualified for Hazard Mitigation Grant Program funds — most agencies don't realize warning systems and evacuation management are explicitly eligible uses. The submission window closes March 31, so the project needs to be scoped this quarter.'",
+    "discovery_questions": [
+      "Walk me through what happened during [disaster] — from first responder awareness to the public actually moving. Where did time get lost?",
+      "Has your hazard mitigation officer already allocated your HMGP share, or is the project list still open?",
+      "If cellular had failed during that event, what was your backup for reaching people outdoors?"
+    ],
+    "email_template": "hmgp_post_disaster",
+    "next_steps": [
+      "Look up the exact declaration number (DR-####) at fema.gov/disaster/declarations — cite it in your outreach",
+      "Find the state Hazard Mitigation Officer (SHMO) — they control the HMGP project list",
+      "Send the post-disaster email with the declaration number in the subject line",
+      "Once the agency is interested, bring in Lexipol to draft the HMGP project scoping"
+    ]
+  },
+  {
+    "id": "hmp_gap",
+    "label": "Hazard Mitigation Plan lists siren / evacuation / communication gaps",
+    "category": "Document-driven",
+    "urgency": "high",
+    "what_it_means": "Every county must publish a FEMA-approved Hazard Mitigation Plan every 5 years. If the plan lists alerting or evacuation gaps, the county has ALREADY documented the need in a federal document — they pre-qualified themselves for mitigation funding and handed you their pain points in writing.",
+    "how_to_spot": "Google '[County] hazard mitigation plan' (it is a public PDF). Ctrl-F for 'siren', 'evacuation', 'notification', 'communication gap', 'warning'. Note the page number.",
+    "programs": ["HMGP", "NGWSGP", "SHSP"],
+    "products": "Genasys Protect zones mapped to their documented hazards + acoustics for listed coverage gaps",
+    "talk_track": "Open with their own plan: 'Page [X] of your county's Hazard Mitigation Plan identifies [gap]. That documented gap is exactly what FEMA mitigation funding exists to close — and because it's in the approved plan, the eligibility argument is already made.'",
+    "discovery_questions": [
+      "Your mitigation plan flagged [gap] — what's happened on that item since the plan was adopted?",
+      "Who owns closing that gap — EM, fire, or the county administrator?",
+      "When does the plan come up for its 5-year renewal? Capability upgrades land well right before renewal."
+    ],
+    "email_template": "hmp_gap",
+    "next_steps": [
+      "Save the plan PDF and screenshot the exact page listing the gap",
+      "Reference the page number in your first email — it proves you did homework GovSpend can't show",
+      "Ask for the EM director AND whoever chairs the mitigation planning committee",
+      "Lexipol can draft the project narrative directly from the plan's own language"
+    ]
+  },
+  {
+    "id": "expiring_contract",
+    "label": "Legacy alerting contract (Everbridge, CodeRED, Rave) expiring",
+    "category": "Competitive displacement",
+    "urgency": "high",
+    "what_it_means": "An expiring contract is the one moment switching costs drop to zero. Agencies locked into 5+ year deals are caution signals, but a contract inside 12 months of renewal is an open door — especially if the incumbent is alert-only with no zone-based evacuation or acoustic layer.",
+    "how_to_spot": "GovSpend contract end dates, city council agendas approving renewals ('renewal of CodeRED agreement'), or simply asking 'when does your current notification contract renew?' in any conversation.",
+    "programs": ["EMPG", "SHSP", "NGWSGP"],
+    "products": "Genasys Protect as the platform consolidation play (alerting + evacuation + IPAWS in one)",
+    "talk_track": "'Most agencies renew [incumbent] on autopilot and miss the chance to consolidate alerting, evacuation management, and IPAWS into one platform for similar annual spend — often on the EMPG dollars they already receive every year. Before your renewal, it's worth 20 minutes to see the difference.'",
+    "discovery_questions": [
+      "What does [incumbent] actually get used for day to day — and what do you work around it for?",
+      "When the renewal comes to council, what questions do they ask about it?",
+      "If you could add evacuation zone management without adding budget, would that change the renewal conversation?"
+    ],
+    "email_template": "displacement",
+    "next_steps": [
+      "Confirm the renewal date and the contracting officer",
+      "Time outreach 6–9 months before expiration (budget request season for the following FY)",
+      "Position Sourcewell contract 030425-GYS to bypass the RFP they think a switch requires",
+      "Prepare the EMPG sustainment argument: annual allocation covers the subscription"
+    ]
+  },
+  {
+    "id": "legacy_sirens",
+    "label": "Tone-only sirens / siren modernization on the agenda",
+    "category": "Infrastructure modernization",
+    "urgency": "medium",
+    "what_it_means": "Tone sirens fail modern SAFECOM 'plain language' intent — a wail conveys no instructions. Agencies discussing siren replacement or expansion are already budgeting for outdoor warning; the upgrade argument to voice-intelligible acoustics is straightforward and NGWSGP exists almost exactly for this.",
+    "how_to_spot": "Council/commission minutes mentioning 'siren replacement', 'outdoor warning', 'siren maintenance costs'; news stories about siren failures during storms; EM pages still advertising monthly siren tests of tone-only systems.",
+    "programs": ["NGWSGP", "AFG", "SHSP", "USDA_CF"],
+    "products": "Genasys Acoustics / LRAD fixed arrays (voice + tone), solar/battery backed, IPAWS-integrated",
+    "talk_track": "'A siren tells people something is wrong. A voice system tells them what to do. CISA SAFECOM guidance pushes plain-language alerting — and FEMA's Next Generation Warning System program funds exactly this upgrade. When your siren replacement comes up, fund the voice upgrade with federal dollars rather than buying 1970s technology again.'",
+    "discovery_questions": [
+      "When your sirens sound today, how do residents find out what the tone means?",
+      "What did your last siren maintenance/replacement quote look like?",
+      "Have you talked with your state EM agency about the Next Generation Warning System grant?"
+    ],
+    "email_template": "ngwsgp_sirens",
+    "next_steps": [
+      "Find their siren inventory (often in the Hazard Mitigation Plan or EM page)",
+      "Check whether their state submitted an NGWSGP application last cycle",
+      "Send the siren modernization email; offer the SAFECOM compliance one-pager from the Procurement Toolkit",
+      "Get them pre-positioned with their state EM agency before the FY2026 NGWSGP NOFO drops (expected late summer)"
+    ]
+  },
+  {
+    "id": "dam",
+    "label": "High-hazard dam in or upstream of the jurisdiction",
+    "category": "Geography-driven",
+    "urgency": "medium",
+    "what_it_means": "FEMA's HHPD program (via state dam safety offices) funds rehabilitation AND the early-warning systems for non-federal high-hazard dams — including downstream voice sirens and evacuation mapping. 'High-hazard' means loss of life is probable on failure, so the population below the dam is a defined, fundable protection mission.",
+    "how_to_spot": "Search the National Inventory of Dams (nid.usace.army.mil) by county, filter to 'High' hazard potential. Cross-reference the dam's EAP (Emergency Action Plan) status — dams with outdated EAPs are the best openers.",
+    "programs": ["HHPD", "HMGP", "NGWSGP"],
+    "products": "Fixed acoustic arrays downstream + Genasys Protect inundation-zone evacuation management",
+    "talk_track": "'I was looking at the inundation mapping below [Dam Name]. FEMA's High Hazard Potential Dam program explicitly funds plain-language acoustic warning downstream of dams like yours — most public works departments don't know this money exists. We provide the exact COTS hardware those grants authorize.'",
+    "discovery_questions": [
+      "When was the Emergency Action Plan for [Dam] last exercised — and how would downstream residents actually be warned today?",
+      "Who coordinates between the dam operator and county EM on a release or breach scenario?",
+      "Has your state dam safety office mentioned HHPD funding allocations?"
+    ],
+    "email_template": "hhpd_dam",
+    "next_steps": [
+      "Pull the dam's NID record (hazard class, EAP date, owner) before any outreach",
+      "Target the Public Works director / dam safety officer / city engineer — not just EM",
+      "Send the dam-safety email naming the specific dam",
+      "Loop in the state dam safety office — they administer the HHPD allocation"
+    ]
+  },
+  {
+    "id": "uasi",
+    "label": "Agency is in one of the 44 UASI-designated urban areas",
+    "category": "Funding-designation",
+    "urgency": "medium",
+    "what_it_means": "UASI metros split $553.5M annually for urban threat preparedness. The money flows through the Urban Area Working Group (UAWG) — a committee of regional public safety leaders who decide allocations. If your prospect sits in a UASI metro, dedicated money exists; the question is who's claiming it.",
+    "how_to_spot": "Check the UASI list (FEMA publishes annually with HSGP allocations). Largest: NYC, LA, Chicago, Houston, National Capital Region, SF Bay.",
+    "programs": ["UASI", "SHSP", "NSGP"],
+    "products": "Genasys Protect for regional coordination + LRAD for event/crowd communications",
+    "talk_track": "'Your metro receives a dedicated UASI allocation every year. Projects that cross agency lines — one regional evacuation and alerting picture for police, fire, and EM — are exactly what the Urban Area Working Group prioritizes, because regional interoperability is the federal requirement attached to the money.'",
+    "discovery_questions": [
+      "Who represents your agency on the Urban Area Working Group?",
+      "What did the region fund with last year's UASI allocation?",
+      "Is there a regional project pipeline, or does each agency pitch independently?"
+    ],
+    "email_template": "uasi_urban",
+    "next_steps": [
+      "Identify the UAWG chair and the SAA point of contact for the metro",
+      "Frame the deal as multi-agency from day one — single-agency asks underperform in UASI scoring",
+      "Reference the regional THIRA threat assessment in your pitch",
+      "Lexipol drafts the investment justification for the UAWG cycle"
+    ]
+  },
+  {
+    "id": "tribal",
+    "label": "Federally recognized tribe / tribal lands in territory",
+    "category": "Funding-designation",
+    "urgency": "medium",
+    "what_it_means": "Tribes have a dedicated, far less competitive funding lane: THSGP ($13.5M) plus direct tribal eligibility in NGWSGP, HMGP, and USDA programs. Tribal emergency managers are chronically under-resourced and rarely get vendor attention that leads with funding.",
+    "how_to_spot": "BIA tribal leader directory; tribal nations bordering current customers; tribes with recent disaster declarations (check FEMA tribal declarations — tribes can now request their own).",
+    "programs": ["THSGP", "NGWSGP", "HMGP", "USDA_CF"],
+    "products": "Genasys Protect with custom tribal-land zone mapping + solar/satellite-backed acoustic towers for remote areas",
+    "talk_track": "'THSGP is a dedicated funding stream only federally recognized tribes can access — and it explicitly covers disaster warning networks and evacuation mapping for tribal lands. We help tribal emergency managers structure that application around warning coverage for remote areas where cellular fails.'",
+    "discovery_questions": [
+      "Which parts of tribal lands have no reliable cell coverage today?",
+      "Does the nation coordinate alerts with the surrounding county, or run independently?",
+      "Has the tribe applied for THSGP before — and who handled the application?"
+    ],
+    "email_template": "tribal_thsgp",
+    "next_steps": [
+      "Identify the Tribal Emergency Manager and Tribal Council contact (protocol matters — start formal)",
+      "Check if the tribe had a recent FEMA tribal declaration (unlocks HMGP directly)",
+      "Send the tribal funding email; offer to walk through THSGP eligibility together",
+      "Respect sovereignty in procurement — tribal procurement rules differ; ask rather than assume Sourcewell applies"
+    ]
+  },
+  {
+    "id": "rural",
+    "label": "Rural community under 20,000 population",
+    "category": "Funding-designation",
+    "urgency": "low",
+    "what_it_means": "Small communities that lose every competitive FEMA contest still qualify for USDA Community Facilities — a ~$2.8B annual program with rolling applications that funds public safety equipment including warning sirens and communications hardware, with grants up to 75% in the lowest-income communities.",
+    "how_to_spot": "Census population under 20k; USDA RD eligibility map (eligibility.sc.egov.usda.gov). Median household income determines the grant percentage.",
+    "programs": ["USDA_CF", "AFG", "EMPG"],
+    "products": "Fixed acoustic arrays for town-wide voice alerting; vehicle-mounted LRAD for rural fire districts",
+    "talk_track": "'Towns your size rarely win the big FEMA competitions — but USDA Community Facilities exists specifically for rural public safety equipment, applications are rolling so there's no deadline lottery, and lower-income communities can get up to 75% grant. Your USDA Rural Development state office walks applicants through it.'",
+    "discovery_questions": [
+      "What happens today if you need to warn everyone in town and the power is out?",
+      "Have you worked with your USDA Rural Development office before — fire hall, water system, anything?",
+      "What did your last equipment purchase look like — how was it funded?"
+    ],
+    "email_template": "usda_rural",
+    "next_steps": [
+      "Check the town's USDA eligibility and income tier on the USDA RD map",
+      "Find the USDA RD state office community programs director — they co-sell aggressively",
+      "Send the rural funding email",
+      "Bundle: town hall + fire district + school district can co-apply for shared warning coverage"
+    ]
+  },
+  {
+    "id": "wildfire_wui",
+    "label": "Wildland-urban interface exposure / recent near-miss evacuation",
+    "category": "Hazard-driven",
+    "urgency": "high",
+    "what_it_means": "Post-Lahaina and post-LA-fires, wildfire evacuation capability is the most politically charged gap in public safety. A near-miss (evacuation that almost failed, or a neighbor's disaster) creates a 6-18 month window where leadership will fund prevention. AFG is OPEN NOW (closes June 22, 2026) for fire department equipment.",
+    "how_to_spot": "CAL FIRE / state forestry WUI maps; news coverage of evacuations (even successful ones); counties adjacent to recent burn scars; fire chiefs quoted in after-action coverage.",
+    "programs": ["AFG", "NGWSGP", "HMGP", "SHSP"],
+    "products": "Genasys Protect zone-based evacuation (the Lahaina lesson) + vehicle-mounted LRAD for smoke-blind neighborhoods",
+    "talk_track": "'In Lahaina the sirens were never activated and cell alerts hit gridlocked networks — the lesson wasn't \"more alerts,\" it was zone-based evacuation orchestration with an acoustic layer that works when infrastructure fails. Departments in your risk profile are using AFG and NGWSGP to close exactly that gap — and the AFG window is open right now.'",
+    "discovery_questions": [
+      "In a fast-moving fire like Maui or Marshall, is your current system fast enough — from decision to the public actually moving?",
+      "How do you evacuate the neighborhoods with one road out?",
+      "What's your backup when cellular fails — because in every major fire, it has?"
+    ],
+    "email_template": "afg_fire_chief",
+    "next_steps": [
+      "AFG closes June 22, 2026 — flag this date in every fire conversation THIS WEEK",
+      "Pull their WUI risk map page and any evacuation after-action coverage",
+      "Send the AFG email immediately; offer the pre-written grant narrative",
+      "Get Lexipol on a call with their grant writer before the deadline"
+    ]
+  },
+  {
+    "id": "cellular_deadzones",
+    "label": "Known cellular dead zones (mountains, coastline, parks, campuses)",
+    "category": "Geography-driven",
+    "urgency": "medium",
+    "what_it_means": "WEA/SMS alerting silently fails for these populations — visitors in parks, coastal tsunami zones, mountain communities. SAFECOM guidance explicitly requires redundant channels. This is the cleanest technical argument for an acoustic layer on top of any digital alerting.",
+    "how_to_spot": "FCC broadband/coverage maps, tourist areas with posted 'no service' warnings, tsunami-zone communities, after-action reports mentioning failed alerts.",
+    "programs": ["NGWSGP", "SHSP", "HMGP", "EMPG"],
+    "products": "Solar/battery/satellite-backed fixed acoustic arrays — function with zero terrestrial infrastructure",
+    "talk_track": "'Every digital alert you send dies at the edge of cell coverage — and that edge is exactly where your highest-risk population is [beach/trailhead/canyon]. CISA SAFECOM guidance requires redundant alerting channels for this reason, and that compliance argument is what wins the grant scoring.'",
+    "discovery_questions": [
+      "Map your jurisdiction: where do alerts simply not arrive today?",
+      "How do you warn visitors — people who never opted into your local alert app?",
+      "Has a coverage gap shown up in an after-action report yet?"
+    ],
+    "email_template": "ngwsgp_sirens",
+    "next_steps": [
+      "Identify 2-3 specific named dead-zone locations before outreach (specificity wins)",
+      "Use the SAFECOM redundancy framing from the Procurement Toolkit",
+      "Propose a coverage study as the low-commitment first step"
+    ]
+  },
+  {
+    "id": "world_cup",
+    "label": "FIFA World Cup 2026 host metro or C-UAS funded state",
+    "category": "Event-driven",
+    "urgency": "high",
+    "what_it_means": "Host jurisdictions received $625M (FWCGP) plus $250M in new C-UAS money — and the tournament is happening NOW (June-July 2026). Agencies are spending on crowd management, event security, and drone response in real time, with after-event funds still flowing through 2026. LRAD crowd communication and Protect zone management fit both buckets.",
+    "how_to_spot": "Host metros: Atlanta, Boston, Dallas, Houston, Kansas City, LA, Miami, NY/NJ, Philadelphia, SF Bay Area, Seattle. Any agency within the metro security perimeter (transit, county EM, suburban PDs on mutual aid) may have FWCGP-funded roles.",
+    "programs": ["FWCGP", "CUAS", "UASI", "SHSP"],
+    "products": "LRAD for crowd communications + fan-zone safety; Protect for venue-area zone management; LRAD as C-UAS warning layer",
+    "talk_track": "'Your region's World Cup security funding covers exactly this: clear voice communication to large outdoor crowds, and a warning layer for drone incidents. Agencies are deploying now — and the equipment stays for every event after the tournament. This is one-time money; it disappears if unspent.'",
+    "discovery_questions": [
+      "What's your agency's role in the World Cup security footprint?",
+      "How are you communicating with crowds outside the stadium perimeter — fan zones, transit hubs?",
+      "What happens to the security equipment budget after the tournament?"
+    ],
+    "email_template": "world_cup",
+    "next_steps": [
+      "Map which agencies in the host metro have security assignments (police, transit, county EM)",
+      "Move FAST — the tournament is underway; post-event equipment retention is the angle now",
+      "Reference the C-UAS allocation for drone-adjacent conversations"
+    ]
+  },
+  {
+    "id": "ipaws_gap",
+    "label": "County can't send IPAWS alerts / no alerting authority",
+    "category": "Capability gap",
+    "urgency": "medium",
+    "what_it_means": "Many counties still lack IPAWS alerting authority or route through the state with dangerous delays. NGWSGP exists to close IPAWS capability gaps, and EMPG funds the planning. An agency without IPAWS authority has a documented, federally recognized deficiency.",
+    "how_to_spot": "FEMA publishes IPAWS Alerting Authorities by county. If the county isn't on it — that's the conversation. Also: after-action reports citing alert delays routed through state EOCs.",
+    "programs": ["NGWSGP", "EMPG", "SHSP"],
+    "products": "Genasys Protect — IPAWS-integrated alert origination with zone-based targeting",
+    "talk_track": "'Your county routes life-safety alerts through [state/neighbor], which adds minutes you don't have in a flash flood. Becoming your own IPAWS alerting authority with zone-based origination is fundable under EMPG today and NGWSGP when the FY26 window opens — and we handle the COG application alongside you.'",
+    "discovery_questions": [
+      "Today, who physically sends a WEA for your county — and how long does that take end to end?",
+      "Has the IPAWS authority application stalled somewhere — what happened?",
+      "How do you target an alert to one neighborhood instead of the whole county?"
+    ],
+    "email_template": "empg_em_director",
+    "next_steps": [
+      "Check the FEMA IPAWS alerting authority list for the county before calling",
+      "Lead with the latency story (state-routed alerts) — it's visceral and factual",
+      "Offer the IPAWS authority roadmap as the free first deliverable"
+    ]
+  },
+  {
+    "id": "civil_unrest",
+    "label": "History of large events, protests, or civil unrest",
+    "category": "Event-driven",
+    "urgency": "low",
+    "what_it_means": "Cities with recurring large gatherings need lawful, documented crowd communication. The defensible framing: clear voice instructions at distance protect BOTH the public and officers, create an audit trail of warnings given, and reduce escalation. SHSP/UASI fund it under protective communications; the system doubles for disaster response — which is the lead message.",
+    "how_to_spot": "Recurring major events (marathons, festivals, college towns), past protest response controversies, city council discussions of crowd management policy.",
+    "programs": ["SHSP", "UASI", "COPS"],
+    "products": "LRAD mobile units (clear voice at distance, documented warnings) + Protect for event zone management",
+    "talk_track": "'Lead with the dual-use case: the same system that gives clear evacuation instructions in a flood gives lawful, documented, intelligible communication at large events — every warning timestamped and auditable. Agencies fund it as disaster response equipment that also serves event safety.'",
+    "discovery_questions": [
+      "If a high-profile incident occurred at your next large event, would your communications stand up to FOIA and legal discovery?",
+      "How do you currently communicate instructions to a crowd of 10,000 outdoors?",
+      "What's your documentation trail for warnings issued before any enforcement action?"
+    ],
+    "email_template": "event_safety",
+    "next_steps": [
+      "Frame around disaster-response primary use; event communication as secondary benefit",
+      "Reference the accountability/audit-trail angle — chiefs care about defensibility",
+      "Identify the city's event calendar for natural timing"
+    ]
+  },
+  {
+    "id": "stranded_bric",
+    "label": "Agency had a project stranded by the BRIC cancellation",
+    "category": "Event-driven",
+    "urgency": "high",
+    "what_it_means": "When BRIC was terminated (April 2025), hundreds of approved or pipeline mitigation projects lost funding — $870M in California alone. Those agencies completed the hard work: documented need, scoped projects, often local match secured. They need a new funding pathway, not a new pitch.",
+    "how_to_spot": "News coverage of canceled BRIC projects by state; state mitigation office lists of affected projects; agencies that announced BRIC awards in 2023-2024 that never broke ground.",
+    "programs": ["HMGP", "NGWSGP", "SHSP", "USDA_CF"],
+    "products": "Whatever the stranded project scoped — typically alerting/evacuation components can proceed at lower cost than construction",
+    "talk_track": "'Your [project] lost its BRIC funding through no fault of the application — which means the documented need and the project scoping still stand. The alerting and evacuation-management portion of that project can move now under [HMGP/NGWSGP] at a fraction of the original ask, and we can help restructure the narrative.'",
+    "discovery_questions": [
+      "Where did the project stand when funding stopped — design, procurement, partial build?",
+      "Was local match already appropriated? Is it still available?",
+      "Has your state mitigation office proposed an alternative pathway?"
+    ],
+    "email_template": "stranded_bric",
+    "next_steps": [
+      "Find the original BRIC project description (FEMA published award lists)",
+      "Identify which components Genasys covers and the smaller revised budget",
+      "Lexipol restructures the existing narrative for the new program — fastest grant draft possible"
+    ]
+  }
+]

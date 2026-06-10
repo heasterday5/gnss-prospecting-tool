@@ -29,8 +29,8 @@ def search_all(query: str, states: pd.DataFrame, cities: pd.DataFrame,
     city_results = cities[city_mask]
 
     # Search funding
-    fund_cols = ["program_name", "eligible_applicants", "key_eligible_uses",
-                 "notes_strategy", "status"]
+    fund_cols = ["program_key", "program_name", "eligible_applicants", "key_eligible_uses",
+                 "sales_note", "status", "status_detail"]
     fund_mask = funding.apply(lambda r: row_matches(r, fund_cols), axis=1)
     fund_results = funding[fund_mask]
 

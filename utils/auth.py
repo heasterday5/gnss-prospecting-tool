@@ -8,13 +8,23 @@ def check_password() -> bool:
     if st.session_state.get("authenticated"):
         return True
 
-    st.set_page_config(page_title="Login | GNSS", page_icon="🔒", layout="centered")
+    st.set_page_config(page_title="Login | Genasys Funding Intelligence",
+                       page_icon="🛡️", layout="centered")
 
     st.markdown("""
-    <div style="text-align:center;padding:2rem 0 1rem;">
-        <h1 style="color:#163443;margin:0;">🎯 GNSS</h1>
-        <p style="color:#ABCF38;font-size:1.1rem;font-weight:600;">Sales Prospecting Tool</p>
-        <div style="width:60px;height:3px;background:#ABCF38;margin:0.5rem auto 0;border-radius:2px;"></div>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
+    html, body, [class*="css"] { font-family: 'Inter', sans-serif !important; }
+    </style>
+    <div style="text-align:center;padding:2.5rem 0 1.2rem;">
+        <div style="font-size:2rem;font-weight:900;letter-spacing:0.18em;color:#163443;">
+            GENASYS<span style="color:#ABCF38;">.</span>
+        </div>
+        <div style="font-size:0.8rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#56C8DA;margin-top:4px;">
+            Funding Intelligence
+        </div>
+        <div style="color:#5A6B75;font-size:0.95rem;margin-top:10px;">Ready when it matters</div>
+        <div style="width:64px;height:4px;background:linear-gradient(90deg,#ABCF38,#56C8DA);margin:1rem auto 0;border-radius:2px;"></div>
     </div>
     """, unsafe_allow_html=True)
 

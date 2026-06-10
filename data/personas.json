@@ -1,0 +1,112 @@
+[
+  {
+    "market": "Fire & Emergency Management",
+    "primary_products": "Genasys Protect + Acoustics (backup reach when networks fail)",
+    "focus": "Evacuation Speed / Precision / Public Reach",
+    "outcome_owner": {
+      "title": "The Outcome Owner (Strategic / Political)",
+      "roles": ["Fire Chief", "Emergency Management Director", "County Executive / City Manager", "County Commissioners", "Sheriff"],
+      "objectives": ["Public safety (zero lives lost)", "Political capital", "Inter-agency alignment", "Minimize public backlash", "Clear, timely public communication"],
+      "challenges": ["Political fallout from loss of life", "Rigid budget constraints", "Fragmented agency coordination", "Competing objectives between departments"],
+      "personal_value": ["Securing public confidence by preventing tragedies (e.g., the Maui fires)", "Forward-thinking leadership recognition"],
+      "questions": [
+        "In a fast-moving wildfire like Maui or Marshall, is your current system fast enough to prevent loss of life?",
+        "How do you justify new technology budget requests?"
+      ]
+    },
+    "problem_owner": {
+      "title": "The Problem Owner (Operational / Tactical)",
+      "roles": ["Battalion Chief / Fire Captain", "Deputy Chief", "Emergency Management Staff", "Deputy Sheriff, Lieutenants, Captains"],
+      "objectives": ["Reduce 'reflex time' (incident recognition to public action)", "Precision evacuations — don't under- or over-evacuate", "Common operating picture (single shared map)", "Precision messaging with clear instructions"],
+      "challenges": ["Latency in critical moments (hours vs. minutes)", "Tool complexity under pressure", "Traffic management chaos from over-evacuation", "Increased personal liability exposure"],
+      "personal_value": ["Being the 'go-to' expert who manages chaos with the best tools", "Moving from 'grease pencils on maps' to automated digital solutions", "Addressing a known preparedness gap"],
+      "questions": [
+        "From first responder arrival to alerting the public — walk me through your current process.",
+        "How long does it take to define an evacuation perimeter and communicate it to the public?",
+        "What's your backup if cellular fails?"
+      ]
+    }
+  },
+  {
+    "market": "Law Enforcement",
+    "primary_products": "Genasys Evertel (secure comms) + LRAD for tactical operations",
+    "focus": "Compliance / Collaboration / Tactical",
+    "outcome_owner": {
+      "title": "The Outcome Owner (Strategic / Political)",
+      "roles": ["Chief of Police", "Sheriff / Undersheriff", "City Manager", "City Attorney", "CTO / IT Manager"],
+      "objectives": ["Reduce crime & clearance rates", "Risk mitigation & compliance", "Reputation & narrative control", "Budget efficiency", "Compliant inter-agency communication"],
+      "challenges": ["Legal liability from Shadow IT", "Controlling the public narrative", "Budget justification", "Employee trust and adoption"],
+      "personal_value": ["Avoiding the 'scandal' that ends a chief's career (missing evidence, failed riot response)", "Built-in accountability via read receipts", "Progressive leadership recognition"],
+      "questions": [
+        "If a high-profile incident occurred today, would your current comms stand up to FOIA or legal discovery?",
+        "How does your agency control the narrative before social media breaks the story?"
+      ]
+    },
+    "problem_owner": {
+      "title": "The Problem Owner (Operational / Tactical)",
+      "roles": ["Deputy Chief", "Patrol Commander", "Captain", "Crime Analyst / LT, CID", "SWAT Commander, RTCC Supervisor"],
+      "objectives": ["Speed of intelligence sharing", "Operational efficiency", "Officer safety", "Working across agencies", "FOIA-ready records", "Urgent messaging"],
+      "challenges": ["Siloed intel & interoperability gaps", "Officer safety & ambush risks", "Slow resource coordination for SWAT/events", "Editing & distributing BOLOs efficiently"],
+      "personal_value": ["Improving clearance rates → internal promotion", "Reducing admin overhead to get officers '10-8' faster", "Single operational view across all agency comms"],
+      "questions": [
+        "How long does it take a suspect photo to reach every officer in your sector?",
+        "When running a task force with neighboring agencies, how do you bridge different radio systems?"
+      ]
+    }
+  },
+  {
+    "market": "Enterprise (Utilities, Oil & Gas, Critical Infrastructure)",
+    "primary_products": "Genasys Protect (community alerts) + LRAD/Acoustics (on-site audible warning)",
+    "focus": "Business Continuity / Perimeter Security",
+    "outcome_owner": {
+      "title": "The Outcome Owner (Strategic / Political)",
+      "roles": ["VP of Operations", "Chief Security Officer (CSO)", "CEO / CFO"],
+      "objectives": ["Business continuity (minimize downtime)", "Brand & reputation protection", "ROI / cost savings", "Reduce community impact of disruptions", "Eliminate lives lost during an incident"],
+      "challenges": ["Minimizing production/service interruptions from infrastructure failures, weather, or security breaches", "Keeping employees, contractors & visitors safe during incidents", "Reputational damage and regulatory fines from poor crisis comms"],
+      "personal_value": ["Reducing financial impact of disruptions", "Demonstrating they took every reasonable precaution during an incident", "Meeting mandates protecting utilities, data centers, etc."],
+      "questions": [
+        "What is the estimated financial cost per hour of downtime at this facility?",
+        "If an incident occurred today, how would you prove to stakeholders you notified every person on site?"
+      ]
+    },
+    "problem_owner": {
+      "title": "The Problem Owner (Operational / Tactical)",
+      "roles": ["Director of Physical Security", "Security Manager", "Plant Manager", "Compliance (VP/Director)"],
+      "objectives": ["Perimeter security (deter threats before breach)", "Audibility in high-noise environments", "Automated response (sensors → notification, no human delay)", "Precise community messaging"],
+      "challenges": ["Reaching the 'unreachable' (noise & location)", "Managing contractors & visitors not in HR systems", "Minimizing panicked inbound calls from uninformed public"],
+      "personal_value": ["Running a tight operation where protocols execute automatically", "Single-pane-of-glass security visibility across systems"],
+      "questions": [
+        "How do you communicate a shelter-in-place to workers outside in high-noise areas without radios?",
+        "Do your perimeter sensors auto-trigger a response, or does a human have to see the alert first?",
+        "How do you account for contractors not in your HR database?"
+      ]
+    }
+  },
+  {
+    "market": "Military & Defense",
+    "primary_products": "LRAD & Acoustics — EOF protocols, perimeter security, base mass warning",
+    "focus": "Escalation of Force / Force Protection",
+    "outcome_owner": {
+      "title": "The Outcome Owner (Strategic / Command)",
+      "roles": ["Installation Commander (Garrison/Wing CC)", "Range Control", "MPs / Security Forces", "CBRN", "Mission Support Group Commander", "Provost Marshal / Director of Emergency Services"],
+      "objectives": ["Force readiness & safety of all personnel/assets", "Escalation of Force (EOF) protocols — non-lethal options before lethal engagement", "Base resiliency for continuity of operations", "Realistic training with sound replication"],
+      "challenges": ["Synchronizing data between BDOC and EOC", "Budget competition against lethal weapons programs", "IG inspection readiness (DoDI 6055.17 mass warning)", "FedRAMP certification requirements"],
+      "personal_value": ["Being the Commander who modernized the installation (Smart Base) — directly impacts General/Flag promotion", "Ensuring every warning was issued before a lethal engagement or disaster"],
+      "questions": [
+        "If you had to prove to an oversight committee that you exhausted non-lethal options before lethal engagement, does your current system provide that audit trail?",
+        "How do you maintain mass comms if the base network or power grid is compromised?"
+      ]
+    },
+    "problem_owner": {
+      "title": "The Problem Owner (Operational / Tactical)",
+      "roles": ["BDOC Watch Officer", "Antiterrorism Officer (ATO) / Force Protection Officer", "Emergency Manager", "Security Forces / MP Operations Superintendent"],
+      "objectives": ["Intelligibility & range — clear verbal commands over loud background noise", "Targeted zone lockdown without alerting entire installation", "Interoperability with civilian first responders"],
+      "challenges": ["Bridging BDOC and EOC communication gaps", "Poor reliability of legacy Giant Voice systems", "Determining intent of approaching vessel, vehicle, or drone swarm at distance"],
+      "personal_value": ["Recognition as SME who reduced response times", "Securing a wider perimeter with fewer personnel using acoustic hailing devices", "Confidence the system works when the button is pushed"],
+      "questions": [
+        "When a vehicle approaches your exclusion zone, at what distance can you communicate verbal warnings to determine intent?",
+        "Can you target specific buildings for lockdown without stopping the entire installation's mission?"
+      ]
+    }
+  }
+]

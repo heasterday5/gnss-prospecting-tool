@@ -1,0 +1,37 @@
+[
+  {
+    "title": "The Communication Gap",
+    "stat": "Only 21% of personnel read emails within 4 days; average read time has dropped to 9 seconds",
+    "source": "Litmus / MarketingProfs",
+    "implication": "Critical updates and operational information are not reaching the people who need them.",
+    "use_it": "Opens Evertel and Protect conversations: 'If email is your urgent channel, your urgent channel has a 21% open rate.'"
+  },
+  {
+    "title": "Rising Hazard Volatility",
+    "stat": "Climate-driven disasters and civil unrest are both intensifying — more frequent, overlapping incidents",
+    "source": "Growth Playbook trend analysis",
+    "implication": "Agencies face simultaneous fire, flood, hazmat, and civil threats with tools designed for one incident at a time.",
+    "use_it": "Sets up the multi-hazard platform argument vs. point solutions bought for the last disaster."
+  },
+  {
+    "title": "Slow Operational Workflows",
+    "stat": "Traditional notification workflows take 45–60 minutes to launch",
+    "source": "McChrystal Group After-Action Report",
+    "implication": "Too slow for fast-moving fires, civil unrest, hazmat, and other time-critical incidents.",
+    "use_it": "The 'reflex time' conversation: ask them to walk through their actual incident-to-alert timeline, minute by minute."
+  },
+  {
+    "title": "Infrastructure Fragility",
+    "stat": "In Maui, power loss took cellular offline; in LA, overwhelmed networks became unusable",
+    "source": "FCC Reports",
+    "implication": "Digital-only alerting fails precisely when it matters most.",
+    "use_it": "The redundancy argument for acoustics — and the SAFECOM compliance angle for grant narratives."
+  },
+  {
+    "title": "Fragmented Operations & Redundancy Gaps",
+    "stat": "Police, Fire, and EM operate on different systems with dangerous silos",
+    "source": "Growth Playbook trend analysis",
+    "implication": "Most agencies lack sufficient redundancy when primary systems fail, and no shared operating picture exists across agencies.",
+    "use_it": "The common-operating-picture demo: one map, every agency, zone-level handoff."
+  }
+]

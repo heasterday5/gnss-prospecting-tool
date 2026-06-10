@@ -1,0 +1,137 @@
+[
+  {
+    "id": "afg_fire_chief",
+    "name": "Fire Chief — AFG window open (URGENT)",
+    "audience": "Fire Chief / Battalion Chief (Wildland)",
+    "when_to_use": "Any fire department conversation before June 22, 2026 — the FY2025 AFG application window is open NOW (May 19 – June 22).",
+    "subject": "AFG window closes June 22 — funding voice-warning systems for {{jurisdiction}}",
+    "body": "Chief {{last_name}},\n\nThe FY2025 Assistance to Firefighters Grant window is open now and closes June 22 at 5pm ET — $291.6M across roughly 1,800 awards, and departments apply directly (no state pass-through).\n\nDepartments in {{state}} are using AFG to replace legacy tone sirens and add vehicle-mounted, high-intelligibility voice systems — so crews can broadcast clear evacuation instructions directly into smoke-blind neighborhoods instead of relying on cell alerts that die with the towers.\n\nTwo things I can put in your hands today:\n\n1. A pre-written grant narrative (project description, FEMA AEL equipment codes, budget table) your grant writer can adapt in an afternoon.\n2. A 15-minute call with our grant-support partner to pressure-test the application before the deadline.\n\nGiven the June 22 cutoff, is there a 15-minute window this week?\n\n{{sender_name}}\n{{sender_title}}, Genasys\n{{sender_phone}}",
+    "follow_up": "If no reply in 3 business days: forward the same email with one line — 'Chief — 9 days left on the AFG window. Even if this cycle is too tight, the narrative template is yours to keep for FY26.'"
+  },
+  {
+    "id": "empg_em_director",
+    "name": "EM Director — EMPG annual allocation",
+    "audience": "Emergency Management Director / OES Coordinator",
+    "when_to_use": "Default opener for county/city EM offices — EMPG is the 'they always have this money' program.",
+    "subject": "Using {{jurisdiction}}'s EMPG allocation for zone-based evacuation",
+    "body": "Director {{last_name}},\n\nMost emergency management offices we work with are looking for the highest-leverage use of their annual EMPG allocation — and many don't realize it explicitly covers alert/warning capability building, not just planning and exercises.\n\nCounties in {{state}} are using those exact dollars to deploy Genasys Protect: digitized evacuation zones for the whole jurisdiction, IPAWS-integrated alerting targeted to the zone level, and one shared map across police, fire, and the EOC — replacing the grease-pencil workflow under pressure.\n\nBecause EMPG renews every year, it also sustains the platform — no one-time-grant cliff.\n\nCould I show you a 10-minute walkthrough of how a comparable county structured it? I'll bring the budget framing your state EM office expects to see.\n\n{{sender_name}}\n{{sender_title}}, Genasys\n{{sender_phone}}",
+    "follow_up": "Attach the SAFECOM alignment one-pager on the follow-up — EM directors forward it to their grant coordinator."
+  },
+  {
+    "id": "hmgp_post_disaster",
+    "name": "Post-disaster — HMGP funds available",
+    "audience": "EM Director / County Administrator in a declared county (or neighbor)",
+    "when_to_use": "Federally declared disaster in their county (or adjacent) within ~24 months. Cite the DR number.",
+    "subject": "{{disaster_ref}} unlocked mitigation funds {{jurisdiction}} may not be using",
+    "body": "{{first_name}},\n\nAfter {{disaster_name}} ({{disaster_ref}}), {{state}} received Hazard Mitigation Grant Program funding sized to the disaster's total cost — flexible dollars meant to make the next event go better, and warning/evacuation systems are explicitly eligible.\n\nMost of that money is allocated through a project list managed by the state Hazard Mitigation Officer, and submission windows close (generally March 31 following the fiscal year of the event). Agencies that scope projects early get funded; agencies that wait find the list closed.\n\nWhat we'd propose scoping: zone-based evacuation management plus voice-intelligible acoustic warning for the areas where {{disaster_name}} exposed gaps — the exact capability the after-action conversation has been about.\n\nWe also bring grant-drafting support, so the application doesn't land on your staff.\n\nDo you have 20 minutes this week or next?\n\n{{sender_name}}\n{{sender_title}}, Genasys\n{{sender_phone}}",
+    "follow_up": "Reference one specific, public after-action detail in the follow-up — proof of homework beats persistence."
+  },
+  {
+    "id": "hmp_gap",
+    "name": "Hazard Mitigation Plan gap — their own document",
+    "audience": "EM Director / Mitigation Planning Committee chair",
+    "when_to_use": "You found siren/evacuation/communication gaps listed in their published Hazard Mitigation Plan. Cite the page.",
+    "subject": "Page {{page_number}} of the {{jurisdiction}} Hazard Mitigation Plan",
+    "body": "{{first_name}},\n\nYour current Hazard Mitigation Plan identifies {{gap_description}} (p. {{page_number}}). Because that gap sits in a FEMA-approved plan, the eligibility argument for federal mitigation funding is essentially already made — the plan IS the justification document reviewers look for.\n\nWe help agencies turn exactly these documented gaps into funded projects: zone-based evacuation management and plain-language acoustic warning, structured to score against the mitigation criteria, with grant-drafting support included so the application doesn't burden your staff.\n\nWorth a 20-minute conversation before your next mitigation committee meeting? I'll bring a one-page project concept written against your plan's own language.\n\n{{sender_name}}\n{{sender_title}}, Genasys\n{{sender_phone}}",
+    "follow_up": "The one-page project concept IS the follow-up — send it whether or not they reply."
+  },
+  {
+    "id": "hhpd_dam",
+    "name": "Public Works / Dam Safety — HHPD",
+    "audience": "Public Works Director / Dam Safety Officer / City Engineer",
+    "when_to_use": "High-hazard dam in or upstream of the jurisdiction (verify in the National Inventory of Dams first).",
+    "subject": "Downstream warning funding for {{dam_name}}",
+    "body": "{{first_name}},\n\nI was reviewing the inundation mapping below {{dam_name}}. Many public works departments don't know that FEMA's High Hazard Potential Dam program — allocated through your state dam safety office — explicitly funds downstream early-warning systems: plain-language acoustic voice arrays and evacuation zone mapping for the population in the flood path.\n\nGenasys provides the COTS hardware and software those allocations authorize (FEMA AEL-listed), and we support the application work with the state office.\n\nIf the Emergency Action Plan for {{dam_name}} is due for an update or exercise, this pairs naturally — the warning system becomes the EAP's notification mechanism rather than a separate project.\n\nDo you have a few minutes Thursday? I'll send our AEL compliance sheet ahead of the call.\n\n{{sender_name}}\n{{sender_title}}, Genasys\n{{sender_phone}}",
+    "follow_up": "Copy the county EM director on follow-up #2 — dam warnings sit between PW and EM, and deals stall when only one side is engaged."
+  },
+  {
+    "id": "ngwsgp_sirens",
+    "name": "Siren modernization — NGWSGP positioning",
+    "audience": "EM Director / Fire Chief / City Manager discussing siren replacement",
+    "when_to_use": "Tone-only sirens, siren replacement on the agenda, or known cellular dead zones. Position BEFORE the FY2026 NOFO (expected late summer 2026).",
+    "subject": "Before {{jurisdiction}} replaces sirens — the federal program built for this",
+    "body": "{{first_name}},\n\nA siren tells people something is wrong. It can't tell them what to do — and that's why CISA SAFECOM guidance now pushes plain-language alerting over tone-only systems.\n\nFEMA's Next Generation Warning System Grant Program exists almost exactly for this upgrade: IPAWS-compatible, voice-intelligible outdoor warning (solar/battery-backed, works when cell towers don't). The FY2026 funding notice is expected late summer — and because states apply with project lists built in advance, the positioning work happens NOW, with {{saa_name}}.\n\nWe help agencies get their project onto that state application: coverage study, equipment spec with FEMA AEL codes, and the narrative draft.\n\nCan I walk you through what a fundable project looks like for {{jurisdiction}} — 15 minutes?\n\n{{sender_name}}\n{{sender_title}}, Genasys\n{{sender_phone}}",
+    "follow_up": "Offer the free coverage study as the follow-up CTA — low commitment, high pull-through."
+  },
+  {
+    "id": "uasi_urban",
+    "name": "UASI metro — regional interoperability play",
+    "audience": "Police / Fire / EM leadership in one of the 44 UASI urban areas",
+    "when_to_use": "Prospect sits in a UASI-designated metro. Multi-agency framing is mandatory.",
+    "subject": "{{metro}}'s UASI allocation and one shared operating picture",
+    "body": "{{first_name}},\n\n{{metro}} receives a dedicated UASI allocation every year — $553.5M flows to the 44 designated urban areas nationally — and the Urban Area Working Group consistently prioritizes projects that cross agency lines.\n\nThat's exactly the shape of what we deploy: one zone-based map shared by police, fire, EM, and transit; alerts targeted to the zone level across IPAWS, SMS, and acoustic channels; and command handoff across jurisdictions as an incident moves. Regional interoperability isn't just the federal requirement attached to UASI money — it's the actual product.\n\nIf you can point me to the right voice on your UAWG, I'd like to share how two other UASI regions structured this as a regional investment justification.\n\nWorth 20 minutes?\n\n{{sender_name}}\n{{sender_title}}, Genasys\n{{sender_phone}}",
+    "follow_up": "Ask specifically for the UAWG representative — getting referred INTO the working group is the win condition of this email."
+  },
+  {
+    "id": "tribal_thsgp",
+    "name": "Tribal Nation — THSGP dedicated funding",
+    "audience": "Tribal Emergency Manager / Tribal Council",
+    "when_to_use": "Federally recognized tribe. Formal tone; sovereignty-aware.",
+    "subject": "Dedicated federal warning-system funding for {{tribe_name}}",
+    "body": "Dear {{title_and_name}},\n\nThe Tribal Homeland Security Grant Program is a funding stream available only to federally recognized tribes, and it explicitly covers community disaster warning networks and evacuation planning for tribal lands. Tribes are also directly eligible for FEMA's Next Generation Warning System program.\n\nGenasys works with emergency managers to design warning coverage for the places digital alerts fail — remote areas without reliable cellular service — using solar- and satellite-backed voice systems alongside zone-based evacuation mapping built to the nation's own boundaries and priorities.\n\nWe'd welcome the opportunity to walk through what current programs could fund for {{tribe_name}}, including application support so the work doesn't fall on your staff.\n\nWould a conversation in the coming weeks be appropriate? We're glad to follow whatever process the nation prefers.\n\nRespectfully,\n\n{{sender_name}}\n{{sender_title}}, Genasys\n{{sender_phone}}",
+    "follow_up": "Do not apply standard cadence pressure. One respectful follow-up after 2 weeks; ask if a different contact or format is preferred."
+  },
+  {
+    "id": "usda_rural",
+    "name": "Rural community — USDA Community Facilities",
+    "audience": "Town Manager / Rural Fire Chief / Rural Police Chief (<20k population)",
+    "when_to_use": "Rural communities that lose competitive FEMA contests. Rolling applications — no deadline pressure.",
+    "subject": "The rural public-safety fund most towns never tap",
+    "body": "{{first_name}},\n\nTowns the size of {{jurisdiction}} rarely win the big competitive FEMA grants — the scoring favors population. But USDA's Community Facilities program is built for exactly the opposite: rural public safety equipment, including warning sirens and communications systems, with rolling applications (no deadline lottery) and grants covering up to 75% of cost in lower-income communities, with low-interest loans for the remainder.\n\nWe've helped communities fund town-wide voice warning systems this way — clear spoken instructions, not just a tone, working even when power and cell service fail.\n\nYour USDA Rural Development state office shepherds applications personally; we know the process and bring the equipment specs and narrative.\n\nCould we take 15 minutes to see if {{jurisdiction}} qualifies and at what grant percentage?\n\n{{sender_name}}\n{{sender_title}}, Genasys\n{{sender_phone}}",
+    "follow_up": "Check the USDA eligibility map BEFORE sending and state the likely grant tier in follow-up #1 — '{{jurisdiction}} appears to qualify at the X% tier.'"
+  },
+  {
+    "id": "displacement",
+    "name": "Incumbent displacement — contract renewal window",
+    "audience": "EM Director / City Manager with expiring Everbridge/CodeRED/Rave contract",
+    "when_to_use": "Contract renewal within 12 months. Consolidation + same-budget framing.",
+    "subject": "Before the {{incumbent}} renewal goes to council",
+    "body": "{{first_name}},\n\nWhen the {{incumbent}} renewal comes up, most agencies sign on autopilot — and miss the one moment switching costs nothing.\n\nWhat's changed since you last evaluated: zone-based evacuation management, IPAWS origination, and mass alerting now live in one platform (Genasys Protect) — typically at comparable annual spend to an alert-only tool, and sustainable on the EMPG allocation you already receive each year.\n\nTwo other things worth knowing before the renewal:\n\n1. Procurement is already solved — Genasys holds Sourcewell cooperative contract 030425-GYS, satisfying competitive-bid requirements in all 50 states. No RFP cycle.\n2. We migrate alerting contact data and integrate with your existing CAD/GIS, so the switch isn't a rebuild.\n\nCould we do a 20-minute side-by-side against your current renewal quote? If it's not compelling, you renew with confidence instead of by default.\n\n{{sender_name}}\n{{sender_title}}, Genasys\n{{sender_phone}}",
+    "follow_up": "'Renew with confidence instead of by default' is the close — repeat it in the follow-up. Offer the side-by-side as a one-page document if they won't take the meeting."
+  },
+  {
+    "id": "world_cup",
+    "name": "World Cup host metro — event security funds",
+    "audience": "Police / EM / Transit security in host metros",
+    "when_to_use": "The 11 US host metros + agencies inside their security footprint, during and after the 2026 tournament.",
+    "subject": "World Cup security funds — equipment that outlasts the tournament",
+    "body": "{{first_name}},\n\nWith the tournament underway, {{metro}}-area agencies are deploying FIFA World Cup Grant Program and new C-UAS funds in real time. One pattern we're seeing: agencies prioritizing equipment that keeps serving after July — not single-event spend.\n\nThat's where we fit. LRAD systems give event commanders clear, documented voice communication to outdoor crowds (fan zones, transit hubs, perimeter areas), and serve as the warning layer in drone-response protocols. After the tournament, the same systems become the region's disaster-warning and evacuation-communication backbone.\n\nOne-time money disappears if unspent. If your agency has a security assignment in the footprint, it's worth a quick conversation about what can still be procured this cycle — Sourcewell contract 030425-GYS means no RFP delay.\n\n15 minutes this week?\n\n{{sender_name}}\n{{sender_title}}, Genasys\n{{sender_phone}}",
+    "follow_up": "Speed matters more than polish here — call the same day you email."
+  },
+  {
+    "id": "event_safety",
+    "name": "Large events / crowd communication",
+    "audience": "Police Chief / Event Security Command",
+    "when_to_use": "Cities with recurring large events. Disaster-response primary, event communication secondary.",
+    "subject": "Documented crowd communication for {{event_or_venue}}",
+    "body": "Chief {{last_name}},\n\nA question we hear from command staff after every major event: if something had gone wrong, would our crowd communications stand up to FOIA and legal review?\n\nLRAD systems answer that with engineering rather than policy: clear voice instructions intelligible at distance over crowd noise, every broadcast timestamped and logged. Public-safety agencies fund them as disaster-response equipment — evacuation instructions when cell networks fail — with event communication as the year-round operational benefit.\n\nState Homeland Security Program and UASI dollars both cover it as protective communications equipment, and we can share how comparable cities structured the justification.\n\nWould a 15-minute conversation before {{event_or_venue}} season make sense?\n\n{{sender_name}}\n{{sender_title}}, Genasys\n{{sender_phone}}",
+    "follow_up": "Keep framing on safety, clarity, and accountability. If the conversation turns to enforcement tactics, route to the playbook objection-handling section."
+  },
+  {
+    "id": "stranded_bric",
+    "name": "Stranded BRIC project — funding pathway rescue",
+    "audience": "Agencies with canceled/stranded BRIC mitigation projects",
+    "when_to_use": "Agency announced a BRIC award 2023-2024 that never proceeded after the April 2025 cancellation.",
+    "subject": "A path forward for the {{project_name}} project",
+    "body": "{{first_name}},\n\nWhen BRIC was terminated, {{jurisdiction}}'s {{project_name}} project lost its funding through no fault of the application — and as of this year the program remains in legal limbo, so waiting on restoration is not a plan.\n\nHere's what still stands: your documented need, your scoping work, and (often) your appropriated local match. Those transfer.\n\nThe alerting and evacuation-management components of mitigation projects can typically proceed under HMGP (if your county holds a declaration) or the state's NGWSGP application — at a fraction of the original construction budget. We help restructure the existing narrative for the new program, so the heavy lifting your team already did isn't wasted.\n\nWorth 20 minutes to see which components can move this year?\n\n{{sender_name}}\n{{sender_title}}, Genasys\n{{sender_phone}}",
+    "follow_up": "These prospects are jaded about federal funding — lead every touch with 'your work transfers,' not with new promises."
+  },
+  {
+    "id": "post_discovery",
+    "name": "Post-discovery procurement package (Tim's template, updated)",
+    "audience": "Any public safety official after a discovery call",
+    "when_to_use": "Send within 24 hours of a discovery call. Updated with current Sourcewell contract number 030425-GYS.",
+    "subject": "Funding & procuring your Genasys solution — {{agency_name}}",
+    "body": "Hi {{first_name}},\n\nThank you for the conversation today about the challenges facing {{jurisdiction}} — particularly {{pain_point}}.\n\nAs promised, here is the procurement picture, built to avoid both the capital-budget queue and a months-long RFP cycle:\n\n1. Skip the RFP — Sourcewell Contract 030425-GYS. Genasys holds a competitively awarded national cooperative contract (valid through July 2029) that satisfies municipal competitive-bidding requirements in all 50 states. You can issue a purchase order directly against it.\n\n2. Pre-authorized for FEMA grants. Our hardware and software are Commercial-Off-The-Shelf items under FEMA Authorized Equipment List codes 14SW-01-ALRT (alert/warning systems), 03OE-03-META (vehicle-mounted PA), and 03OE-03-MEGA (portable PA) — citable directly in grant narratives.\n\n3. SAFECOM-aligned for federal scoring. For EMPG/HSGP/mitigation applications, the platform maps cleanly to CISA SAFECOM interoperability guidance (plain-language alerting, multi-agency operation, infrastructure redundancy) — I've attached the alignment summary your grant writer can lift from.\n\nI've also attached a grant justification narrative and sample line-item budget tailored to our conversation — copy/paste ready for {{funding_source}}.\n\nCould we get 20 minutes with your grant writer or finance director next week to walk through it together?\n\nBest regards,\n\n{{sender_name}}\n{{sender_title}}, Genasys\n{{sender_phone}}",
+    "follow_up": "Attach: grant narrative + budget table from the Procurement Toolkit page, customized in the Meeting Prep generator."
+  },
+  {
+    "id": "lexipol_handoff",
+    "name": "Lexipol grant-support introduction",
+    "audience": "Internal → prospect introduction once agency agrees to pursue a grant",
+    "when_to_use": "The agency has verbally agreed to pursue funding. This email introduces grant-writing support and kicks off the application.",
+    "subject": "Next step: grant application support for {{agency_name}}",
+    "body": "{{first_name}},\n\nGreat news on moving forward. As discussed, you won't be writing this application alone — our grant-support partner Lexipol works with public safety agencies on exactly these submissions ({{funding_source}}).\n\nWhat happens next:\n\n1. I'll connect you with the Lexipol grant team this week (cc'd here).\n2. They'll schedule a 30-minute scoping call: your jurisdiction's hazard profile, the documented need, and the equipment/software configuration we spec'd.\n3. They draft the narrative and budget justification; you review — typical turnaround is well inside the application window.\n\nTo make that call productive, it helps to have on hand:\n- Your current Hazard Mitigation Plan (or the relevant pages)\n- Any after-action reports you're comfortable sharing\n- Your DUNS/UEI and SAM.gov registration status (applications stall here most often — worth checking today)\n\n{{lexipol_contact}}, meet {{first_name}} {{last_name}}, {{prospect_title}} at {{agency_name}} — context attached.\n\n{{sender_name}}\n{{sender_title}}, Genasys\n{{sender_phone}}",
+    "follow_up": "Verify SAM.gov registration status on the scoping call — expired registrations kill more applications than weak narratives."
+  }
+]

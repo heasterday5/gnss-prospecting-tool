@@ -1,25 +1,25 @@
 {
-  "last_updated": "March 2026",
+  "last_updated": "June 10, 2026",
   "cards": [
     {
-      "label": "Infrastructure Funding Gap",
-      "value": "$40.8B",
-      "detail": "124 US cities, 484 climate projects"
-    },
-    {
-      "label": "NGWSGP (Alert Systems)",
-      "value": "$40M",
-      "detail": "FY2025 - Most relevant Genasys program"
+      "label": "AFG \u2014 Open Now",
+      "value": "$291.6M",
+      "detail": "FY2025 window closes June 22, 2026 \u2014 fire depts apply directly"
     },
     {
       "label": "HSGP Total",
-      "value": "$1.008B",
-      "detail": "SHSP + UASI + OPSG combined"
+      "value": "$1.0B",
+      "detail": "SHSP $373.5M + UASI $553.5M \u2014 FY26 NOFO pending"
     },
     {
-      "label": "Grid Attacks (2023)",
-      "value": "185+",
-      "detail": "Record physical attacks on power infrastructure"
+      "label": "World Cup Security (NEW)",
+      "value": "$875M",
+      "detail": "FWCGP $625M awarded + C-UAS $250M \u2014 host metros spending now"
+    },
+    {
+      "label": "EMPG Annual",
+      "value": "$319.5M",
+      "detail": "Non-competitive \u2014 every EM agency has a share"
     }
   ]
 }
