@@ -116,7 +116,6 @@ states_df = load_states()
 counties_df = load_counties()
 state_list = sorted(states_df["state"].tolist())
 
-st.markdown('<div class="gn-card green" style="padding:1.4rem 1.5rem;">', unsafe_allow_html=True)
 account = st.text_input(
     "Who's the account?",
     placeholder="e.g., Sacramento County OES · City of Boulder Fire · Cherokee Nation Emergency Management",
@@ -150,7 +149,6 @@ with c3:
         index=seg_names.index(guessed_seg) if guessed_seg in seg_names else
               seg_names.index("Emergency Management Agencies"),
     )
-st.markdown('</div>', unsafe_allow_html=True)
 
 has_county = not selected_county.startswith("(")
 jurisdiction = account.strip() if account.strip() else (selected_county if has_county else selected_state)
