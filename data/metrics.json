@@ -1,25 +1,25 @@
 {
-  "last_updated": "June 10, 2026",
+  "last_updated": "July 1, 2026",
   "cards": [
     {
-      "label": "AFG \u2014 Open Now",
+      "label": "AFG — Awards Rolling",
       "value": "$291.6M",
-      "detail": "FY2025 window closes June 22, 2026 \u2014 fire depts apply directly"
+      "detail": "FY2025 closed Jun 22 — ~1,800 awards landing through fall; be there when they do"
     },
     {
       "label": "HSGP Total",
       "value": "$1.0B",
-      "detail": "SHSP $373.5M + UASI $553.5M \u2014 FY26 NOFO pending"
+      "detail": "SHSP $373.5M + UASI $553.5M — FY26 NOFO pending"
     },
     {
       "label": "World Cup Security (NEW)",
       "value": "$875M",
-      "detail": "FWCGP $625M awarded + C-UAS $250M \u2014 host metros spending now"
+      "detail": "FWCGP $625M awarded + C-UAS $250M — host metros spending now"
     },
     {
       "label": "EMPG Annual",
       "value": "$319.5M",
-      "detail": "Non-competitive \u2014 every EM agency has a share"
+      "detail": "Non-competitive — every EM agency has a share"
     }
   ]
 }
