@@ -252,7 +252,9 @@ recs = result["recommendations"][:5]
 
 lc, rc = st.columns([3, 2], gap="large")
 with lc:
-    st.markdown(f"**Layer 1 · Federal pass-through** — flows FEMA/DHS → state → {selected_seg.lower().rstrip('s')}. The biggest lever.")
+    seg_singular = selected_seg.split(" (")[0].lower().replace("ies", "y") if selected_seg.lower().endswith("ies") \
+        else selected_seg.split(" (")[0].lower().removesuffix("s")
+    st.markdown(f"**Layer 1 · Federal pass-through** — flows FEMA/DHS → state → local {seg_singular}. The biggest lever.")
     for r in recs:
         fp = r["program"]
         st.markdown(f"""

@@ -64,7 +64,9 @@ saa_name = state_row["Agency Name"] if state_row is not None else f"the {selecte
 left, right = st.columns([3, 2], gap="large")
 
 with left:
-    st.markdown(f"### Funding stack for a {selected_dept.lower().rstrip('s')} in {selected_state}")
+    dept_singular = selected_dept.split(" (")[0].lower().replace("ies", "y") if selected_dept.lower().endswith("ies") \
+        else selected_dept.split(" (")[0].lower().removesuffix("s")
+    st.markdown(f"### Funding stack for a {dept_singular} in {selected_state}")
     if not selected_signal_ids:
         st.caption("Showing department-eligible programs. Check signals above to sharpen the ranking and unlock the plays.")
 
