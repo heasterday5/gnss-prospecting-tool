@@ -30,6 +30,23 @@ hero(
     "Lexipol to draft the grant. Stay ahead of what GovSpend can see.",
 )
 
+# ---- The front door ----
+cta1, cta2 = st.columns([5, 2])
+with cta1:
+    st.markdown("""
+    <div class="gn-card green" style="margin-bottom:0.6rem;">
+        <div class="gn-label">New · Skip the research grind</div>
+        <h4>🔎 Type your account. Get the research done.</h4>
+        <div class="gn-value">Name the agency, city, county, or department — get their hazard plan,
+        budget and CIP, documented risks, the funding that fits, and your next action. Two minutes,
+        zero tabs.</div>
+    </div>
+    """, unsafe_allow_html=True)
+with cta2:
+    st.markdown("<div style='height:1.55rem;'></div>", unsafe_allow_html=True)
+    if st.button("Start Here →", type="primary", use_container_width=True):
+        st.switch_page("pages/0_Start_Here.py")
+
 # ---- Urgent now ----
 funding = load_funding()
 open_now = funding[funding["status"].str.upper() == "OPEN"]

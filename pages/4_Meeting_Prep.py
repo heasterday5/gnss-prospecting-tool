@@ -42,13 +42,15 @@ MARKET_MAP = {
 
 c1, c2, c3 = st.columns([2, 2, 2])
 with c1:
-    agency = st.text_input("Agency / organization", placeholder="e.g. Travis County OEM")
+    agency = st.text_input("Agency / organization", placeholder="e.g. Travis County OEM",
+                           key="mp_agency")
 with c2:
     selected_dept = st.selectbox("Buyer type", [d["department_type"] for d in dept_types])
 with c3:
     state_list = sorted(states_df["state"].tolist())
-    selected_state = st.selectbox("State", state_list,
-                                  index=state_list.index("Texas") if "Texas" in state_list else 0)
+    if "mp_state" not in st.session_state and "Texas" in state_list:
+        st.session_state["mp_state"] = "Texas"
+    selected_state = st.selectbox("State", state_list, key="mp_state")
 
 sig_labels = {s["label"]: s["id"] for s in signals}
 chosen_sigs = st.multiselect("Signals you've confirmed for this account", list(sig_labels.keys()))

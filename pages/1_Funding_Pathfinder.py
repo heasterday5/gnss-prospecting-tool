@@ -31,11 +31,13 @@ signals = load_signals()
 
 c1, c2 = st.columns(2)
 with c1:
-    selected_dept = st.selectbox("I'm talking to a…", [d["department_type"] for d in dept_types])
+    selected_dept = st.selectbox("I'm talking to a…", [d["department_type"] for d in dept_types],
+                                 key="pf_dept")
 with c2:
     state_list = sorted(states_df["state"].tolist())
-    selected_state = st.selectbox("in…", state_list,
-                                  index=state_list.index("Texas") if "Texas" in state_list else 0)
+    if "pf_state" not in st.session_state and "Texas" in state_list:
+        st.session_state["pf_state"] = "Texas"
+    selected_state = st.selectbox("in…", state_list, key="pf_state")
 
 st.markdown('<div class="gn-label" style="margin-top:0.8rem;">What have you spotted? (select all that apply)</div>',
             unsafe_allow_html=True)

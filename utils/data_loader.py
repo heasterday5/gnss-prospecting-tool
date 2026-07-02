@@ -39,6 +39,11 @@ def load_global_targets() -> pd.DataFrame:
 
 
 @st.cache_data
+def load_counties() -> pd.DataFrame:
+    return pd.read_csv(os.path.join(DATA_DIR, "counties.csv"), dtype={"fips": str})
+
+
+@st.cache_data
 def load_state_grants() -> pd.DataFrame:
     return pd.read_csv(os.path.join(DATA_DIR, "state_grant_directory.csv"))
 
