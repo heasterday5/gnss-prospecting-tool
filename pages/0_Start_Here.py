@@ -15,7 +15,8 @@ check_password()
 from utils.styles import (inject_css, sidebar_brand, page_header, status_badge,
                           GREEN, NAVY, TEAL, SLATE)
 from utils.data_loader import (load_department_types, load_states, load_counties,
-                               get_state_row)
+                               get_state_row, load_contact_ladders, load_deployments,
+                               load_incidents, load_em_directories)
 from utils.recommend import recommend
 
 st.set_page_config(page_title="Start Here | Genasys", page_icon="🛡️", layout="wide")
@@ -172,6 +173,209 @@ st.markdown("---")
 dossier_md = [f"# Research Dossier — {jurisdiction}",
               f"_{selected_seg} · {selected_county if has_county else '—'} · {selected_state} · built with the Genasys Funding Intelligence tool_\n"]
 
+# ---- resolve the contact ladder (used by live research + the people section)
+ladders = load_contact_ladders()
+_acct_l = account.lower()
+if "sheriff" in _acct_l or (selected_seg == "Police / Law Enforcement" and "county" in _acct_l):
+    ladder = next((l for l in ladders if l["segment"] == "Sheriff (county law enforcement)"), None)
+else:
+    ladder = next((l for l in ladders if l["segment"] == selected_seg), None)
+if ladder is None:
+    ladder = next(l for l in ladders if l["segment"] == "Emergency Management Agencies")
+
+# ---- Live research: the app researches this account on the web, right now
+from utils import live_research
+
+lr_key = f"lr::{jurisdiction}::{selected_state}::{selected_seg}"
+lr = st.session_state.get(lr_key)
+
+if live_research.is_configured():
+    bc1, bc2 = st.columns([1, 2], gap="medium")
+    with bc1:
+        run_lr = st.button("🔎 Run live research", type="primary", use_container_width=True,
+                           disabled=lr is not None,
+                           help="Searches the web right now for this account's real roster, "
+                                "incumbent alerting vendor, and recent events. ~60–90s; cached 7 days.")
+    with bc2:
+        st.caption("**Live research** pulls the actual command roster (names → titles → emails), "
+                   "the alerting vendor they use today, and recent local incidents — sourced, "
+                   "not from a stored database. Run it once per account; results cache for a week.")
+    if run_lr:
+        hierarchy_text = "\n".join(
+            f"  {d['division']}: " + " → ".join(d["titles"]) for d in ladder["divisions"]
+        )
+        with st.spinner(f"Researching {jurisdiction} live — roster, vendor, recent events…"):
+            try:
+                lr = live_research.research_account(
+                    jurisdiction, county_label or "", selected_state,
+                    selected_seg, hierarchy_text)
+                st.session_state[lr_key] = lr
+            except Exception as e:
+                st.error(f"Live research failed: {e}. The manual finder below still works — "
+                         "try again in a minute.")
+else:
+    with st.expander("⚡ Enable live research (one-time setup)"):
+        st.markdown(
+            "Live research lets the app pull **real contact names, the incumbent vendor, and "
+            "recent events** for any account at runtime — no database in the app.\n\n"
+            "1. Create an API key at **console.anthropic.com** (Settings → API Keys)\n"
+            "2. In **share.streamlit.io** open this app → ⋮ → **Settings → Secrets**\n"
+            "3. Add: `ANTHROPIC_API_KEY = \"sk-ant-…\"` and save — the app restarts itself\n\n"
+            "Each lookup costs roughly $0.10–0.25 and is cached for 7 days.")
+
+if lr:
+    ag = lr.get("agency") or {}
+    inc = lr.get("incumbent") or {}
+    events = lr.get("recent_events") or []
+    contacts = lr.get("contacts") or []
+
+    st.markdown(f"### 📞 Live research results <span style='font-size:0.85rem;color:{SLATE};font-weight:400;'>— sourced just now; verify before you dial</span>", unsafe_allow_html=True)
+
+    meta_bits = []
+    if ag.get("website"):
+        meta_bits.append(f"<a href='{ag['website']}' target='_blank'>{ag.get('official_name') or 'Website'} ↗</a>")
+    if ag.get("email_pattern"):
+        meta_bits.append(f"Email pattern: <b>{ag['email_pattern']}</b>")
+    if ag.get("main_phone"):
+        meta_bits.append(f"Main line: <b>{ag['main_phone']}</b>")
+    if meta_bits:
+        st.markdown(f'<div class="gn-card green" style="padding:0.8rem 1.1rem;font-size:0.9rem;">'
+                    f'{" · ".join(meta_bits)}</div>', unsafe_allow_html=True)
+
+    if contacts:
+        rows = ""
+        for c in sorted(contacts, key=lambda x: x.get("rank_order", 99)):
+            email = c.get("email") or (f"{c['email_guess']} <span style='color:{SLATE};'>(pattern guess)</span>"
+                                       if c.get("email_guess") else "—")
+            phone = c.get("phone") or "—"
+            rows += (f"<tr><td style='padding:6px 10px;font-weight:700;color:{NAVY};'>{c.get('rank_order', '')}</td>"
+                     f"<td style='padding:6px 10px;'><b>{c.get('name', '')}</b></td>"
+                     f"<td style='padding:6px 10px;'>{c.get('title', '')}<br>"
+                     f"<span style='font-size:0.78rem;color:{SLATE};'>{c.get('division', '')}</span></td>"
+                     f"<td style='padding:6px 10px;font-size:0.88rem;'>{email}</td>"
+                     f"<td style='padding:6px 10px;font-size:0.88rem;'>{phone}</td>"
+                     f"<td style='padding:6px 10px;'><a href='{c.get('source_url', '#')}' target='_blank'>src ↗</a></td></tr>")
+        st.markdown(f"""
+        <div class="gn-card navy" style="padding:0.6rem 0.8rem;overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
+          <thead><tr style="text-align:left;color:{SLATE};font-size:0.75rem;text-transform:uppercase;">
+            <th style="padding:6px 10px;">#</th><th style="padding:6px 10px;">Name</th>
+            <th style="padding:6px 10px;">Title</th><th style="padding:6px 10px;">Email</th>
+            <th style="padding:6px 10px;">Phone</th><th style="padding:6px 10px;">Source</th>
+          </tr></thead><tbody>{rows}</tbody></table></div>""", unsafe_allow_html=True)
+        dossier_md.append("\n## Contacts (live research — verify before use)\n")
+        for c in sorted(contacts, key=lambda x: x.get("rank_order", 99)):
+            dossier_md.append(f"{c.get('rank_order', '')}. **{c.get('name', '')}** — {c.get('title', '')}"
+                              f" ({c.get('division', '')}) · {c.get('email') or c.get('email_guess') or 'no email found'}"
+                              f" · {c.get('phone') or ''} · source: {c.get('source_url', '')}")
+    else:
+        st.info("No verifiable named contacts surfaced — use the roster links below; small agencies "
+                "often list command staff only in budget PDFs.")
+
+    lc1, lc2 = st.columns(2, gap="medium")
+    with lc1:
+        if inc.get("vendor"):
+            st.markdown(f"""
+            <div class="gn-card warn" style="padding:0.9rem 1.1rem;">
+              <div style="font-weight:800;color:{NAVY};">📡 Incumbent: {inc['vendor']}
+                {f"({inc['product']})" if inc.get('product') else ''}</div>
+              <div style="font-size:0.88rem;">{inc.get('evidence') or ''}
+                {f"<a href='{inc['source_url']}' target='_blank'>↗</a>" if inc.get('source_url') else ''}</div>
+              <div style="font-size:0.82rem;color:{SLATE};margin-top:4px;">
+                {inc.get('contract_note') or 'Check GovSpend for the contract renewal date — outreach lands best 6–9 months out.'}</div>
+            </div>""", unsafe_allow_html=True)
+            dossier_md.append(f"\n**Incumbent vendor (live):** {inc['vendor']} — {inc.get('evidence', '')} [{inc.get('source_url', '')}]")
+    with lc2:
+        if events:
+            ev_html = "".join(
+                f'<div style="padding:4px 0;border-bottom:1px solid #EEF1F2;font-size:0.85rem;">'
+                f'<b>{e.get("year", "")}</b> — {e.get("what_happened", "")}<br>'
+                f'<span style="color:{SLATE};font-size:0.8rem;">{e.get("sales_relevance", "")}</span> '
+                f'<a href="{e.get("source_url", "#")}" target="_blank">↗</a></div>'
+                for e in events)
+            st.markdown(f'<div class="gn-card teal" style="padding:0.9rem 1.1rem;">'
+                        f'<div style="font-weight:800;color:{NAVY};">🗞️ Recent events</div>{ev_html}</div>',
+                        unsafe_allow_html=True)
+            for e in events:
+                dossier_md.append(f"- EVENT {e.get('year', '')}: {e.get('what_happened', '')} "
+                                  f"(relevance: {e.get('sales_relevance', '')}) [{e.get('source_url', '')}]")
+    if lr.get("notes"):
+        st.caption(f"📝 {lr['notes']}")
+        dossier_md.append(f"\n_Research notes: {lr['notes']}_")
+
+st.markdown("---")
+
+# ---- A0. The people
+st.markdown(f"### 👥 The people to call <span style='font-size:0.85rem;color:{SLATE};font-weight:400;'>— highest rank first, no skipping command staff</span>", unsafe_allow_html=True)
+
+lcol, rcol = st.columns([3, 2], gap="large")
+with lcol:
+    st.markdown(f"""
+    <div class="gn-card navy" style="padding:1rem 1.2rem;">
+      <div class="gn-label">Why these people</div>
+      <div style="font-size:0.9rem;color:#262A2D;margin-bottom:0.6rem;">{ladder["why_them"]}</div>
+      <div style="font-size:0.82rem;color:{SLATE};font-style:italic;">{ladder["rules"]}</div>
+    </div>""", unsafe_allow_html=True)
+
+    for div in ladder["divisions"]:
+        rows_html = ""
+        for i, title in enumerate(div["titles"]):
+            t_clean = title.split(" (")[0]
+            li = ("https://www.linkedin.com/search/results/people/?keywords=" +
+                  urllib.parse.quote_plus(f'"{jurisdiction}" "{t_clean}"'))
+            gq = g(f'"{jurisdiction}" "{t_clean}" (email OR contact)')
+            rows_html += (
+                f'<div style="display:flex;align-items:center;gap:10px;padding:5px 0;'
+                f'border-bottom:1px solid #EEF1F2;">'
+                f'<span class="gn-step" style="width:22px;height:22px;flex:0 0 22px;font-size:0.75rem;">{i+1}</span>'
+                f'<span style="flex:1;font-size:0.92rem;color:#262A2D;font-weight:{700 if i == 0 else 500};">{title}</span>'
+                f'<a href="{li}" target="_blank" style="font-size:0.8rem;">LinkedIn ↗</a>'
+                f'<a href="{gq}" target="_blank" style="font-size:0.8rem;">Google ↗</a>'
+                f'</div>')
+        st.markdown(f"""
+        <div class="gn-card teal" style="padding:0.9rem 1.2rem;">
+          <div style="font-weight:800;color:{NAVY};margin-bottom:0.35rem;">{div["division"]}</div>
+          {rows_html}
+        </div>""", unsafe_allow_html=True)
+        dossier_md.append(f"\n**Contacts — {div['division']}** (work top to bottom):\n" +
+                          "\n".join(f"{i+1}. {t} — Name: ____ · Email: ____ · Phone: ____"
+                                    for i, t in enumerate(div["titles"])))
+
+with rcol:
+    roster_q = " OR ".join(f'"{p}"' for p in ladder["roster_page_names"][:3])
+    link_row("🗂️", "Their roster / command staff page",
+             g(f'"{jurisdiction}" ({roster_q})'),
+             "The agency's own leadership page — names and often direct emails, in rank order.",
+             "a staff directory or org chart; PDFs often include emails")
+    link_row("🧾", "Org chart (PDF)",
+             g(f'"{jurisdiction}" organizational chart filetype:pdf'),
+             "Budget books and org-chart PDFs name every division head.",
+             "the public-safety org page — division heads = your call list")
+    link_row("💼", "Everyone at the agency on LinkedIn",
+             "https://www.linkedin.com/search/results/people/?keywords=" + urllib.parse.quote_plus(f'"{jurisdiction}"'),
+             "Full people search scoped to the agency name — filter by title from the ladder.",
+             "current employees with command titles; check 'About' for tenure")
+    em_dirs = load_em_directories()
+    dir_row = em_dirs[em_dirs["state"] == selected_state]
+    if not dir_row.empty:
+        d = dir_row.iloc[0]
+        link_row("📖", f"{selected_state} county EM contact directory",
+                 d["url"],
+                 f"Official state-published directory — {d['contains']}.",
+                 f"the {county_label or 'county'} row: names, phones, often direct emails")
+        dossier_md.append(f"- **{selected_state} EM contact directory**: {d['url']}")
+
+    st.markdown(f"""
+    <div class="gn-card green" style="padding:0.9rem 1.2rem;">
+      <div style="font-weight:800;color:{NAVY};margin-bottom:0.3rem;">✉️ Email pattern</div>
+      <div style="font-size:0.85rem;color:#262A2D;">{ladder["email_domains_hint"]}.
+      Once you have ONE real email from the roster page or a press release, the pattern
+      (first.last@ / flast@ / first@) applies to every name on the ladder. Log every
+      verified contact in HubSpot immediately.</div>
+    </div>""", unsafe_allow_html=True)
+
+st.markdown("---")
+
 # ---- A. Plans & budgets
 st.markdown(f"### 📄 Their plans & budgets <span style='font-size:0.85rem;color:{SLATE};font-weight:400;'>— the documents that authorize the spend</span>", unsafe_allow_html=True)
 st.caption("These are pre-built searches — the plan is almost always the first result. One click each.")
@@ -242,6 +446,11 @@ risk_links = [
 for row in risk_links:
     link_row(*row)
     dossier_md.append(f"- **{row[1]}**: {row[2]}\n  - {row[3]}")
+
+# ---- B2. Competitive landscape & incidents map
+st.markdown(f"### 🗺️ Who's running what nearby <span style='font-size:0.85rem;color:{SLATE};font-weight:400;'>— references, incumbents, and incidents that opened doors</span>", unsafe_allow_html=True)
+from utils.mapview import render_landscape
+dossier_md.extend(render_landscape(selected_state, county_label, jurisdiction))
 
 # ---- C. The money
 st.markdown("### 💰 The money — three layers, ranked for this account", unsafe_allow_html=True)

@@ -1,0 +1,176 @@
+[
+  {
+    "segment": "Police / Law Enforcement",
+    "why_them": "LRAD purchases and Genasys Protect for active-threat coordination are chief-level decisions executed by division commanders.",
+    "email_domains_hint": "cityname.gov, cityname.org, countysheriff.org — check the site footer or a press release for the pattern",
+    "divisions": [
+      {
+        "division": "Administration",
+        "titles": ["Chief", "Deputy Chiefs", "Commanders", "Captains", "Lieutenants", "Sergeants (if listed)"]
+      },
+      {
+        "division": "Patrol / Operations",
+        "titles": ["Deputy Chief (Field Ops)", "Patrol Commander", "Patrol Captains", "Patrol Lieutenants", "Patrol Sergeants"]
+      },
+      {
+        "division": "CID / Investigations",
+        "titles": ["Deputy Chief (if investigations falls under them)", "Investigations Commander", "Investigations Captain", "Investigations Lieutenant", "Investigations Sergeant", "Detectives"]
+      }
+    ],
+    "rules": "Always highest rank → lowest rank. No skipping command staff. No burying division heads.",
+    "roster_page_names": ["command staff", "administration", "our department", "leadership", "organizational chart"]
+  },
+  {
+    "segment": "Sheriff (county law enforcement)",
+    "why_them": "In many counties (esp. California) the Sheriff runs the Office of Emergency Services — one buyer for LRAD and Protect.",
+    "email_domains_hint": "countyname.gov, sheriff.countyname.gov",
+    "divisions": [
+      {
+        "division": "Command",
+        "titles": ["Sheriff", "Undersheriff", "Chief Deputy / Assistant Sheriff", "Division Commanders / Captains", "Lieutenants", "Sergeants (if listed)"]
+      },
+      {
+        "division": "Emergency Services (if under Sheriff)",
+        "titles": ["OES Commander / Captain", "Emergency Services Manager", "Emergency Services Coordinator"]
+      }
+    ],
+    "rules": "Always highest rank → lowest rank. No skipping command staff. No burying division heads.",
+    "roster_page_names": ["command staff", "administration", "office of emergency services", "organizational chart"]
+  },
+  {
+    "segment": "Emergency Management Agencies",
+    "why_them": "The Genasys Protect buyer. The Director owns the decision; the Alert & Warning Coordinator runs the eval; the GIS lead builds the zones.",
+    "email_domains_hint": "countyname.gov, readycountyname.gov — the county EM directory (linked below) often lists emails directly",
+    "divisions": [
+      {
+        "division": "Leadership",
+        "titles": ["Director of Emergency Management / OEM Director", "Deputy Director", "Assistant Director"]
+      },
+      {
+        "division": "Operations & Alerting",
+        "titles": ["Emergency Management Coordinator", "Alert & Warning Coordinator / IPAWS POC", "Operations Section lead", "Emergency Management Specialist / Planner"]
+      },
+      {
+        "division": "Technical",
+        "titles": ["GIS Coordinator / Analyst", "Communications / Technology Coordinator"]
+      }
+    ],
+    "rules": "Director first, always. The Alert & Warning Coordinator is your champion — they live with the current system's failures daily.",
+    "roster_page_names": ["staff", "contact us", "about oem", "who we are"]
+  },
+  {
+    "segment": "Fire / EMS Departments",
+    "why_them": "Vehicle-mounted LRAD and evacuation-zone triggers are operations decisions; the Chief signs, the Wildland/Operations chief champions.",
+    "email_domains_hint": "cityname.gov, firename.org — check a press release or the PIO contact for the pattern",
+    "divisions": [
+      {
+        "division": "Command",
+        "titles": ["Fire Chief", "Deputy Chief / Assistant Chief", "Division Chiefs", "Battalion Chiefs (esp. Wildland / Operations)"]
+      },
+      {
+        "division": "Prevention & Community Risk",
+        "titles": ["Fire Marshal", "Community Risk Reduction Officer", "Public Information Officer"]
+      },
+      {
+        "division": "EMS",
+        "titles": ["EMS Chief / Director", "EMS Battalion Chief"]
+      }
+    ],
+    "rules": "Chief first. The Wildland battalion chief is the strongest internal champion in WUI territory.",
+    "roster_page_names": ["command staff", "administration", "fire administration", "leadership"]
+  },
+  {
+    "segment": "Utilities (Power, Water, Gas)",
+    "why_them": "Wildfire-mitigation and dam-safety leads own rate-recovered budgets for PSPS notification and downstream warning.",
+    "email_domains_hint": "utilityname.com — corporate patterns (first.last@) are usually findable on LinkedIn or press releases",
+    "divisions": [
+      {
+        "division": "Wildfire / Emergency",
+        "titles": ["VP / Director of Wildfire Mitigation", "Emergency Preparedness Manager", "PSPS Program Manager"]
+      },
+      {
+        "division": "Dam / Water Operations",
+        "titles": ["Dam Safety Officer / Chief Dam Safety Engineer", "Director of Water Operations", "Compliance Manager (FERC Part 12)"]
+      }
+    ],
+    "rules": "Program owners over executives — the Wildfire Mitigation Plan names its owner; start there.",
+    "roster_page_names": ["wildfire mitigation plan", "leadership", "emergency preparedness"]
+  },
+  {
+    "segment": "Cities / Counties / Municipalities",
+    "why_them": "Where there's no standalone EM office, the City/County Manager and Public Safety Director own alerting decisions.",
+    "email_domains_hint": "cityname.gov — council agendas show staff emails in the header block",
+    "divisions": [
+      {
+        "division": "Executive",
+        "titles": ["City / County Manager", "Assistant City Manager (Public Safety portfolio)", "Public Safety Director"]
+      },
+      {
+        "division": "Supporting",
+        "titles": ["Emergency Preparedness Coordinator", "Communications Director / PIO", "GIS Manager"]
+      }
+    ],
+    "rules": "Manager's office opens the door; the preparedness coordinator carries the eval.",
+    "roster_page_names": ["city manager", "departments", "staff directory"]
+  },
+  {
+    "segment": "Tribal Nations",
+    "why_them": "Sovereign buyers with direct THSGP funding — the Emergency Manager and Council leadership decide together.",
+    "email_domains_hint": "tribename-nsn.gov — tribal government sites list department contacts",
+    "divisions": [
+      {
+        "division": "Leadership",
+        "titles": ["Tribal Council Chairman / President", "Council Public Safety Committee chair"]
+      },
+      {
+        "division": "Emergency Management",
+        "titles": ["Tribal Emergency Manager", "Emergency Management Coordinator", "Police Chief / Public Safety Director"]
+      }
+    ],
+    "rules": "Respect the governance path: the EM builds the case; the Council approves. Never route around leadership.",
+    "roster_page_names": ["departments", "public safety", "emergency management"]
+  },
+  {
+    "segment": "Events / Venues / Mass Gatherings",
+    "why_them": "Venue security directors and city special-events offices own crowd-communication budgets — World Cup money flows through both.",
+    "email_domains_hint": "venuename.com, cityname.gov (office of special events)",
+    "divisions": [
+      {
+        "division": "Venue",
+        "titles": ["VP / Director of Security", "Director of Event Operations", "Guest Services Director"]
+      },
+      {
+        "division": "City-side",
+        "titles": ["Special Events Office Director", "Police Special Events Commander", "OEM liaison for major events"]
+      }
+    ],
+    "rules": "Two doors: venue security and the city's event command. Reference NCS4 standards with both.",
+    "roster_page_names": ["leadership", "contact", "special events"]
+  },
+  {
+    "segment": "Critical Infrastructure Operators",
+    "why_them": "Port, airport, and transit security directors carry federal security-grant money (PSGP/TSGP) and physical alerting mandates.",
+    "email_domains_hint": "portofx.com, flyxxx.com — leadership pages are standard",
+    "divisions": [
+      {
+        "division": "Security & Operations",
+        "titles": ["Director of Public Safety / Security", "Emergency Manager", "Operations Director", "Facility Security Officer (MTSA ports)"]
+      }
+    ],
+    "rules": "The FSO/Emergency Manager is compliance-driven — lead with grant eligibility and mandate language.",
+    "roster_page_names": ["leadership", "administration", "public safety"]
+  },
+  {
+    "segment": "Armed Forces / Military",
+    "why_them": "Installation emergency managers and force-protection officers buy giant-voice replacements through O&M lines.",
+    "email_domains_hint": ".mil addresses — use SAM.gov points of contact on active solicitations instead of guessing",
+    "divisions": [
+      {
+        "division": "Installation",
+        "titles": ["Installation Emergency Manager", "Antiterrorism / Force Protection Officer", "Directorate of Emergency Services chief"]
+      }
+    ],
+    "rules": "Work through SAM.gov solicitation POCs and small-business offices — cold email to .mil rarely lands.",
+    "roster_page_names": ["garrison directory", "directorate of emergency services"]
+  }
+]

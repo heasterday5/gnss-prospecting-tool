@@ -1,0 +1,19 @@
+state,directory_name,url,contains,format
+Texas,TDEM Regions Directory (field response personnel),https://www.tdem.texas.gov/regions,TDEM regional assistant chiefs and district chiefs with name; phone; email per region plus counties served (county EMC contacts are portal-only),html
+Florida,County Emergency Management page (FDEM),https://www.floridadisaster.org/counties/,links to every county EM agency website plus a statewide County EM Managers map PDF with manager names,html
+Colorado,Local Emergency Managers page (DHSEM),https://dhsem.colorado.gov/emergencyalert,county-by-county emergency manager name; office phone; 24/7 phone; dispatch number; email; county alert-system links,html
+Washington,Statewide Emergency Management Contacts / Annex L1 (WA EMD),https://mil.wa.gov/asset/695d2e12e3057/01-01-2026-Statewide-EM-Contacts-(aka-Annex-L1)-(2).pdf,statewide contact list for every county; city and tribal EM office with phones and emails; refreshed monthly,pdf
+Oregon,Local and Tribal Emergency Managers list (Oregon OEM),https://www.oregon.gov/oem/pages/locals_list.aspx,downloadable PDF/Excel roster: name; agency; title; address; phone; email for every county/city/tribal emergency manager,html
+North Carolina,County Emergency Management Agencies (NCEM/NCDPS),https://www.ncdps.gov/our-organization/emergency-management/county-emergency-management-agencies,all 100 counties plus EBCI: agency website; phone; social media; alert sign-up links,html
+South Carolina,County Emergency Managers (SCEMD),https://www.scemd.org/who-we-are/county-emergency-managers/,all 46 counties: director name; coordinator names; email links; phone; fax; address; website,html
+Georgia,Find a Local Emergency Management Agency (GEMA/HS),https://gema.georgia.gov/locations/local-emergency-management-agency,every county EMA with agency name and address; detail pages add phone,html
+Tennessee,Contact Your Local EMA (TEMA regional contacts),https://www.tn.gov/tema/prepare/regional-ema-contacts.html,four regional pages listing every county EMA director with name; address; phone,html
+Oklahoma,Oklahoma Emergency Management Directors (ODEMHS),https://oklahoma.gov/content/dam/ok/en/oem/documents/about/OK-EM-Directors.pdf,statewide list by county and jurisdiction: emergency manager name; cell phone; email for 300+ county and city EMs,pdf
+Kansas,County Emergency Managers staff directory (KDEM),https://www.kansastag.gov/Directory.aspx?did=58,every county emergency manager grouped by region: name; county; phones; email on profile pages,html
+Nebraska,County Emergency Management Directory (NEMA),https://nema.nebraska.gov/em-directors.php,searchable/exportable table for counties; tribes; installations: director name and title; address; phone; email,html
+Ohio,Ohio County EMA Director List (Ohio EMA),https://webeoctraining.dps.ohio.gov/ohiocountyEMADirectorList/countyemalist_web.aspx,all 88 counties: EMA director name; street address; phone; email; agency website,html
+Pennsylvania,PEMA Directory (county EM coordinators),https://www.pa.gov/agencies/pema/contact/directory,searchable directory of county EM coordinators; 911 coordinators; planners plus downloadable County Coordinators PDF,html
+New York,County Emergency Management Offices (NYS DHSES),https://www.dhses.ny.gov/county-emergency-management-offices,all 62 counties plus NYC: office address; phone; 24-hour line; alert and social links,html
+Virginia,Local Emergency Managers Directory (VDEM LEMD),https://lemd.vdem.virginia.gov/Public/,filterable for 200+ localities: emergency manager/coordinator names; titles; phone; email; address; deputies,html
+Alabama,County EMA Directory (AEMA),https://ema.alabama.gov/contact/county-contacts/,all 67 counties plus Poarch Creek: director name; phone; addresses; email,html
+Missouri,Emergency Management Director Listing (MO SEMA),https://sema.dps.mo.gov/reports/EMD_Listing.php,statewide county and municipal EMDs: director name; address; business phone; fax,html

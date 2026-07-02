@@ -66,3 +66,53 @@ def test_pathfinder_prefill_from_session():
     assert not at.exception
     assert at.selectbox[0].value == "Fire / EMS Departments"
     assert at.selectbox[1].value == "Colorado"
+
+
+def test_start_here_people_section():
+    page = os.path.join(ROOT, "pages", "0_Start_Here.py")
+    at = _run(page)
+    at.text_input[0].set_value("Sacramento County Sheriff, California").run()
+    assert not at.exception
+    body = "\n".join(str(m.value) for m in at.markdown)
+    # sheriff ladder should fire (account contains 'sheriff')
+    assert "Undersheriff" in body, "Sheriff ladder should render for sheriff accounts"
+    assert "linkedin.com/search/results/people" in body, "LinkedIn deep links missing"
+    assert "highest rank" in body.lower(), "rank-order rule missing"
+
+
+def test_start_here_police_ladder_order():
+    """The BDR hierarchy: Chief first, divisions intact, highest→lowest."""
+    page = os.path.join(ROOT, "pages", "0_Start_Here.py")
+    at = _run(page)
+    at.text_input[0].set_value("City of Fresno Police Department, California").run()
+    assert not at.exception
+    body = "\n".join(str(m.value) for m in at.markdown)
+    for needle in ["Administration", "Patrol / Operations", "CID / Investigations"]:
+        assert needle in body, f"division '{needle}' missing from police ladder"
+    assert body.find("Chief") < body.find("Detectives"), "rank order broken"
+
+
+def test_live_research_parser():
+    """The live-research JSON extractor must survive prose-wrapped and fenced output."""
+    from utils.live_research import _parse_result
+    fenced = 'Here is what I found.\n```json\n{"agency": {"official_name": "X"}, "contacts": []}\n```\nDone.'
+    assert _parse_result(fenced)["agency"]["official_name"] == "X"
+    bare = 'Result: {"agency": {"official_name": "Y"}, "contacts": [{"name": "A"}]} trailing'
+    assert _parse_result(bare)["contacts"][0]["name"] == "A"
+
+
+def test_landscape_data_integrity():
+    """Deployments/incidents rows must geocode against counties.csv county names."""
+    import pandas as pd
+    counties = pd.read_csv(os.path.join(ROOT, "data", "counties.csv"))
+    valid = set(zip(counties["state"], counties["county"]))
+
+    dep = pd.read_csv(os.path.join(ROOT, "data", "deployments.csv"))
+    bad = [(r.state, r.county) for r in dep.itertuples() if (r.state, r.county) not in valid]
+    assert not bad, f"deployments.csv rows that won't geocode: {bad[:8]}"
+    assert (dep["vendor"].astype(str).str.len() > 0).all()
+
+    inc = pd.read_csv(os.path.join(ROOT, "data", "incidents.csv"))
+    bad = [(r.state, r.county) for r in inc.itertuples() if (r.state, r.county) not in valid]
+    assert not bad, f"incidents.csv rows that won't geocode: {bad[:8]}"
+    assert inc["year"].between(2000, 2026).all(), "incident years out of range"

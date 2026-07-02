@@ -49,6 +49,26 @@ def load_state_grants() -> pd.DataFrame:
 
 
 @st.cache_data
+def load_contact_ladders() -> list:
+    return _read_json("contact_ladders.json")
+
+
+@st.cache_data
+def load_deployments() -> pd.DataFrame:
+    return pd.read_csv(os.path.join(DATA_DIR, "deployments.csv"))
+
+
+@st.cache_data
+def load_incidents() -> pd.DataFrame:
+    return pd.read_csv(os.path.join(DATA_DIR, "incidents.csv"))
+
+
+@st.cache_data
+def load_em_directories() -> pd.DataFrame:
+    return pd.read_csv(os.path.join(DATA_DIR, "em_contact_directories.csv"))
+
+
+@st.cache_data
 def load_metrics() -> dict:
     return _read_json("metrics.json")
 
