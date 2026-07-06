@@ -195,22 +195,30 @@ if live_research.is_configured():
         run_lr = st.button("🔎 Run live research", type="primary", use_container_width=True,
                            disabled=lr is not None,
                            help="Searches the web right now for this account's real roster, "
-                                "incumbent alerting vendor, and recent events. ~60–90s; cached 7 days.")
+                                "incumbent alerting vendor, and recent events. Typically 2–4 min; "
+                                "cached 7 days.")
     with bc2:
         st.caption("**Live research** pulls the actual command roster (names → titles → emails), "
-                   "the alerting vendor they use today, and recent local incidents — sourced, "
-                   "not from a stored database. Run it once per account; results cache for a week.")
+                   "the alerting vendor they use today, and recent local incidents — sourced live, "
+                   "not from a stored database. First run per account takes **2–4 minutes** "
+                   "(you'll see each search as it happens); after that it's cached for a week. "
+                   "Stay on this page while it runs.")
     if run_lr:
         hierarchy_text = "\n".join(
             f"  {d['division']}: " + " → ".join(d["titles"]) for d in ladder["divisions"]
         )
-        with st.spinner(f"Researching {jurisdiction} live — roster, vendor, recent events…"):
+        with st.status(f"Researching {jurisdiction} live — this takes 2–4 minutes…",
+                       expanded=True) as lr_status:
             try:
                 lr = live_research.research_account(
                     jurisdiction, county_label or "", selected_state,
-                    selected_seg, hierarchy_text)
+                    selected_seg, hierarchy_text,
+                    _progress=lambda msg: lr_status.update(label=msg))
                 st.session_state[lr_key] = lr
+                lr_status.update(label=f"✅ Research done — results below (cached 7 days)",
+                                 state="complete", expanded=False)
             except Exception as e:
+                lr_status.update(label="Research hit a snag", state="error")
                 st.error(f"Live research failed: {e}. The manual finder below still works — "
                          "try again in a minute.")
 else:

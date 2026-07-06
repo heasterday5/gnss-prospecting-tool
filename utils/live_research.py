@@ -86,9 +86,20 @@ def _parse_result(text: str) -> dict:
 
 @st.cache_data(ttl=CACHE_TTL_SECONDS, show_spinner=False)
 def research_account(account: str, county: str, state: str, segment: str,
-                     hierarchy_text: str) -> dict:
-    """Live-research one account. Cached 7 days per (account, county, state, segment)."""
+                     hierarchy_text: str, _progress=None) -> dict:
+    """Live-research one account. Cached 7 days per (account, county, state, segment).
+
+    _progress: optional callable(str) for live status updates (underscore-prefixed
+    so Streamlit's cache excludes it from the cache key).
+    """
     import anthropic
+
+    def note(msg):
+        if _progress:
+            try:
+                _progress(msg)
+            except Exception:
+                pass
 
     client = anthropic.Anthropic(api_key=_get_api_key(), timeout=480.0, max_retries=1)
     model = None
@@ -115,7 +126,10 @@ Hard rules:
   (they usually name Everbridge, CodeRED, Rave, Genasys, etc.) and recent procurement news.
 - For recent events, find notification failures, evacuations, or major incidents in or near the
   jurisdiction in the last ~5 years — with the year and what specifically went wrong or happened.
-- Keep it tight: at most 12 contacts, at most 4 recent events. Speed matters."""
+- SPEED MATTERS MOST: use at most 6 searches total. Start with the agency's own staff/leadership
+  page and the county's emergency-alerts page — those two usually answer everything. Stop
+  searching as soon as you have enough; a good answer now beats a perfect answer later.
+- Keep it tight: at most 12 contacts, at most 4 recent events."""
 
     prompt = (f"Research this account now:\n"
               f"- Account: {account}\n"
@@ -124,35 +138,52 @@ Hard rules:
               f"- Segment: {segment}\n\n"
               f"{RESULT_SPEC}")
 
-    response = client.messages.create(
-        model=model,
-        max_tokens=8000,
-        thinking={"type": "adaptive"},
-        output_config={"effort": "medium"},
-        system=system,
-        tools=[{"type": "web_search_20260209", "name": "web_search", "max_uses": 8}],
-        messages=[{"role": "user", "content": prompt}],
-    )
-
-    # server-side tool loop can pause; continue until it finishes
-    hops = 0
+    tools = [{"type": "web_search_20260209", "name": "web_search", "max_uses": 6}]
     messages = [{"role": "user", "content": prompt}]
-    while response.stop_reason == "pause_turn" and hops < 4:
-        messages = messages + [{"role": "assistant", "content": response.content}]
-        response = client.messages.create(
+    searches = 0
+
+    def run_streamed(msgs):
+        """One streamed request; surfaces search activity as it happens."""
+        nonlocal searches
+        with client.messages.stream(
             model=model,
             max_tokens=8000,
             thinking={"type": "adaptive"},
             output_config={"effort": "medium"},
             system=system,
-            tools=[{"type": "web_search_20260209", "name": "web_search", "max_uses": 8}],
-            messages=messages,
-        )
+            tools=tools,
+            messages=msgs,
+        ) as stream:
+            wrote = False
+            for event in stream:
+                if event.type == "content_block_start":
+                    btype = event.content_block.type
+                    if btype == "server_tool_use":
+                        searches += 1
+                        note(f"🔎 Web search {searches} of ~6 — hunting the roster, "
+                             f"vendor, and recent incidents…")
+                    elif btype == "web_search_tool_result":
+                        note(f"📄 Reading results of search {searches}…")
+                    elif btype == "text" and not wrote:
+                        wrote = True
+                        note("✍️ Sources gathered — compiling the roster and dossier…")
+            return stream.get_final_message()
+
+    note("🧭 Starting live research — planning the search…")
+    response = run_streamed(messages)
+
+    # server-side tool loop can pause; continue until it finishes
+    hops = 0
+    while response.stop_reason == "pause_turn" and hops < 4:
+        note("↩️ Continuing research (deep dive took an extra round)…")
+        messages = messages + [{"role": "assistant", "content": response.content}]
+        response = run_streamed(messages)
         hops += 1
 
     if response.stop_reason == "refusal":
         raise RuntimeError("Research request was declined — try rephrasing the account name.")
 
+    note("✅ Research complete — rendering results…")
     text = "".join(b.text for b in response.content if b.type == "text")
     result = _parse_result(text)
     result["_model"] = model
