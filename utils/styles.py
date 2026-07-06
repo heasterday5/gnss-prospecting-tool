@@ -49,7 +49,8 @@ def inject_css():
         font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif !important;
     }}
 
-    .block-container {{ padding-top: 2.2rem; max-width: 1200px; }}
+    /* clear Streamlit's fixed header (~3.75rem) so page kickers aren't clipped */
+    .block-container {{ padding-top: 4.2rem; max-width: 1200px; }}
 
     h1, h2, h3 {{ color: {NAVY}; font-weight: 800 !important; letter-spacing: -0.02em; }}
 
