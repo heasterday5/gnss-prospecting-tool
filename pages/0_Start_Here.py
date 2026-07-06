@@ -214,14 +214,24 @@ if live_research.is_configured():
                 st.error(f"Live research failed: {e}. The manual finder below still works — "
                          "try again in a minute.")
 else:
-    with st.expander("⚡ Enable live research (one-time setup)"):
-        st.markdown(
-            "Live research lets the app pull **real contact names, the incumbent vendor, and "
-            "recent events** for any account at runtime — no database in the app.\n\n"
-            "1. Create an API key at **console.anthropic.com** (Settings → API Keys)\n"
-            "2. In **share.streamlit.io** open this app → ⋮ → **Settings → Secrets**\n"
-            "3. Add: `ANTHROPIC_API_KEY = \"sk-ant-…\"` and save — the app restarts itself\n\n"
-            "Each lookup costs roughly $0.10–0.25 and is cached for 7 days.")
+    st.markdown(f"""
+    <div class="gn-card warn" style="padding:1.2rem 1.4rem;">
+      <div style="font-weight:800;color:{NAVY};font-size:1.05rem;">🔎 Live research is built in — one step from being on</div>
+      <div style="font-size:0.92rem;color:#262A2D;margin-top:6px;">
+        When connected, a <b>“Run live research”</b> button appears right here: the app searches the web
+        for this account's <b>real command roster (names → titles → emails), the alerting vendor they
+        use today, and recent local incidents</b> — sourced live, nothing stored in the app.
+      </div>
+      <div style="font-size:0.9rem;color:#262A2D;margin-top:10px;">
+        <b>To switch it on (admin, one time):</b><br/>
+        1&nbsp;·&nbsp;Create an API key at <b>console.anthropic.com</b> (Settings → API Keys)<br/>
+        2&nbsp;·&nbsp;In <b>share.streamlit.io</b> open this app → ⋮ → <b>Settings → Secrets</b><br/>
+        3&nbsp;·&nbsp;Add <code>ANTHROPIC_API_KEY = "sk-ant-…"</code> and save — the app restarts itself
+      </div>
+      <div style="font-size:0.82rem;color:{SLATE};margin-top:8px;">
+        Each lookup costs roughly $0.10–0.25 and is cached for 7 days. Until then, the manual finder below works for every account.
+      </div>
+    </div>""", unsafe_allow_html=True)
 
 if lr:
     ag = lr.get("agency") or {}
