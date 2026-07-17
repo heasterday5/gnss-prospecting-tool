@@ -83,15 +83,18 @@ def _grounding(state: str, icp: dict) -> str:
 
 
 @st.cache_data(ttl=CACHE_TTL_SECONDS, show_spinner=False)
-def find_prospects(state: str, icp_id: str, icp_json: str, _progress=None) -> dict:
-    """Rank the 15-20 best-fit prospects in a state for one ICP segment.
+def find_prospects(state: str, icp_id: str, icp_json: str,
+                   products: tuple = (), products_json: str = "{}",
+                   _progress=None) -> dict:
+    """Rank the 15-20 best-fit prospects in a state for one ICP segment + product focus.
 
-    Cached 7 days per (state, icp_id, icp_json). icp_json is passed as a string
-    so the cache key stays stable and hashable.
+    Cached 7 days per (state, icp_id, icp_json, products). JSON args are passed
+    as strings so the cache key stays stable and hashable.
     """
     import anthropic
 
     icp = json.loads(icp_json)
+    product_info = json.loads(products_json)
 
     def note(msg):
         if _progress:
@@ -113,6 +116,12 @@ def find_prospects(state: str, icp_id: str, icp_json: str, _progress=None) -> di
         for group, items in icp["best_fit"].items()
     )
     caution_text = "\n".join(f"  - {c}" for c in icp["caution_signals"])
+    if product_info:
+        products_text = "\n".join(f"  - {name}: {desc}" for name, desc in product_info.items())
+        products_label = " + ".join(product_info.keys())
+    else:
+        products_text = f"  - {icp['products']}"
+        products_label = icp["products"]
 
     system = f"""You are a territory-planning analyst for the Genasys (public-safety technology)
 sales team. Your job: given a US state and a target segment, identify the 15-20 organizations
@@ -120,7 +129,13 @@ that BEST match the Ideal Customer Profile below, and rank them by fit. Use ONLY
 sources: government websites, hazard mitigation plans, news coverage, census data, procurement
 records, alert-signup pages.
 
-THE IDEAL CUSTOMER PROFILE — {icp['label']} (products: {icp['products']}):
+THE PRODUCT FOCUS for this list — {products_label}:
+{products_text}
+Rank fit FOR THESE PRODUCTS specifically: an organization is a better fit the more its documented
+situation creates need for exactly these capabilities. Every prospect's product_angle must name
+one or more of these selected products and say why it leads there.
+
+THE IDEAL CUSTOMER PROFILE — {icp['label']}:
 Best-fit attributes (more matches = higher fit_score):
 {best_fit_text}
 

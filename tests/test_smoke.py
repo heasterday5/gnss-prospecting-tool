@@ -130,6 +130,19 @@ def test_find_potential_focus_renders_icp():
     assert "Enterprise — Critical Infrastructure" in labels
     # without an API key the setup card shows (never silently hidden)
     assert "live-research connection" in body or "Build the" in body
+    # product dropdown present with all four products, segment-appropriate default
+    ms = at.multiselect[0]
+    assert set(ms.options) == {"Evertel", "Protect", "Acoustics", "LRAD"}
+    assert ms.value == ["Protect", "Acoustics"], "Fire & EM should default to Protect + Acoustics"
+
+
+def test_find_potential_focus_le_defaults():
+    page = os.path.join(ROOT, "pages", "2_Find_Potential_Focus.py")
+    at = _run(page)
+    at.selectbox[1].set_value("Law Enforcement").run()
+    assert not at.exception
+    assert at.multiselect[0].value == ["Evertel", "LRAD"], \
+        "Law Enforcement should default to Evertel + LRAD"
 
 
 def test_resource_links_page():

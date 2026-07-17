@@ -35,6 +35,25 @@ TIER_STYLE = {
     "Worth a look": ("#A16207", "#FEF9C3"),
 }
 
+PRODUCTS = {
+    "Evertel": "CJIS-compliant secure mobile collaboration for law enforcement — FOIA-auditable "
+               "messaging, Regional Rooms for cross-agency intel, replaces WhatsApp/Signal risk",
+    "Protect": "Zone-based evacuation management and mass notification SaaS — common operating "
+               "picture, IPAWS/WEA integration, no-signup public reach by zone",
+    "Acoustics": "Fixed acoustic arrays / voice sirens — solar/battery-backed outdoor voice "
+                 "alerting that works when power and cellular fail",
+    "LRAD": "Long-range acoustic devices (vehicle, handheld, fixed) — directed voice at 300–1,000m "
+            "for tactical operations, crowds, perimeter security, and escalation-of-force compliance",
+}
+
+DEFAULT_PRODUCTS = {
+    "fire_em": ["Protect", "Acoustics"],
+    "law_enforcement": ["Evertel", "LRAD"],
+    "military": ["LRAD", "Acoustics"],
+    "critical_infra": ["Protect", "LRAD"],
+    "cities_counties": ["Protect", "Acoustics"],
+}
+
 # ---------------------------------------------------------------- inputs
 
 states_df = load_states()
@@ -42,7 +61,7 @@ icps = load_icp_profiles()
 state_list = sorted(states_df["state"].tolist())
 icp_labels = {p["label"]: p for p in icps}
 
-c1, c2, c3 = st.columns([2, 3, 2])
+c1, c2, c3 = st.columns([2, 3, 3])
 with c1:
     sel_state = st.selectbox("State", state_list,
                              index=state_list.index("Texas") if "Texas" in state_list else 0)
@@ -50,8 +69,13 @@ with c2:
     sel_label = st.selectbox("Who do you want to reach?", list(icp_labels.keys()))
 icp = icp_labels[sel_label]
 with c3:
-    st.markdown(f'<div class="gn-label" style="margin-top:1.9rem;">Products: {icp["products"]}</div>',
-                unsafe_allow_html=True)
+    sel_products = st.multiselect(
+        "Products", list(PRODUCTS.keys()),
+        default=DEFAULT_PRODUCTS.get(icp["id"], ["Protect"]),
+        key=f"fpf_products_{icp['id']}",
+        help="What you're leading with — the ranking and product angles follow this selection.")
+if not sel_products:
+    sel_products = DEFAULT_PRODUCTS.get(icp["id"], ["Protect"])
 
 with st.expander(f"📋 What “ideal” means for {icp['label']} (the ICP this list is scored against)"):
     bc1, bc2 = st.columns(2, gap="large")
@@ -79,16 +103,18 @@ if not live_prospecting.is_configured():
     </div>""", unsafe_allow_html=True)
     st.stop()
 
-run_key = f"fpf::{sel_state}::{icp['id']}"
+products_key = tuple(sorted(sel_products))
+run_key = f"fpf::{sel_state}::{icp['id']}::{'+'.join(products_key)}"
 
-go = st.button(f"🎯 Build the {sel_state} target list", type="primary",
-               help="Statewide sweep + ICP scoring. Takes 2–4 minutes; cached for 7 days per state/segment.")
+go = st.button(f"🎯 Build the {sel_state} target list — {' + '.join(sel_products)}", type="primary",
+               help="Statewide sweep + ICP scoring. Takes 2–4 minutes; cached for 7 days per state/segment/products.")
 
 if go:
     status = st.status(f"Building the {sel_state} · {icp['label']} target list…", expanded=True)
     try:
         result = live_prospecting.find_prospects(
             sel_state, icp["id"], json.dumps(icp, sort_keys=True),
+            products_key, json.dumps({p: PRODUCTS[p] for p in products_key}, sort_keys=True),
             _progress=lambda m: status.write(m))
         st.session_state[run_key] = result
         status.update(label="Target list ready", state="complete", expanded=False)
