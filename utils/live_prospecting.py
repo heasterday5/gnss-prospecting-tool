@@ -15,7 +15,8 @@ import json
 import streamlit as st
 
 from utils.data_loader import load_deployments, load_incidents, get_state_row
-from utils.live_research import _get_api_key, _parse_result, is_configured  # noqa: F401  (re-exported)
+from utils.live_research import (_get_api_key, _parse_result, is_configured,  # noqa: F401  (re-exported)
+                                 cache_get, cache_put)
 
 CACHE_TTL_SECONDS = 7 * 24 * 3600
 DEFAULT_MODEL = "claude-opus-4-8"
@@ -82,14 +83,14 @@ def _grounding(state: str, icp: dict) -> str:
     return "\n".join(f"- {l}" for l in lines) if lines else "- (no prior data on this state)"
 
 
-@st.cache_data(ttl=CACHE_TTL_SECONDS, show_spinner=False)
 def find_prospects(state: str, icp_id: str, icp_json: str,
                    products: tuple = (), products_json: str = "{}",
                    _progress=None) -> dict:
     """Rank the 15-20 best-fit prospects in a state for one ICP segment + product focus.
 
-    Cached 7 days per (state, icp_id, icp_json, products). JSON args are passed
-    as strings so the cache key stays stable and hashable.
+    Cached 7 days per (state, icp_id, icp_json, products) via the shared
+    result store (st.cache_data can't wrap this: progress streams into the
+    caller's st.status container, which cache replay forbids).
     """
     import anthropic
 
@@ -102,6 +103,12 @@ def find_prospects(state: str, icp_id: str, icp_json: str,
                 _progress(msg)
             except Exception:
                 pass
+
+    cache_key = ("find_prospects", state, icp_id, icp_json, tuple(products), products_json)
+    cached = cache_get(cache_key)
+    if cached is not None:
+        note("⚡ Served from cache (fresh within 7 days) — no new sweep needed.")
+        return cached
 
     client = anthropic.Anthropic(api_key=_get_api_key(), timeout=600.0, max_retries=1)
     model = None
@@ -221,4 +228,5 @@ Scoring rules:
         p.setdefault("why_fit", [])
         p.setdefault("caution_flags", [])
     result["prospects"] = sorted(prospects, key=lambda p: p["rank"])
+    cache_put(cache_key, result)
     return result

@@ -11,11 +11,36 @@ Requires ANTHROPIC_API_KEY in Streamlit secrets (or the environment).
 import json
 import os
 import re
+import time
 
 import streamlit as st
 
 CACHE_TTL_SECONDS = 7 * 24 * 3600
 DEFAULT_MODEL = "claude-opus-4-8"
+
+
+@st.cache_resource(show_spinner=False)
+def _result_cache() -> dict:
+    """App-wide result store shared across sessions/users.
+
+    st.cache_data can't be used for the research functions: they stream
+    progress into st.status containers created by the caller, and cache-data
+    replay forbids touching outside layout blocks. This plain dict (held in a
+    cache_resource singleton) gives the same 7-day cross-session reuse without
+    replaying UI effects.
+    """
+    return {}
+
+
+def cache_get(key):
+    entry = _result_cache().get(key)
+    if entry and time.time() - entry[0] < CACHE_TTL_SECONDS:
+        return entry[1]
+    return None
+
+
+def cache_put(key, value):
+    _result_cache()[key] = (time.time(), value)
 
 RESULT_SPEC = """
 Return ONLY a JSON object inside a ```json fenced block, with exactly this shape:
@@ -84,13 +109,11 @@ def _parse_result(text: str) -> dict:
     return json.loads(raw)
 
 
-@st.cache_data(ttl=CACHE_TTL_SECONDS, show_spinner=False)
 def research_account(account: str, county: str, state: str, segment: str,
                      hierarchy_text: str, _progress=None) -> dict:
     """Live-research one account. Cached 7 days per (account, county, state, segment).
 
-    _progress: optional callable(str) for live status updates (underscore-prefixed
-    so Streamlit's cache excludes it from the cache key).
+    _progress: optional callable(str) for live status updates.
     """
     import anthropic
 
@@ -100,6 +123,12 @@ def research_account(account: str, county: str, state: str, segment: str,
                 _progress(msg)
             except Exception:
                 pass
+
+    cache_key = ("research_account", account, county, state, segment, hierarchy_text)
+    cached = cache_get(cache_key)
+    if cached is not None:
+        note("⚡ Served from cache (fresh within 7 days) — no new research run needed.")
+        return cached
 
     client = anthropic.Anthropic(api_key=_get_api_key(), timeout=480.0, max_retries=1)
     model = None
@@ -187,4 +216,5 @@ Hard rules:
     text = "".join(b.text for b in response.content if b.type == "text")
     result = _parse_result(text)
     result["_model"] = model
+    cache_put(cache_key, result)
     return result

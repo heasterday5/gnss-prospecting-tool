@@ -169,6 +169,18 @@ def test_router_navigation():
     assert not at.exception
 
 
+def test_research_functions_not_cache_data_wrapped():
+    """research_account/find_prospects stream progress into caller-owned
+    st.status blocks — st.cache_data replay forbids that (crashes on 1.39+).
+    They must use the shared cache_resource store instead."""
+    import inspect
+    from utils import live_research, live_prospecting
+    for fn in (live_research.research_account, live_prospecting.find_prospects):
+        assert not hasattr(fn, "clear"), f"{fn.__name__} is st.cache_data-wrapped again"
+        assert "cache_get" in inspect.getsource(fn), f"{fn.__name__} lost its result cache"
+        assert "cache_put" in inspect.getsource(fn), f"{fn.__name__} lost its result cache"
+
+
 def test_fpf_dirty_model_text_renders_safely(monkeypatch):
     """Model output with newlines/HTML must not break card rendering.
 
