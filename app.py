@@ -13,8 +13,10 @@ st.set_page_config(
 )
 
 from utils.auth import check_password
-check_password()
 
+# Register navigation BEFORE the password gate: check_password() st.stop()s
+# unauthenticated runs, and if st.navigation hasn't run yet Streamlit falls
+# back to the raw pages/-directory sidebar on the login screen.
 pg = st.navigation({
     "": [
         st.Page("pages/Home.py", title="Home", icon="🏠", default=True),
@@ -38,4 +40,5 @@ pg = st.navigation({
         st.Page("pages/12_Global_Targets.py", title="Global Targets", icon="🌐"),
     ],
 })
+check_password()
 pg.run()
