@@ -4,7 +4,7 @@ import streamlit as st
 from utils.auth import check_password
 check_password()
 
-from utils.styles import (inject_css, sidebar_brand, page_header, status_badge,
+from utils.styles import (md_html, inject_css, sidebar_brand, page_header, status_badge,
                           pill, steps_html, GREEN, NAVY, TEAL)
 from utils.data_loader import (load_department_types, load_states, load_signals,
                                get_template, get_state_row)
@@ -80,7 +80,7 @@ with left:
             why_bits.append(f"Priority program for {selected_state}")
         why = " · ".join(why_bits)
 
-        st.markdown(f"""
+        md_html(f"""
         <div class="gn-card green">
             <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
                 <strong style="font-size:1.05em;">{fp['program_name']}</strong>
@@ -92,7 +92,7 @@ with left:
             <div class="gn-value" style="margin:0.35rem 0;color:#1D7A8C;"><strong>The play:</strong> {fp['sales_note']}</div>
             <div class="gn-label" style="margin-top:0.4rem;">{why}</div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
 
     # State resources
     if state_row is not None:
@@ -122,7 +122,7 @@ with right:
                 st.markdown(steps_html(s["next_steps"]), unsafe_allow_html=True)
     elif dept_info:
         st.markdown("### Buyer snapshot")
-        st.markdown(f"""
+        md_html(f"""
         <div class="gn-card teal">
             <div class="gn-label">Typical buyer</div>
             <div class="gn-value">{dept_info['typical_buyer_title']}</div>
@@ -133,7 +133,7 @@ with right:
             <div class="gn-label" style="margin-top:0.6rem;">Decision process</div>
             <div class="gn-value">{dept_info['decision_process']}</div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
 
 # ---------- Email draft ----------
 st.markdown("---")
@@ -174,7 +174,7 @@ st.caption("Use the copy icon in the corner of the box above, then paste into yo
 
 # ---------- Lexipol handoff ----------
 st.markdown("---")
-st.markdown(f"""
+md_html(f"""
 <div class="gn-card navy">
     <div class="gn-label">When they say yes</div>
     <h4>Hand off to Lexipol for the grant draft</h4>
@@ -183,4 +183,4 @@ st.markdown(f"""
     Email Library (it includes the SAM.gov registration checklist that stalls most applications),
     and log the opportunity in HubSpot at the Initial Sales Stage.</div>
 </div>
-""", unsafe_allow_html=True)
+""")

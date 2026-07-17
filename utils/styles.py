@@ -27,6 +27,22 @@ def hurl(value):
     v = str(value or "").strip()
     return _html.escape(v, quote=True) if v.startswith(("http://", "https://")) else "#"
 
+
+def flatten_html(html_str: str) -> str:
+    """Strip blank lines and indentation from an HTML/CSS template.
+
+    Markdown ends a raw-HTML block at any blank line (including one left by an
+    empty interpolation like {flags_html}) and then renders 4-space-indented
+    lines as a code block. Dropping blank lines and per-line indentation makes
+    that impossible; HTML and CSS are whitespace-insensitive.
+    """
+    return "\n".join(ln.strip() for ln in html_str.splitlines() if ln.strip())
+
+
+def md_html(html_str: str):
+    """Render a multi-line HTML template safely through st.markdown."""
+    st.markdown(flatten_html(html_str), unsafe_allow_html=True)
+
 # Genasys brand palette
 NAVY = "#163443"
 NAVY_DARK = "#0D2330"
@@ -62,7 +78,7 @@ TIER_COLORS = {
 
 
 def inject_css():
-    st.markdown(f"""
+    md_html(f"""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
@@ -186,12 +202,12 @@ def inject_css():
     #MainMenu {{visibility: hidden;}}
     footer {{visibility: hidden;}}
     </style>
-    """, unsafe_allow_html=True)
+    """)
 
 
 def sidebar_brand():
     with st.sidebar:
-        st.markdown(f"""
+        md_html(f"""
         <div style="padding:1.1rem 0 0.6rem;text-align:center;">
             <div style="font-size:1.45rem;font-weight:900;letter-spacing:0.16em;color:#FFFFFF;">
                 GENASYS<span style="color:{GREEN};">.</span>
@@ -202,27 +218,27 @@ def sidebar_brand():
             <div style="font-size:0.7rem;opacity:0.65;margin-top:4px;">Ready when it matters</div>
         </div>
         <hr style="border-color:rgba(255,255,255,0.15);margin:0.4rem 0 0.6rem;">
-        """, unsafe_allow_html=True)
+        """)
 
 
 def page_header(kicker: str, title: str, subtitle: str = ""):
     sub = f'<p class="gn-subtitle">{subtitle}</p>' if subtitle else ""
-    st.markdown(f"""
+    md_html(f"""
     <div class="gn-kicker">{kicker}</div>
     <div class="gn-title">{title}</div>
     {sub}
     <div class="gn-rule"></div>
-    """, unsafe_allow_html=True)
+    """)
 
 
 def hero(kicker: str, title_html: str, subtitle: str):
-    st.markdown(f"""
+    md_html(f"""
     <div class="gn-hero">
         <div class="gn-kicker">{kicker}</div>
         <h1>{title_html}</h1>
         <p>{subtitle}</p>
     </div>
-    """, unsafe_allow_html=True)
+    """)
 
 
 def pill(text: str, fg: str, bg: str) -> str:

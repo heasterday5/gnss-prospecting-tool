@@ -13,7 +13,7 @@ import streamlit as st
 from utils.auth import check_password
 check_password()
 
-from utils.styles import (inject_css, sidebar_brand, page_header, pill, hclean, hurl,
+from utils.styles import (md_html, inject_css, sidebar_brand, page_header, pill, hclean, hurl,
                           GREEN, NAVY, TEAL, SLATE)
 from utils.data_loader import load_states, load_icp_profiles, load_contact_ladders
 from utils import live_prospecting, live_research
@@ -93,14 +93,14 @@ with st.expander(f"📋 What “ideal” means for {icp['label']} (the ICP this 
 # ---------------------------------------------------------------- engine gate
 
 if not live_prospecting.is_configured():
-    st.markdown(f"""
+    md_html(f"""
     <div class="gn-card warn" style="padding:1.2rem 1.4rem;">
       <div style="font-weight:800;color:{NAVY};font-size:1.05rem;">⚡ This page needs the live-research connection</div>
       <div style="font-size:0.9rem;color:#262A2D;margin-top:6px;">
         Add <code>ANTHROPIC_API_KEY</code> in the app's Streamlit secrets (same key that powers
         live research on the Research Specific Account/Target page) and this page activates.
       </div>
-    </div>""", unsafe_allow_html=True)
+    </div>""")
     st.stop()
 
 products_key = tuple(sorted(sel_products))
@@ -192,7 +192,7 @@ if result:
                f'Incumbent: {hclean(p["incumbent"])}</span>') if p.get("incumbent") else ""
         recent = f" · {hclean(p['recent_events'])}" if p.get("recent_events") else ""
 
-        st.markdown(f"""
+        md_html(f"""
         <div class="gn-card {'green' if prime else 'navy'}" style="padding:1.1rem 1.3rem;">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
             <div style="flex:1;min-width:300px;">
@@ -214,7 +214,7 @@ if result:
               <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.08em;color:{SLATE};">ICP FIT / 100</div>
             </div>
           </div>
-        </div>""", unsafe_allow_html=True)
+        </div>""")
 
         ckey = f"fpfc::{sel_state}::{p.get('name')}"
         contacts_res = st.session_state.get(ckey)
@@ -254,7 +254,7 @@ if result:
                              f"<td style='padding:5px 9px;font-size:0.86rem;'>{email}</td>"
                              f"<td style='padding:5px 9px;font-size:0.86rem;'>{hclean(c.get('phone'), '—')}</td>"
                              f"<td style='padding:5px 9px;'><a href='{hurl(c.get('source_url'))}' target='_blank'>src ↗</a></td></tr>")
-                st.markdown(f"""
+                md_html(f"""
                 <div class="gn-card teal" style="padding:0.7rem 0.9rem;margin-top:-0.5rem;overflow-x:auto;">
                   <div style="font-size:0.85rem;margin-bottom:4px;">{' · '.join(meta)}</div>
                   <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
@@ -265,7 +265,7 @@ if result:
                     <tbody>{rows}</tbody></table>
                   <div style="font-size:0.78rem;color:{SLATE};margin-top:4px;">
                     Sourced just now from public pages — verify before you dial. Ordered highest rank first.</div>
-                </div>""", unsafe_allow_html=True)
+                </div>""")
             else:
                 st.info(f"No verifiable named contacts surfaced for {p.get('name')} — try the agency "
                         "website's leadership page or the county budget PDF (rosters often hide there).")

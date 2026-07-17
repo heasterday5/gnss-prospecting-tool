@@ -4,7 +4,7 @@ import streamlit as st
 from utils.auth import check_password
 check_password()
 
-from utils.styles import inject_css, sidebar_brand, page_header
+from utils.styles import md_html, inject_css, sidebar_brand, page_header
 from utils.data_loader import load_email_templates
 from utils.emails import render, tokens_in
 from utils.identity import rep_identity_sidebar
@@ -26,14 +26,14 @@ names = [t["name"] for t in templates]
 chosen = st.selectbox("Choose a template", names)
 tmpl = templates[names.index(chosen)]
 
-st.markdown(f"""
+md_html(f"""
 <div class="gn-card teal">
     <div class="gn-label">Audience</div>
     <div class="gn-value">{tmpl['audience']}</div>
     <div class="gn-label" style="margin-top:0.5rem;">When to use</div>
     <div class="gn-value">{tmpl['when_to_use']}</div>
 </div>
-""", unsafe_allow_html=True)
+""")
 
 vals = dict(sender)
 needed = [t for t in tokens_in(tmpl) if not vals.get(t)]

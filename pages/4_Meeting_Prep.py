@@ -4,7 +4,7 @@ import streamlit as st
 from utils.auth import check_password
 check_password()
 
-from utils.styles import inject_css, sidebar_brand, page_header, status_badge
+from utils.styles import md_html, inject_css, sidebar_brand, page_header, status_badge
 from utils.data_loader import (load_department_types, load_states, load_signals,
                                load_personas, load_trends, get_state_row)
 from utils.recommend import recommend
@@ -79,13 +79,13 @@ if st.session_state.get("mp_built"):
         st.markdown("#### Funding to lead with")
         for r in recs:
             fp = r["program"]
-            st.markdown(f"""
+            md_html(f"""
             <div class="gn-card green">
                 <strong>{fp['program_name']}</strong> &nbsp;{status_badge(fp['status'])}
                 <div class="gn-value" style="margin-top:0.25rem;">{fp['funding_level']} · {fp['window_note']}</div>
                 <div class="gn-value" style="margin-top:0.25rem;color:#1D7A8C;">{fp['sales_note']}</div>
             </div>
-            """, unsafe_allow_html=True)
+            """)
 
         st.markdown("#### State context")
         st.markdown(f"**Key hazards:** {hazards}")

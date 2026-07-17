@@ -4,7 +4,7 @@ import streamlit as st
 from utils.auth import check_password
 check_password()
 
-from utils.styles import inject_css, sidebar_brand, page_header, NAVY, SLATE, GREEN
+from utils.styles import md_html, inject_css, sidebar_brand, page_header, NAVY, SLATE, GREEN
 
 inject_css()
 sidebar_brand()
@@ -15,7 +15,7 @@ page_header("Reference", "Resource Links",
 
 
 def link_card(icon, title, url, why):
-    st.markdown(f"""
+    md_html(f"""
     <div class="gn-card teal" style="padding:0.85rem 1.1rem;margin-bottom:0.55rem;">
       <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
         <div style="min-width:260px;flex:1;">
@@ -25,7 +25,7 @@ def link_card(icon, title, url, why):
         <a href="{url}" target="_blank" style="background:{GREEN};color:{NAVY};font-weight:700;
            padding:6px 16px;border-radius:8px;white-space:nowrap;">Open ↗</a>
       </div>
-    </div>""", unsafe_allow_html=True)
+    </div>""")
 
 
 st.markdown("### 💰 Funding & awards")

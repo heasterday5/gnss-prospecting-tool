@@ -5,7 +5,7 @@ from utils.auth import check_password
 check_password()
 
 from utils.data_loader import load_funding
-from utils.styles import inject_css, sidebar_brand, page_header, status_badge
+from utils.styles import md_html, inject_css, sidebar_brand, page_header, status_badge
 
 inject_css()
 sidebar_brand()
@@ -39,7 +39,7 @@ shown = shown.sort_values(by="status", key=lambda s: s.str.upper().map(order).fi
 for _, fp in shown.iterrows():
     eligible = [label for label, col in dept_cols.items()
                 if str(fp.get(col, "")).strip() == "X"]
-    st.markdown(f"""
+    md_html(f"""
     <div class="gn-card green">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
             <strong style="font-size:1.08em;">{fp['program_name']}</strong>
@@ -52,7 +52,7 @@ for _, fp in shown.iterrows():
         <div class="gn-value" style="margin:0.35rem 0;color:#1D7A8C;"><strong>The play:</strong> {fp['sales_note']}</div>
         <div class="gn-label" style="margin-top:0.3rem;">Fits: {', '.join(eligible) if eligible else '—'}</div>
     </div>
-    """, unsafe_allow_html=True)
+    """)
 
 st.markdown("---")
 st.subheader("Key Assistance Listing Numbers (for USASpending award searches)")

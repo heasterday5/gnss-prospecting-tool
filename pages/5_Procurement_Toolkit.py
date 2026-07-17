@@ -8,7 +8,7 @@ from utils.auth import check_password
 check_password()
 
 import pandas as pd
-from utils.styles import inject_css, sidebar_brand, page_header, pill
+from utils.styles import md_html, inject_css, sidebar_brand, page_header, pill
 
 inject_css()
 sidebar_brand()
@@ -20,7 +20,7 @@ page_header(
     "FEMA AEL codes, the Sourcewell fast path, SAFECOM alignment, and a line-item budget.",
 )
 
-st.markdown(f"""
+md_html(f"""
 <div class="gn-card warn">
     <div class="gn-label" style="color:#B45309;">Contract number correction</div>
     <div class="gn-value">Older Genasys materials reference Sourcewell contract <strong>#091422-GNS</strong>.
@@ -28,7 +28,7 @@ st.markdown(f"""
     valid through <strong>July 17, 2029</strong>. Use the new number in every quote, email, and grant narrative.
     <a href="https://www.sourcewell-mn.gov/cooperative-purchasing/030425-GYS">Verify on sourcewell-mn.gov →</a></div>
 </div>
-""", unsafe_allow_html=True)
+""")
 
 tab_narr, tab_ael, tab_safecom, tab_budget = st.tabs(
     ["📄 Grant Narrative", "✅ AEL Codes & Sourcewell", "🛰 SAFECOM Alignment", "💵 Budget Builder"]
@@ -98,7 +98,7 @@ with tab_ael:
     c1, c2 = st.columns(2, gap="large")
     with c1:
         st.markdown("#### FEMA Authorized Equipment List codes")
-        st.markdown("""
+        md_html("""
         <div class="gn-card green">
             <h4>14SW-01-ALRT</h4>
             <div class="gn-value">System, Alert and Warning — <em>Genasys Protect software & core integrations</em></div>
@@ -111,7 +111,7 @@ with tab_ael:
             <h4>03OE-03-MEGA</h4>
             <div class="gn-value">System, Public Address, Handheld or Hand-Carried — <em>portable, tactical LRAD devices</em></div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
         st.markdown("""
         **Sales myth buster:** some buyers think long-range voice systems are restricted under
         federal grant rules. False — Genasys products are **Commercial-Off-The-Shelf (COTS)**
@@ -120,7 +120,7 @@ with tab_ael:
         """)
     with c2:
         st.markdown("#### Skip the RFP — the Sourcewell advantage")
-        st.markdown("""
+        md_html("""
         <div class="gn-card teal">
             <h4>Sourcewell Contract #030425-GYS</h4>
             <div class="gn-value">
@@ -131,7 +131,7 @@ with tab_ael:
             <strong>Grant compliant:</strong> meets federal Uniform Guidance for spending grant dollars
             </div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
         st.markdown("""
         **How it works:**
         1. Client confirms (or obtains — it's free) Sourcewell membership
@@ -147,7 +147,7 @@ with tab_safecom:
     st.markdown("When agencies apply for federal emergency-communication funding, proposals are scored "
                 "against **CISA SAFECOM guidance**. Use this framework to position Genasys as a textbook "
                 "SAFECOM-compliant investment — lift the language directly into the technical narrative.")
-    st.markdown("""
+    md_html("""
     <div class="gn-card navy">
         <h4>1 · Interoperability (the "Technology" lane)</h4>
         <div class="gn-value"><strong>The standard:</strong> systems must share data and voice across manufacturers, disciplines, and jurisdictions.<br>
@@ -163,7 +163,7 @@ with tab_safecom:
         <div class="gn-value"><strong>The standard:</strong> plain-language alerts (no codes, no abstract tones) with built-in infrastructure redundancy.<br>
         <strong>The Genasys alignment:</strong> tone sirens fail SAFECOM intent — a wail conveys nothing. Genasys acoustics broadcast clear verbal instructions in plain language, multi-lingual, pre-recorded or live. And when an earthquake, cyberattack, or wildfire takes out cell towers, battery-backed, solar-ready arrays keep working with zero dependence on commercial telecom.</div>
     </div>
-    """, unsafe_allow_html=True)
+    """)
 
     st.markdown("#### Three-point summary for grant writers")
     st.code("""1. SOP Integration: Genasys Protect digitizes and automates Standard Operating Procedures across agencies, moving the jurisdiction up the SAFECOM continuum from "Individual Agency" to "Regional Interoperability."

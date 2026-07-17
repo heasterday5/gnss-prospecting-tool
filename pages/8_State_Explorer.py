@@ -6,7 +6,7 @@ check_password()
 
 import plotly.graph_objects as go
 from utils.data_loader import load_states, load_cities, load_funding, load_state_grants
-from utils.styles import (inject_css, sidebar_brand, page_header, tier_badge,
+from utils.styles import (md_html, inject_css, sidebar_brand, page_header, tier_badge,
                           score_pill, status_badge, NAVY, GREEN)
 
 inject_css()
@@ -49,12 +49,12 @@ if not grant_row.empty:
         links.append(f'<a href="{grants_url}">Grants page</a>')
     if portal_url and portal_url != "nan":
         links.append(f'<a href="{portal_url}">Statewide funding portal</a>')
-    st.markdown(f"""
+    md_html(f"""
     <div class="gn-card green">
         <div class="gn-label">Verified funding links · {gr['Link Status']}</div>
         <div class="gn-value" style="font-size:1.02rem;">{' &nbsp;·&nbsp; '.join(links)}</div>
     </div>
-    """, unsafe_allow_html=True)
+    """)
 
 st.markdown("---")
 
@@ -86,13 +86,13 @@ for _, fp in funding.iterrows():
     match = any(t.lower() in prog_name.lower() or prog_name.lower().startswith(t.lower().split()[0])
                 for t in top_progs if t)
     if match:
-        st.markdown(f"""
+        md_html(f"""
         <div class="gn-card green">
             <strong>{prog_name}</strong> &nbsp;{status_badge(fp['status'])}
             <div class="gn-value" style="margin-top:0.25rem;">{fp['funding_level']} — {fp['eligible_applicants']}</div>
             <div class="gn-value" style="margin-top:0.25rem;color:#1D7A8C;">{fp['sales_note']}</div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
 
 # ---- Cities in state ----
 st.subheader(f"Priority metros in {selected}")

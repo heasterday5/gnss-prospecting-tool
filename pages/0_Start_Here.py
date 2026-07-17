@@ -12,7 +12,7 @@ import streamlit as st
 from utils.auth import check_password
 check_password()
 
-from utils.styles import (inject_css, sidebar_brand, page_header, status_badge,
+from utils.styles import (md_html, inject_css, sidebar_brand, page_header, status_badge,
                           hclean, hurl, GREEN, NAVY, TEAL, SLATE)
 from utils.data_loader import (load_department_types, load_states, load_counties,
                                get_state_row, load_contact_ladders, load_deployments,
@@ -95,7 +95,7 @@ def g(query: str) -> str:
 def link_row(icon, title, url, why, find=""):
     find_html = (f'<div style="font-size:0.82rem;color:{SLATE};margin-top:2px;">'
                  f'<b>Look for:</b> {find}</div>') if find else ""
-    st.markdown(f"""
+    md_html(f"""
     <div class="gn-card teal" style="padding:0.85rem 1.1rem;margin-bottom:0.55rem;">
       <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
         <div style="min-width:260px;flex:1;">
@@ -106,7 +106,7 @@ def link_row(icon, title, url, why, find=""):
         <a href="{url}" target="_blank" style="background:{GREEN};color:{NAVY};font-weight:700;
            padding:6px 16px;border-radius:8px;white-space:nowrap;">Open ↗</a>
       </div>
-    </div>""", unsafe_allow_html=True)
+    </div>""")
 
 
 # ---------------------------------------------------------------- inputs
@@ -221,7 +221,7 @@ if live_research.is_configured():
                 st.error(f"Live research failed: {e}. The manual finder below still works — "
                          "try again in a minute.")
 else:
-    st.markdown(f"""
+    md_html(f"""
     <div class="gn-card warn" style="padding:1.2rem 1.4rem;">
       <div style="font-weight:800;color:{NAVY};font-size:1.05rem;">🔎 Live research is built in — one step from being on</div>
       <div style="font-size:0.92rem;color:#262A2D;margin-top:6px;">
@@ -238,7 +238,7 @@ else:
       <div style="font-size:0.82rem;color:{SLATE};margin-top:8px;">
         Each lookup costs roughly $0.10–0.25 and is cached for 7 days. Until then, the manual finder below works for every account.
       </div>
-    </div>""", unsafe_allow_html=True)
+    </div>""")
 
 if lr:
     ag = lr.get("agency") or {}
@@ -273,14 +273,14 @@ if lr:
                      f"<td style='padding:6px 10px;font-size:0.88rem;'>{email}</td>"
                      f"<td style='padding:6px 10px;font-size:0.88rem;'>{phone}</td>"
                      f"<td style='padding:6px 10px;'><a href='{hurl(c.get('source_url'))}' target='_blank'>src ↗</a></td></tr>")
-        st.markdown(f"""
+        md_html(f"""
         <div class="gn-card navy" style="padding:0.6rem 0.8rem;overflow-x:auto;">
         <table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
           <thead><tr style="text-align:left;color:{SLATE};font-size:0.75rem;text-transform:uppercase;">
             <th style="padding:6px 10px;">#</th><th style="padding:6px 10px;">Name</th>
             <th style="padding:6px 10px;">Title</th><th style="padding:6px 10px;">Email</th>
             <th style="padding:6px 10px;">Phone</th><th style="padding:6px 10px;">Source</th>
-          </tr></thead><tbody>{rows}</tbody></table></div>""", unsafe_allow_html=True)
+          </tr></thead><tbody>{rows}</tbody></table></div>""")
         dossier_md.append("\n## Contacts (live research — verify before use)\n")
         for c in sorted(contacts, key=lambda x: x.get("rank_order", 99)):
             dossier_md.append(f"{c.get('rank_order', '')}. **{c.get('name', '')}** — {c.get('title', '')}"
@@ -293,7 +293,7 @@ if lr:
     lc1, lc2 = st.columns(2, gap="medium")
     with lc1:
         if inc.get("vendor"):
-            st.markdown(f"""
+            md_html(f"""
             <div class="gn-card warn" style="padding:0.9rem 1.1rem;">
               <div style="font-weight:800;color:{NAVY};">📡 Incumbent: {hclean(inc['vendor'])}
                 {f"({hclean(inc['product'])})" if inc.get('product') else ''}</div>
@@ -301,7 +301,7 @@ if lr:
                 {f"<a href='{hurl(inc['source_url'])}' target='_blank'>↗</a>" if inc.get('source_url') else ''}</div>
               <div style="font-size:0.82rem;color:{SLATE};margin-top:4px;">
                 {hclean(inc.get('contract_note'), 'Check GovSpend for the contract renewal date — outreach lands best 6–9 months out.')}</div>
-            </div>""", unsafe_allow_html=True)
+            </div>""")
             dossier_md.append(f"\n**Incumbent vendor (live):** {inc['vendor']} — {inc.get('evidence', '')} [{inc.get('source_url', '')}]")
     with lc2:
         if events:
@@ -328,12 +328,12 @@ st.markdown(f"### 👥 The people to call <span style='font-size:0.85rem;color:{
 
 lcol, rcol = st.columns([3, 2], gap="large")
 with lcol:
-    st.markdown(f"""
+    md_html(f"""
     <div class="gn-card navy" style="padding:1rem 1.2rem;">
       <div class="gn-label">Why these people</div>
       <div style="font-size:0.9rem;color:#262A2D;margin-bottom:0.6rem;">{ladder["why_them"]}</div>
       <div style="font-size:0.82rem;color:{SLATE};font-style:italic;">{ladder["rules"]}</div>
-    </div>""", unsafe_allow_html=True)
+    </div>""")
 
     for div in ladder["divisions"]:
         rows_html = ""
@@ -350,11 +350,11 @@ with lcol:
                 f'<a href="{li}" target="_blank" style="font-size:0.8rem;">LinkedIn ↗</a>'
                 f'<a href="{gq}" target="_blank" style="font-size:0.8rem;">Google ↗</a>'
                 f'</div>')
-        st.markdown(f"""
+        md_html(f"""
         <div class="gn-card teal" style="padding:0.9rem 1.2rem;">
           <div style="font-weight:800;color:{NAVY};margin-bottom:0.35rem;">{div["division"]}</div>
           {rows_html}
-        </div>""", unsafe_allow_html=True)
+        </div>""")
         dossier_md.append(f"\n**Contacts — {div['division']}** (work top to bottom):\n" +
                           "\n".join(f"{i+1}. {t} — Name: ____ · Email: ____ · Phone: ____"
                                     for i, t in enumerate(div["titles"])))
@@ -383,14 +383,14 @@ with rcol:
                  f"the {county_label or 'county'} row: names, phones, often direct emails")
         dossier_md.append(f"- **{selected_state} EM contact directory**: {d['url']}")
 
-    st.markdown(f"""
+    md_html(f"""
     <div class="gn-card green" style="padding:0.9rem 1.2rem;">
       <div style="font-weight:800;color:{NAVY};margin-bottom:0.3rem;">✉️ Email pattern</div>
       <div style="font-size:0.85rem;color:#262A2D;">{ladder["email_domains_hint"]}.
       Once you have ONE real email from the roster page or a press release, the pattern
       (first.last@ / flast@ / first@) applies to every name on the ladder. Log every
       verified contact in HubSpot immediately.</div>
-    </div>""", unsafe_allow_html=True)
+    </div>""")
 
 st.markdown("---")
 
@@ -484,21 +484,21 @@ with lc:
     st.markdown(f"**Layer 1 · Federal pass-through** — flows FEMA/DHS → state → local {seg_singular}. The biggest lever.")
     for r in recs:
         fp = r["program"]
-        st.markdown(f"""
+        md_html(f"""
         <div class="gn-card navy" style="padding:0.8rem 1.1rem;margin-bottom:0.5rem;">
           <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
             <div style="font-weight:800;color:{NAVY};">{fp['program_name']}</div>
             <div>{status_badge(fp['status'])}</div>
           </div>
           <div style="font-size:0.85rem;color:#262A2D;">{fp['funding_level']} · {fp['window_note']}</div>
-        </div>""", unsafe_allow_html=True)
+        </div>""")
         dossier_md.append(f"- **{fp['program_name']}** ({fp['status']}): {fp['funding_level']} — {fp['window_note']}")
     st.caption("Full ranking, plays, and draft emails → Funding Pathfinder (button below).")
 
 with rc:
     st.markdown(f"**Your state gatekeeper** — locals can't apply to FEMA directly; the state administers it.")
     if state_row is not None:
-        st.markdown(f"""
+        md_html(f"""
         <div class="gn-card green" style="padding:0.9rem 1.1rem;">
           <div style="font-weight:800;color:{NAVY};">{state_row['Agency Name']}</div>
           <div style="font-size:0.88rem;margin-top:4px;">
@@ -506,7 +506,7 @@ with rc:
             <a href="{state_row['EM/Homeland Security Grants Page']}" target="_blank">Grants page ↗</a>
           </div>
           <div style="font-size:0.8rem;color:{SLATE};margin-top:4px;">Links verified Jun 2026</div>
-        </div>""", unsafe_allow_html=True)
+        </div>""")
         dossier_md.append(f"- **State gatekeeper:** {state_row['Agency Name']} — {state_row['EM/Homeland Security Grants Page']}")
 
     st.markdown("**Layer 2 · Their own budget** — already-appropriated CIP/operating money (see the CIP and budget links above). No grant cycle, no wait.")

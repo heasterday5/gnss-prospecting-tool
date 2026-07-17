@@ -9,7 +9,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from utils.styles import NAVY, GREEN, TEAL, SLATE
+from utils.styles import md_html, NAVY, GREEN, TEAL, SLATE
 from utils.data_loader import load_deployments, load_incidents, load_counties
 
 VENDOR_COLORS = {
@@ -179,7 +179,7 @@ def render_landscape(state: str, county_label, jurisdiction: str) -> list:
     # ---- displacement angle
     if not comp_county.empty:
         v = comp_county.iloc[0]
-        st.markdown(f"""
+        md_html(f"""
         <div class="gn-card teal" style="padding:0.9rem 1.2rem;margin-top:0.6rem;">
           <div style="font-weight:800;color:{NAVY};">🎯 Displacement angle</div>
           <div style="font-size:0.9rem;color:#262A2D;">{v['jurisdiction']} runs <b>{v['vendor']}</b>
@@ -187,7 +187,7 @@ def render_landscape(state: str, county_label, jurisdiction: str) -> list:
           outreach lands best 6–9 months out. Genasys Protect complements or replaces opt-in systems:
           zone-based, no signup required, works when cell coverage fails. The expiring-contract play in the
           Funding Pathfinder has the full talk track and email.</div>
-        </div>""", unsafe_allow_html=True)
+        </div>""")
 
     # ---- dossier lines
     md.append("\n## Competitive landscape & incidents\n")

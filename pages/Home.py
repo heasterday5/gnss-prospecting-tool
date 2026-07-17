@@ -4,7 +4,7 @@ import streamlit as st
 from utils.auth import check_password
 check_password()
 
-from utils.styles import inject_css, sidebar_brand, hero, metric_card, status_badge
+from utils.styles import md_html, inject_css, sidebar_brand, hero, metric_card, status_badge
 from utils.data_loader import load_metrics, load_funding, load_states, load_cities
 from utils.search import search_all
 
@@ -27,7 +27,7 @@ hero(
 # ---- The two front doors ----
 cta1, cta2 = st.columns(2, gap="medium")
 with cta1:
-    st.markdown("""
+    md_html("""
     <div class="gn-card green" style="margin-bottom:0.6rem;">
         <div class="gn-label">Planning a territory</div>
         <h4>🎯 Find Potential Focus</h4>
@@ -35,11 +35,11 @@ with cta1:
         organizations ranked against the Genasys ICP, with decision-maker names, roles, and
         emails on demand.</div>
     </div>
-    """, unsafe_allow_html=True)
+    """)
     if st.button("Find Potential Focus →", type="primary", use_container_width=True):
         st.switch_page("pages/2_Find_Potential_Focus.py")
 with cta2:
-    st.markdown("""
+    md_html("""
     <div class="gn-card teal" style="margin-bottom:0.6rem;">
         <div class="gn-label">Working a known account</div>
         <h4>🔎 Research Specific Account/Target</h4>
@@ -47,7 +47,7 @@ with cta2:
         plan, budget and CIP, documented risks, live decision-maker research, and the funding
         that fits. Two minutes, zero tabs.</div>
     </div>
-    """, unsafe_allow_html=True)
+    """)
     if st.button("Research Specific Account/Target →", use_container_width=True):
         st.switch_page("pages/0_Start_Here.py")
 
@@ -56,14 +56,14 @@ funding = load_funding()
 open_now = funding[funding["status"].str.upper() == "OPEN"]
 if not open_now.empty:
     for _, fp in open_now.iterrows():
-        st.markdown(f"""
+        md_html(f"""
         <div class="gn-card warn">
             <div class="gn-label" style="color:#B45309;">⏰ Closing soon — act this week</div>
             <h4>{fp['program_name']} — {fp['funding_level']}</h4>
             <div class="gn-value">{fp['status_detail']}</div>
             <div class="gn-value" style="margin-top:0.4rem;"><strong>The play:</strong> {fp['sales_note']}</div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
 
 # ---- Metrics ----
 cols = st.columns(4)
@@ -91,13 +91,13 @@ if query:
     if not results["funding"].empty:
         st.subheader(f"Funding Programs ({len(results['funding'])})")
         for _, row in results["funding"].iterrows():
-            st.markdown(f"""
+            md_html(f"""
             <div class="gn-card green">
                 <strong>{row['program_name']}</strong> &nbsp;{status_badge(row['status'])}
                 <div class="gn-value" style="margin-top:0.3rem;">{row['funding_level']} — {row['eligible_applicants']}</div>
                 <div class="gn-value" style="margin-top:0.3rem;">{row['sales_note']}</div>
             </div>
-            """, unsafe_allow_html=True)
+            """)
     if not results["states"].empty:
         st.subheader(f"States ({len(results['states'])})")
         for _, row in results["states"].iterrows():
@@ -120,7 +120,7 @@ else:
     st.markdown('<div class="gn-kicker">How to use this tool</div>', unsafe_allow_html=True)
     c1, c2, c3 = st.columns(3)
     with c1:
-        st.markdown("""
+        md_html("""
         <div class="gn-card green">
             <div class="gn-label">Build the list</div>
             <h4>1 · Find Potential Focus</h4>
@@ -133,9 +133,9 @@ else:
             <div class="gn-value">The full dossier on one target: plans, risks, competitive
             landscape, the people to call, and the money that fits.</div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
     with c2:
-        st.markdown("""
+        md_html("""
         <div class="gn-card teal">
             <div class="gn-label">Before outreach</div>
             <h4>3 · Funding Pathfinder</h4>
@@ -148,9 +148,9 @@ else:
             <div class="gn-value">One-page battlecard: funding sources with live status, persona
             discovery questions from the Growth Playbook, and the conversation starters.</div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
     with c3:
-        st.markdown("""
+        md_html("""
         <div class="gn-card navy">
             <div class="gn-label">After agreement</div>
             <h4>5 · Procurement Toolkit</h4>
@@ -163,7 +163,7 @@ else:
             <div class="gn-value">Verified 50-state grant links, priority metros, the full program
             database, and every external research tool in one place.</div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
 
     st.markdown("---")
     st.caption(

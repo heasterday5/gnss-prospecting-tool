@@ -22,10 +22,26 @@ def _run(path, **session):
     return at
 
 
+def _assert_html_markdown_safe(at, ctx=""):
+    """HTML passed to st.markdown must contain no blank lines (they end the
+    raw-HTML block) and no 4-space-indented lines (code block after a blank).
+    md_html() guarantees this; this guards every render path."""
+    for m in at.markdown:
+        v = str(m.value)
+        if not v.lstrip().startswith("<"):
+            continue
+        lines = v.splitlines()
+        assert not any(not ln.strip() for ln in lines), \
+            f"{ctx}: blank/whitespace-only line inside HTML markdown: {v[:120]!r}"
+        assert not any(ln.startswith("    ") for ln in lines), \
+            f"{ctx}: 4-space-indented line inside HTML markdown: {v[:120]!r}"
+
+
 @pytest.mark.parametrize("page", PAGES, ids=[os.path.basename(p) for p in PAGES])
 def test_page_renders(page):
     at = _run(page)
     assert not at.exception, f"{os.path.basename(page)} raised: {at.exception}"
+    _assert_html_markdown_safe(at, os.path.basename(page))
 
 
 def test_start_here_builds_dossier():
@@ -200,6 +216,13 @@ def test_fpf_dirty_model_text_renders_safely(monkeypatch):
             "recent_events": "June 2025 flood (8 dead);\nDR-4884",
             "product_angle": "Acoustics lead:\nvoice sirens",
             "source_urls": ["https://example.com/a", "javascript:alert(1)"],
+        }, {
+            # the "clean-looking" prospect that broke rendering: empty optional
+            # fields left whitespace-only template lines -> markdown code block
+            "rank": 2, "name": "Kanawha County EM", "county": "Kanawha County",
+            "population_served": None, "fit_score": 88, "tier": "Strong",
+            "why_fit": [], "caution_flags": [], "incumbent": None,
+            "recent_events": None, "product_angle": "", "source_urls": [],
         }],
     }
     at = AppTest.from_file(page, default_timeout=30)
@@ -209,9 +232,12 @@ def test_fpf_dirty_model_text_renders_safely(monkeypatch):
     assert not at.exception
     body = "\n".join(str(m.value) for m in at.markdown)
     assert "Wheeling-Ohio County HSEM" in body
+    assert "Kanawha County EM" in body
     # newlines collapsed → dedent survives → no code-block regression
     assert "flood killed eight people" in body
     assert "line one line two" in body
     # model HTML escaped, hostile URL neutralized
     assert "<script>" not in body
     assert 'href="javascript:' not in body and "href='javascript:" not in body
+    # the structural invariant: no blank or indented lines in any HTML block
+    _assert_html_markdown_safe(at, "fpf dirty data")
