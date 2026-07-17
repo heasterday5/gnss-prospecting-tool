@@ -13,7 +13,7 @@ import streamlit as st
 from utils.auth import check_password
 check_password()
 
-from utils.styles import (inject_css, sidebar_brand, page_header, pill,
+from utils.styles import (inject_css, sidebar_brand, page_header, pill, hclean, hurl,
                           GREEN, NAVY, TEAL, SLATE)
 from utils.data_loader import load_states, load_icp_profiles, load_contact_ladders
 from utils import live_prospecting, live_research
@@ -130,7 +130,7 @@ if result:
     prospects = result.get("prospects") or []
     if result.get("market_notes"):
         st.markdown(f'<div class="gn-card teal" style="padding:0.9rem 1.2rem;font-size:0.93rem;">'
-                    f'<b>Market read:</b> {result["market_notes"]}</div>', unsafe_allow_html=True)
+                    f'<b>Market read:</b> {hclean(result["market_notes"])}</div>', unsafe_allow_html=True)
 
     st.caption(f"{len(prospects)} prospects ranked · scored against the {icp['label']} ICP · "
                "every claim sourced — spot-check before you commit the quarter. Cached 7 days; "
@@ -183,34 +183,34 @@ if result:
         fg, bg = TIER_STYLE.get(p.get("tier"), TIER_STYLE["Worth a look"])
         prime = p.get("tier") == "Prime"
         flags = p.get("caution_flags") or []
-        flags_html = ("".join(f'<div style="font-size:0.84rem;color:#B45309;">⚠ {f}</div>' for f in flags)
+        flags_html = ("".join(f'<div style="font-size:0.84rem;color:#B45309;">⚠ {hclean(f)}</div>' for f in flags)
                       if flags else "")
-        why_html = "".join(f'<div style="font-size:0.9rem;">• {w}</div>' for w in (p.get("why_fit") or []))
-        srcs = " · ".join(f'<a href="{u}" target="_blank">src{i+1} ↗</a>'
+        why_html = "".join(f'<div style="font-size:0.9rem;">• {hclean(w)}</div>' for w in (p.get("why_fit") or []))
+        srcs = " · ".join(f'<a href="{hurl(u)}" target="_blank">src{i+1} ↗</a>'
                           for i, u in enumerate((p.get("source_urls") or [])[:3]))
-        inc = f'<span class="gn-pill" style="color:#B45309;background:#FEF3C7;">Incumbent: {p["incumbent"]}</span>' \
-            if p.get("incumbent") else ""
+        inc = (f'<span class="gn-pill" style="color:#B45309;background:#FEF3C7;">'
+               f'Incumbent: {hclean(p["incumbent"])}</span>') if p.get("incumbent") else ""
+        recent = f" · {hclean(p['recent_events'])}" if p.get("recent_events") else ""
 
         st.markdown(f"""
         <div class="gn-card {'green' if prime else 'navy'}" style="padding:1.1rem 1.3rem;">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
             <div style="flex:1;min-width:300px;">
               <div style="font-weight:800;color:{NAVY};font-size:1.08rem;">
-                {p.get('rank')}. {p.get('name')}
-                <span class="gn-pill" style="color:{fg};background:{bg};margin-left:8px;">{p.get('tier')}</span>
+                {hclean(p.get('rank'))}. {hclean(p.get('name'))}
+                <span class="gn-pill" style="color:{fg};background:{bg};margin-left:8px;">{hclean(p.get('tier'))}</span>
                 {inc}
               </div>
               <div style="font-size:0.85rem;color:{SLATE};margin:2px 0 8px 0;">
-                {p.get('county') or ''} · pop {p.get('population_served') or '?'}
-                {(' · ' + p['recent_events']) if p.get('recent_events') else ''}
+                {hclean(p.get('county'))} · pop {hclean(p.get('population_served'), '?')}{recent}
               </div>
               {why_html}
               {flags_html}
-              <div style="font-size:0.88rem;margin-top:8px;color:{NAVY};"><b>Lead with:</b> {p.get('product_angle') or ''}</div>
+              <div style="font-size:0.88rem;margin-top:8px;color:{NAVY};"><b>Lead with:</b> {hclean(p.get('product_angle'))}</div>
               <div style="font-size:0.82rem;margin-top:4px;">{srcs}</div>
             </div>
             <div style="text-align:center;min-width:86px;">
-              <div style="font-size:2rem;font-weight:900;color:{NAVY};">{p.get('fit_score')}</div>
+              <div style="font-size:2rem;font-weight:900;color:{NAVY};">{hclean(p.get('fit_score'))}</div>
               <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.08em;color:{SLATE};">ICP FIT / 100</div>
             </div>
           </div>
@@ -238,21 +238,22 @@ if result:
             contacts = contacts_res.get("contacts") or []
             meta = []
             if ag.get("website"):
-                meta.append(f"<a href='{ag['website']}' target='_blank'>Website ↗</a>")
+                meta.append(f"<a href='{hurl(ag['website'])}' target='_blank'>Website ↗</a>")
             if ag.get("email_pattern"):
-                meta.append(f"Email pattern: <b>{ag['email_pattern']}</b>")
+                meta.append(f"Email pattern: <b>{hclean(ag['email_pattern'])}</b>")
             if ag.get("main_phone"):
-                meta.append(f"Main line: <b>{ag['main_phone']}</b>")
+                meta.append(f"Main line: <b>{hclean(ag['main_phone'])}</b>")
             if contacts:
                 rows = ""
                 for c in sorted(contacts, key=lambda x: x.get("rank_order", 99))[:8]:
-                    email = c.get("email") or (f"{c['email_guess']} <span style='color:{SLATE};'>(guess)</span>"
-                                               if c.get("email_guess") else "—")
-                    rows += (f"<tr><td style='padding:5px 9px;'><b>{c.get('name', '')}</b></td>"
-                             f"<td style='padding:5px 9px;'>{c.get('title', '')}</td>"
+                    email = (hclean(c.get("email")) or
+                             (f"{hclean(c['email_guess'])} <span style='color:{SLATE};'>(guess)</span>"
+                              if c.get("email_guess") else "—"))
+                    rows += (f"<tr><td style='padding:5px 9px;'><b>{hclean(c.get('name'))}</b></td>"
+                             f"<td style='padding:5px 9px;'>{hclean(c.get('title'))}</td>"
                              f"<td style='padding:5px 9px;font-size:0.86rem;'>{email}</td>"
-                             f"<td style='padding:5px 9px;font-size:0.86rem;'>{c.get('phone') or '—'}</td>"
-                             f"<td style='padding:5px 9px;'><a href='{c.get('source_url', '#')}' target='_blank'>src ↗</a></td></tr>")
+                             f"<td style='padding:5px 9px;font-size:0.86rem;'>{hclean(c.get('phone'), '—')}</td>"
+                             f"<td style='padding:5px 9px;'><a href='{hurl(c.get('source_url'))}' target='_blank'>src ↗</a></td></tr>")
                 st.markdown(f"""
                 <div class="gn-card teal" style="padding:0.7rem 0.9rem;margin-top:-0.5rem;overflow-x:auto;">
                   <div style="font-size:0.85rem;margin-bottom:4px;">{' · '.join(meta)}</div>

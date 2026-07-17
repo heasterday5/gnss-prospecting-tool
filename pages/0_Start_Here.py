@@ -13,7 +13,7 @@ from utils.auth import check_password
 check_password()
 
 from utils.styles import (inject_css, sidebar_brand, page_header, status_badge,
-                          GREEN, NAVY, TEAL, SLATE)
+                          hclean, hurl, GREEN, NAVY, TEAL, SLATE)
 from utils.data_loader import (load_department_types, load_states, load_counties,
                                get_state_row, load_contact_ladders, load_deployments,
                                load_incidents, load_em_directories)
@@ -250,11 +250,11 @@ if lr:
 
     meta_bits = []
     if ag.get("website"):
-        meta_bits.append(f"<a href='{ag['website']}' target='_blank'>{ag.get('official_name') or 'Website'} ↗</a>")
+        meta_bits.append(f"<a href='{hurl(ag['website'])}' target='_blank'>{hclean(ag.get('official_name'), 'Website')} ↗</a>")
     if ag.get("email_pattern"):
-        meta_bits.append(f"Email pattern: <b>{ag['email_pattern']}</b>")
+        meta_bits.append(f"Email pattern: <b>{hclean(ag['email_pattern'])}</b>")
     if ag.get("main_phone"):
-        meta_bits.append(f"Main line: <b>{ag['main_phone']}</b>")
+        meta_bits.append(f"Main line: <b>{hclean(ag['main_phone'])}</b>")
     if meta_bits:
         st.markdown(f'<div class="gn-card green" style="padding:0.8rem 1.1rem;font-size:0.9rem;">'
                     f'{" · ".join(meta_bits)}</div>', unsafe_allow_html=True)
@@ -262,16 +262,17 @@ if lr:
     if contacts:
         rows = ""
         for c in sorted(contacts, key=lambda x: x.get("rank_order", 99)):
-            email = c.get("email") or (f"{c['email_guess']} <span style='color:{SLATE};'>(pattern guess)</span>"
-                                       if c.get("email_guess") else "—")
-            phone = c.get("phone") or "—"
-            rows += (f"<tr><td style='padding:6px 10px;font-weight:700;color:{NAVY};'>{c.get('rank_order', '')}</td>"
-                     f"<td style='padding:6px 10px;'><b>{c.get('name', '')}</b></td>"
-                     f"<td style='padding:6px 10px;'>{c.get('title', '')}<br>"
-                     f"<span style='font-size:0.78rem;color:{SLATE};'>{c.get('division', '')}</span></td>"
+            email = (hclean(c.get("email")) or
+                     (f"{hclean(c['email_guess'])} <span style='color:{SLATE};'>(pattern guess)</span>"
+                      if c.get("email_guess") else "—"))
+            phone = hclean(c.get("phone"), "—")
+            rows += (f"<tr><td style='padding:6px 10px;font-weight:700;color:{NAVY};'>{hclean(c.get('rank_order'))}</td>"
+                     f"<td style='padding:6px 10px;'><b>{hclean(c.get('name'))}</b></td>"
+                     f"<td style='padding:6px 10px;'>{hclean(c.get('title'))}<br>"
+                     f"<span style='font-size:0.78rem;color:{SLATE};'>{hclean(c.get('division'))}</span></td>"
                      f"<td style='padding:6px 10px;font-size:0.88rem;'>{email}</td>"
                      f"<td style='padding:6px 10px;font-size:0.88rem;'>{phone}</td>"
-                     f"<td style='padding:6px 10px;'><a href='{c.get('source_url', '#')}' target='_blank'>src ↗</a></td></tr>")
+                     f"<td style='padding:6px 10px;'><a href='{hurl(c.get('source_url'))}' target='_blank'>src ↗</a></td></tr>")
         st.markdown(f"""
         <div class="gn-card navy" style="padding:0.6rem 0.8rem;overflow-x:auto;">
         <table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
@@ -294,21 +295,21 @@ if lr:
         if inc.get("vendor"):
             st.markdown(f"""
             <div class="gn-card warn" style="padding:0.9rem 1.1rem;">
-              <div style="font-weight:800;color:{NAVY};">📡 Incumbent: {inc['vendor']}
-                {f"({inc['product']})" if inc.get('product') else ''}</div>
-              <div style="font-size:0.88rem;">{inc.get('evidence') or ''}
-                {f"<a href='{inc['source_url']}' target='_blank'>↗</a>" if inc.get('source_url') else ''}</div>
+              <div style="font-weight:800;color:{NAVY};">📡 Incumbent: {hclean(inc['vendor'])}
+                {f"({hclean(inc['product'])})" if inc.get('product') else ''}</div>
+              <div style="font-size:0.88rem;">{hclean(inc.get('evidence'))}
+                {f"<a href='{hurl(inc['source_url'])}' target='_blank'>↗</a>" if inc.get('source_url') else ''}</div>
               <div style="font-size:0.82rem;color:{SLATE};margin-top:4px;">
-                {inc.get('contract_note') or 'Check GovSpend for the contract renewal date — outreach lands best 6–9 months out.'}</div>
+                {hclean(inc.get('contract_note'), 'Check GovSpend for the contract renewal date — outreach lands best 6–9 months out.')}</div>
             </div>""", unsafe_allow_html=True)
             dossier_md.append(f"\n**Incumbent vendor (live):** {inc['vendor']} — {inc.get('evidence', '')} [{inc.get('source_url', '')}]")
     with lc2:
         if events:
             ev_html = "".join(
                 f'<div style="padding:4px 0;border-bottom:1px solid #EEF1F2;font-size:0.85rem;">'
-                f'<b>{e.get("year", "")}</b> — {e.get("what_happened", "")}<br>'
-                f'<span style="color:{SLATE};font-size:0.8rem;">{e.get("sales_relevance", "")}</span> '
-                f'<a href="{e.get("source_url", "#")}" target="_blank">↗</a></div>'
+                f'<b>{hclean(e.get("year"))}</b> — {hclean(e.get("what_happened"))}<br>'
+                f'<span style="color:{SLATE};font-size:0.8rem;">{hclean(e.get("sales_relevance"))}</span> '
+                f'<a href="{hurl(e.get("source_url"))}" target="_blank">↗</a></div>'
                 for e in events)
             st.markdown(f'<div class="gn-card teal" style="padding:0.9rem 1.1rem;">'
                         f'<div style="font-weight:800;color:{NAVY};">🗞️ Recent events</div>{ev_html}</div>',

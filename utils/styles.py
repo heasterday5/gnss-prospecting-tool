@@ -4,7 +4,28 @@ Modeled on genasys.com: clean white canvas, deep navy, teal + lime accents,
 modern sans-serif (Inter), uppercase kickers, generous cards.
 """
 
+import html as _html
+import re as _re
+
 import streamlit as st
+
+
+def hclean(value, default=""):
+    """Model/user-supplied text → safe inline HTML.
+
+    Newlines are the killer: Streamlit's markdown parser ends a raw-HTML block
+    at a blank line, turning the rest of an indented card template into a
+    literal code block. Collapse all whitespace runs and escape tags.
+    """
+    if value is None or value == "":
+        return default
+    return _html.escape(_re.sub(r"\s+", " ", str(value)).strip())
+
+
+def hurl(value):
+    """Model-supplied URL → safe href (http(s) only, else a dead '#')."""
+    v = str(value or "").strip()
+    return _html.escape(v, quote=True) if v.startswith(("http://", "https://")) else "#"
 
 # Genasys brand palette
 NAVY = "#163443"

@@ -167,3 +167,39 @@ def test_icp_profiles_valid():
 def test_router_navigation():
     at = _run(os.path.join(ROOT, "app.py"))
     assert not at.exception
+
+
+def test_fpf_dirty_model_text_renders_safely(monkeypatch):
+    """Model output with newlines/HTML must not break card rendering.
+
+    Newlines inside interpolated fields defeat Streamlit's dedent, turning the
+    indented card template into a literal markdown code block (the raw-HTML bug).
+    """
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-ant-test-not-real")
+    page = os.path.join(ROOT, "pages", "2_Find_Potential_Focus.py")
+    dirty = {
+        "market_notes": "line one\n\nline two",
+        "prospects": [{
+            "rank": 1, "name": "Wheeling-Ohio County HSEM", "county": "Ohio County",
+            "population_served": "42,000", "fit_score": 95, "tier": "Prime",
+            "why_fit": ["flood\nkilled eight people", "<script>alert(1)</script> declaration"],
+            "caution_flags": ["pop under\n50k gate"],
+            "incumbent": "Everbridge\n(statewide)",
+            "recent_events": "June 2025 flood (8 dead);\nDR-4884",
+            "product_angle": "Acoustics lead:\nvoice sirens",
+            "source_urls": ["https://example.com/a", "javascript:alert(1)"],
+        }],
+    }
+    at = AppTest.from_file(page, default_timeout=30)
+    at.session_state["authenticated"] = True
+    at.session_state["fpf::Texas::fire_em::Acoustics+Protect"] = dirty
+    at.run()
+    assert not at.exception
+    body = "\n".join(str(m.value) for m in at.markdown)
+    assert "Wheeling-Ohio County HSEM" in body
+    # newlines collapsed → dedent survives → no code-block regression
+    assert "flood killed eight people" in body
+    assert "line one line two" in body
+    # model HTML escaped, hostile URL neutralized
+    assert "<script>" not in body
+    assert 'href="javascript:' not in body and "href='javascript:" not in body
