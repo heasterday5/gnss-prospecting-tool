@@ -116,3 +116,41 @@ def test_landscape_data_integrity():
     bad = [(r.state, r.county) for r in inc.itertuples() if (r.state, r.county) not in valid]
     assert not bad, f"incidents.csv rows that won't geocode: {bad[:8]}"
     assert inc["year"].between(2000, 2026).all(), "incident years out of range"
+
+
+def test_find_potential_focus_renders_icp():
+    page = os.path.join(ROOT, "pages", "2_Find_Potential_Focus.py")
+    at = _run(page)
+    assert not at.exception
+    body = "\n".join(str(m.value) for m in at.markdown)
+    labels = at.selectbox[1].options
+    assert "Fire & Emergency Management" in labels
+    assert "Law Enforcement" in labels
+    assert "Military & Defense" in labels
+    assert "Enterprise — Critical Infrastructure" in labels
+    # without an API key the setup card shows (never silently hidden)
+    assert "live-research connection" in body or "Build the" in body
+
+
+def test_resource_links_page():
+    page = os.path.join(ROOT, "pages", "11_Resource_Links.py")
+    at = _run(page)
+    assert not at.exception
+    body = "\n".join(str(m.value) for m in at.markdown)
+    assert "govspend.com" in body.lower()
+    assert "030425-gys" in body.lower()
+    assert "hubspot.com" in body.lower()
+
+
+def test_icp_profiles_valid():
+    import json
+    icps = json.load(open(os.path.join(ROOT, "data", "icp_profiles.json")))
+    assert len(icps) == 5
+    for p in icps:
+        assert p["best_fit"] and p["caution_signals"] and p["decision_makers"]
+        assert p["funding_segment"], f"{p['id']} missing funding_segment"
+
+
+def test_router_navigation():
+    at = _run(os.path.join(ROOT, "app.py"))
+    assert not at.exception

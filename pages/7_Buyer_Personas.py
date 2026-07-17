@@ -7,7 +7,6 @@ check_password()
 from utils.styles import inject_css, sidebar_brand, page_header
 from utils.data_loader import load_personas, load_trends
 
-st.set_page_config(page_title="Buyer Personas | Genasys", page_icon="🛡️", layout="wide")
 inject_css()
 sidebar_brand()
 

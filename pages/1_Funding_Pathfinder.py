@@ -12,7 +12,6 @@ from utils.recommend import recommend
 from utils.emails import render, tokens_in
 from utils.identity import rep_identity_sidebar
 
-st.set_page_config(page_title="Funding Pathfinder | Genasys", page_icon="🛡️", layout="wide")
 inject_css()
 sidebar_brand()
 sender = rep_identity_sidebar()

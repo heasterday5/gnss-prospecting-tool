@@ -69,6 +69,11 @@ def load_em_directories() -> pd.DataFrame:
 
 
 @st.cache_data
+def load_icp_profiles() -> list:
+    return _read_json("icp_profiles.json")
+
+
+@st.cache_data
 def load_metrics() -> dict:
     return _read_json("metrics.json")
 

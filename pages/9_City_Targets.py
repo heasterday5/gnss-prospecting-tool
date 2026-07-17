@@ -7,7 +7,6 @@ check_password()
 from utils.data_loader import load_cities
 from utils.styles import inject_css, sidebar_brand, page_header, tier_badge, score_pill
 
-st.set_page_config(page_title="City Targets | Genasys", page_icon="🛡️", layout="wide")
 inject_css()
 sidebar_brand()
 

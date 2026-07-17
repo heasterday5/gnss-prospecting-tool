@@ -1,0 +1,296 @@
+[
+  {
+    "id": "fire_em",
+    "label": "Fire & Emergency Management",
+    "products": "Genasys Protect + Acoustics",
+    "funding_segment": "Emergency Management Agencies",
+    "entity_examples": "County OES/OEM, city emergency management, fire districts, regional EM councils",
+    "best_fit": {
+      "Dept / Agency Profile": [
+        "Counties and cities with populations over 50k",
+        "High-risk environmental zones (wildfire, flood, hurricane, flood plain)",
+        "Agencies facing expiring legacy alert contracts (CodeRED, Everbridge, Rave)",
+        "Regions with recent disasters or near-miss evacuation events",
+        "Multi-agency jurisdictions requiring shared common operating picture",
+        "Areas with known cellular vulnerability (mountains, coastal zones)"
+      ],
+      "Mindset": [
+        "Shaken by near-misses, understands what slow notification costs",
+        "Frustrated with current tools: drawing evacuation zones manually is unacceptable under pressure",
+        "Values inter-agency coordination over individual department heroics",
+        "Forward-thinking: plans for the worst-case scenario, not the average one",
+        "Politically exposed, knows a failed evacuation ends careers"
+      ],
+      "Technology": [
+        "Active GIS/CAD environment, open to integrations",
+        "Has or is exploring IPAWS integration for WEA and EAS",
+        "Recognizes cellular failure as a real scenario during major disasters",
+        "Open to cloud-native SaaS with offline/acoustic backup capability",
+        "Interested in sensor integration (weather, seismic, flood gauge)"
+      ],
+      "Outcomes Desired": [
+        "Evacuation speed: decision to public notification in under 10 minutes",
+        "Precision targeting - alert only those in harm's way, no gridlock from over-alerting",
+        "100% population reach including visitors and those without smartphones",
+        "Unified operating picture shared across Police, Fire, EOC, and Public Works",
+        "Clear evacuation routing via integration with Waze/Google Maps",
+        "Backup reach when power and cellular fail (acoustic integration)"
+      ]
+    },
+    "caution_signals": [
+      "Very small municipalities (<10k pop) with no dedicated EM staff or budget",
+      "Locked into long-term (5+ year) vendor deals with no exit clause",
+      "Leadership satisfied with tone-based sirens as only warning system",
+      "'We don't have wildfires / floods here' — low perceived risk",
+      "'Check the box' mentality - satisfies FEMA requirement, moves on",
+      "Resistant to cloud-based tools due to legacy IT department influence",
+      "Believes county GIS staff can replicate Genasys capabilities in-house",
+      "Heavy reliance on on-premise legacy hardware with IT gatekeeping",
+      "No budget line item for technology - relies on reactive grant cycles",
+      "Only wants the lowest-cost alerting tool to satisfy a mandate"
+    ],
+    "decision_makers": [
+      "Emergency Management Director / OES Director",
+      "Deputy EM Director / EM Coordinator",
+      "Fire Chief (if EM sits under fire)",
+      "Alert & Warning Coordinator / IPAWS POC",
+      "GIS Manager (technical influencer)",
+      "County Administrator / CAO (budget authority)"
+    ]
+  },
+  {
+    "id": "law_enforcement",
+    "label": "Law Enforcement",
+    "products": "Genasys Evertel (+ LRAD for operations)",
+    "funding_segment": "Police / Law Enforcement",
+    "entity_examples": "Police departments, sheriff's offices, SWAT/regional task forces, state law enforcement",
+    "best_fit": {
+      "Dept / Agency Profile": [
+        "Police departments and sheriff's offices in communities over 25k",
+        "Multi-agency regions with active task forces or shared investigations",
+        "Agencies with known FOIA exposure from current consumer app use",
+        "Agencies in states with strict CJIS and public records compliance mandates",
+        "Departments modernizing from radio-only to mobile-first communications",
+        "Any SWAT department or agency with regular high-risk operations"
+      ],
+      "Mindset": [
+        "Compliance-focused (understands FOIA and CJIS are existential risks, not formalities)",
+        "Tired of the 'two phone' problem: personal apps for actual work, official tools that lag",
+        "Values speed of information over process, needs intel to flow in real time",
+        "Forward-thinking chief who wants progressive department reputation",
+        "Aware that a single FOIA violation or leaked WhatsApp chat can dominate the news cycle"
+      ],
+      "Technology": [
+        "Strict CJIS and FIPS 140-2 compliance mandate, non-negotiable",
+        "Mobile-first: officers need tools that work on phones in the field",
+        "CAD integration valued for real-time incident-linked communications",
+        "IT environment that can support cloud-hosted, FedRAMP-aligned tools",
+        "Interested in reducing app sprawl - wants fewer, better tools"
+      ],
+      "Outcomes Desired": [
+        "Full FOIA and CJIS compliance, every message auditable and retrievable",
+        "Real-time intel sharing: suspect photos reach every officer in under 60 seconds",
+        "Cross-agency coordination in shared Regional Rooms without separate logins",
+        "Urgent department-wide messaging that bypasses radio congestion",
+        "Reduced administrative overhead: shift briefings, BOLOs, scheduling in one tool",
+        "No data stored on personal devices, officers protected from e-discovery"
+      ]
+    },
+    "caution_signals": [
+      "Agencies under 10k population with no IT budget or dedicated tech staff",
+      "Leadership that views digital communication as a liability, not an asset",
+      "Departments locked into city-mandated enterprise tools (Teams, etc.)",
+      "Heavily unionized agencies where app adoption requires contract negotiation",
+      "IT department actively blocking any cloud or SaaS tools",
+      "Outdated MDT environment incompatible with modern mobile apps",
+      "Relies on records management system (RMS) vendor for all communications - vendor lock-in",
+      "Looking only for a cheap broadcast alert tool - not interested in collaboration",
+      "Wants a system that requires zero behavior change from officers",
+      "Will not pay per-user pricing; expects 'free like WhatsApp'"
+    ],
+    "decision_makers": [
+      "Chief of Police / Sheriff",
+      "Deputy Chief / Undersheriff (operations owner)",
+      "Commander / Captain over Communications or Technology",
+      "SWAT Commander (for LRAD/tactical)",
+      "CIO / IT Director (CJIS gatekeeper)",
+      "PIO (FOIA pain owner)"
+    ]
+  },
+  {
+    "id": "military",
+    "label": "Military & Defense",
+    "products": "LRAD & Acoustics",
+    "funding_segment": "Armed Forces / Military",
+    "entity_examples": "Army/Navy/Air Force/Marine/Coast Guard installations, National Guard, range control",
+    "best_fit": {
+      "Installation / Unit Profile": [
+        "U.S. military installations (Army, Navy, Air Force, Marine, Coast Guard, National Guard)",
+        "Installations with active perimeter security requirements and defined exclusion zones",
+        "Bases with mass warning requirements under DoDI 6055.17",
+        "Units with counter-UAS, maritime, or vehicle interdiction missions",
+        "Range control operations requiring long-distance voice command capability",
+        "Allied military and partner nation defense forces"
+      ],
+      "Mindset": [
+        "Non-lethal force is a strategic priority - LRAD reduces ROE escalation liability",
+        "Reliability is everything: the system must work the first time, every time",
+        "MIL-STD certification is a requirement, not a differentiator, must pass IG inspection",
+        "Understands that clarity of voice command at distance prevents lethal engagement",
+        "Seeks documented audit trail of all warnings issued before lethal force"
+      ],
+      "Technology": [
+        "Requires MIL-STD-810 tested and certified equipment",
+        "Needs seamless integration with BDOC/EOC mass warning systems",
+        "Vehicle-mountable, ship-mounted, and fixed installation configurations required",
+        "Standalone operation (no network dependency) for field and maritime use",
+        "Interoperability with SINCGARS, tactical comms, and civilian emergency systems"
+      ],
+      "Outcomes Desired": [
+        "Intelligible voice commands at 300–1,000+ meter range in high-noise environments",
+        "Documented EOF compliance: every verbal warning logged before lethal engagement",
+        "Targeted zone-based lockdown without alerting entire installation",
+        "Deterrence of approaching threats (vessels, vehicles, UAVs) at safe standoff distance",
+        "Seamless BDOC-to-EOC communication during natural disasters or security events",
+        "Realistic training simulation for security forces without live acoustic exposure"
+      ]
+    },
+    "caution_signals": [
+      "Installations already under long-term contract with a competing acoustic vendor",
+      "Commands prioritizing budget exclusively toward lethal weapons programs",
+      "FedRAMP / ATO requirements that exceed current Genasys certification status",
+      "Procurement timelines exceeding 3 years with no near-term bridge contract",
+      "Views acoustic hailing as a 'nice to have' versus a mission-critical capability",
+      "Decision-maker focused only on unit cost, not lifecycle reliability or MIL-STD compliance",
+      "Legacy siren infrastructure so deeply embedded that replacement requires congressional approval",
+      "Only wants a siren replacement, no interest in directed voice capability",
+      "Budget cycle locked into competitor renewal with no discretionary funds"
+    ],
+    "decision_makers": [
+      "Installation Commander / Garrison Commander",
+      "Director of Emergency Services (DES) / Provost Marshal",
+      "Installation Emergency Manager",
+      "Antiterrorism / Force Protection Officer (ATO)",
+      "BDOC / Security Forces Commander",
+      "Range Control Officer (for range use cases)"
+    ]
+  },
+  {
+    "id": "critical_infra",
+    "label": "Enterprise — Critical Infrastructure",
+    "products": "Genasys Protect + LRAD/Acoustics",
+    "funding_segment": "Critical Infrastructure Operators",
+    "entity_examples": "Electric/water/gas utilities, oil & gas, nuclear, refineries, chemical plants, data centers, ports",
+    "best_fit": {
+      "Organization Profile": [
+        "Utilities (electric, water, gas), oil & gas facilities, nuclear plants",
+        "Large industrial campuses, refineries, and chemical processing sites",
+        "Data centers, financial infrastructure, and critical supply chain nodes",
+        "Organizations with NERC-CIP, CFATS, or EPA RMP compliance obligations",
+        "Multi-site enterprises with centralized security operations center (SOC)",
+        "Facilities with known high-noise environments that defeat standard alarms"
+      ],
+      "Mindset": [
+        "Proactive risk manager: views a single preventable incident as a reputational catastrophe",
+        "Compliance-driven but genuinely concerned about employee and community safety",
+        "Understands that contractor and visitor safety is a legal liability, not just HR's problem",
+        "Seeks automation — wants sensors to trigger responses without human-in-the-loop delay",
+        "Values a single-pane-of-glass view across all security and notification systems"
+      ],
+      "Technology": [
+        "Existing perimeter sensor infrastructure (CCTV, motion, chemical detectors) seeking integration",
+        "Open to sensor-to-notification automation; understands value of removing human latency",
+        "Needs solutions that function in GPS-denied, high-EM, and high-noise environments",
+        "Interested in multi-channel notification: PA, digital, SMS, and visual warning",
+        "Has a security operations center (SOC) that needs a unified communications view"
+      ],
+      "Outcomes Desired": [
+        "Automated response: perimeter breach or chemical detection triggers voice notification instantly",
+        "100% on-site reach: employees, contractors, and visitors, regardless of HR database inclusion",
+        "Intelligible voice instructions over industrial noise that standard alarms cannot cut through",
+        "Targeted messaging: shelter-in-place only for Zone A, not a facility-wide panic"
+      ]
+    },
+    "caution_signals": [
+      "Small industrial operations (<200 employees) with no dedicated security staff",
+      "Organizations where safety is fully delegated to a third-party contractor",
+      "No regulatory compliance obligation driving urgency for upgraded notification",
+      "Executive team views any safety spend purely as sunk cost, not liability mitigation",
+      "Reactive only: acts after incidents, not before - no appetite for proactive investment",
+      "Believes existing PA system and email blast is sufficient for all scenarios",
+      "Security budget controlled by IT department prioritizing cyber over physical security",
+      "IT department blocking any cloud-connected notification tools",
+      "Procurement requires 18+ month approval cycle with no emergency purchase path",
+      "Only wants the cheapest alarm upgrade to satisfy an insurance or regulatory requirement"
+    ],
+    "decision_makers": [
+      "Chief Security Officer / VP of Security",
+      "Director of Corporate Security / Physical Security",
+      "EHS Director (Environment, Health & Safety)",
+      "Emergency Preparedness / Business Continuity Manager",
+      "SOC Manager (technical influencer)",
+      "Plant / Facility Manager (site authority)"
+    ]
+  },
+  {
+    "id": "cities_counties",
+    "label": "Cities & Counties (general)",
+    "products": "Genasys Protect + Acoustics",
+    "funding_segment": "Cities / Counties / Municipalities",
+    "entity_examples": "City and county governments buying at the municipal level rather than one department",
+    "best_fit": {
+      "Dept / Municipality Profile": [
+        "Counties & cities over 50k population",
+        "High-risk zones (wildfire, flood, hurricane)",
+        "Agencies with expiring legacy contracts",
+        "Regions with recent disasters or near-miss events",
+        "Communities with history of civil unrest",
+        "Agencies modernizing legacy siren/alert systems"
+      ],
+      "Mindset": [
+        "Compliance-focused",
+        "Safety-first culture, not a 'check the box' mentality",
+        "Advocate for change; values inter-agency collaboration",
+        "Forward-thinking; preparing for 'what if,' not just today",
+        "Early adopter; receptive to technology progression",
+        "Views communication as critical infrastructure"
+      ],
+      "Technology": [
+        "Mobile-first operational strategy",
+        "Strict CJIS/FIPS compliance mandate",
+        "Needs redundant reach: audible + digital",
+        "Open to cloud-native (SaaS) solutions",
+        "Uses modern tech and open APIs"
+      ],
+      "Outcomes Desired": [
+        "Compliance assurance and audit readiness",
+        "Evacuation speed: minutes, not hours",
+        "100% population reach; no one left behind",
+        "Unified operating picture (Police/Fire/EM/EOC/Residents)",
+        "Clear audible reach to outdoor crowds when networks fail"
+      ]
+    },
+    "caution_signals": [
+      "Very small municipalities (<10k pop) with no budget",
+      "Uncertain funding or no knowledge of funding mechanisms",
+      "Agencies locked into long-term (5+ year) deals",
+      "Very complex / slow procurement processes",
+      "'Good enough' mentality regarding free apps (WhatsApp/Signal)",
+      "Resistant to technology change",
+      "'We don't have evacuations or emergencies that much'",
+      "Heavy reliance on on-premise legacy hardware only",
+      "IT departments blocking cloud solutions",
+      "Executive decision-maker lacks political support",
+      "Agency has significant negative press",
+      "Looking for cheapest alerting-only tool"
+    ],
+    "decision_makers": [
+      "City Manager / County Administrator",
+      "Emergency Management Director",
+      "Police Chief / Sheriff",
+      "Fire Chief",
+      "CIO / IT Director",
+      "Mayor / County Executive (political sponsor)"
+    ]
+  }
+]

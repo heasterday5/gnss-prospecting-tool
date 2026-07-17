@@ -19,7 +19,6 @@ from utils.data_loader import (load_department_types, load_states, load_counties
                                load_incidents, load_em_directories)
 from utils.recommend import recommend
 
-st.set_page_config(page_title="Start Here | Genasys", page_icon="🛡️", layout="wide")
 inject_css()
 sidebar_brand()
 
@@ -564,8 +563,9 @@ with b2:
         st.session_state["mp_state"] = selected_state
         st.switch_page("pages/4_Meeting_Prep.py")
 with b3:
-    if st.button("🎯 Score it in the Lead Scorer →", use_container_width=True):
-        st.switch_page("pages/3_Lead_Scorer.py")
+    if st.button("🎯 Find more targets like this →", use_container_width=True,
+                 help="Build the ICP-ranked target list for this state and segment."):
+        st.switch_page("pages/2_Find_Potential_Focus.py")
 
 dossier_md.append("\n## 15-minute research routine\n"
                   "1. CIP + adopted budget → public-safety comms line + funding source\n"

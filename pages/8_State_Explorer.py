@@ -9,7 +9,6 @@ from utils.data_loader import load_states, load_cities, load_funding, load_state
 from utils.styles import (inject_css, sidebar_brand, page_header, tier_badge,
                           score_pill, status_badge, NAVY, GREEN)
 
-st.set_page_config(page_title="State Explorer | Genasys", page_icon="🛡️", layout="wide")
 inject_css()
 sidebar_brand()
 

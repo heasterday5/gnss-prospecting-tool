@@ -10,7 +10,6 @@ check_password()
 import pandas as pd
 from utils.styles import inject_css, sidebar_brand, page_header, pill
 
-st.set_page_config(page_title="Procurement Toolkit | Genasys", page_icon="🛡️", layout="wide")
 inject_css()
 sidebar_brand()
 

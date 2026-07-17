@@ -10,7 +10,6 @@ from utils.data_loader import (load_department_types, load_states, load_signals,
 from utils.recommend import recommend
 from utils.identity import rep_identity_sidebar
 
-st.set_page_config(page_title="Meeting Prep | Genasys", page_icon="🛡️", layout="wide")
 inject_css()
 sidebar_brand()
 rep_identity_sidebar()

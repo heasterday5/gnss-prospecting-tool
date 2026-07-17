@@ -7,7 +7,6 @@ check_password()
 from utils.data_loader import load_funding
 from utils.styles import inject_css, sidebar_brand, page_header, status_badge
 
-st.set_page_config(page_title="Funding Programs | Genasys", page_icon="🛡️", layout="wide")
 inject_css()
 sidebar_brand()
 

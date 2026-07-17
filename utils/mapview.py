@@ -186,7 +186,7 @@ def render_landscape(state: str, county_label, jurisdiction: str) -> list:
           ({str(v['product_category']).replace('_', ' ')}). Check GovSpend for the contract renewal date —
           outreach lands best 6–9 months out. Genasys Protect complements or replaces opt-in systems:
           zone-based, no signup required, works when cell coverage fails. The expiring-contract play in the
-          Signal Playbook has the full talk track and email.</div>
+          Funding Pathfinder has the full talk track and email.</div>
         </div>""", unsafe_allow_html=True)
 
     # ---- dossier lines
